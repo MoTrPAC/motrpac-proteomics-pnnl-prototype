@@ -1,0 +1,24 @@
+Package: TMTPP
+Title: Quantitate TMT-Labeled Proteomics Data
+Version: 0.0.0.9000
+Authors@R: c(person("Vlad", "Petyuk", role = "aut", 
+                    email = "petyuk@gmail.com"),
+            person("Jamie", "Moon", role = c("aut", "cre"), 
+                    email = "jmoon1194@gmail.com"))
+Maintainer: Jamie Moon <jmoon1194@gmail.com>
+Description: A collection of functions for analyzing isotopically labeled (TMT) proteomics data.
+  The functions retrieve and process results created by MASIC and MS-GF+ from the DMS.
+Depends: R (>= 3.4.4)
+Imports:
+  Biostrings,
+  data.table,
+  plyr,
+  dplyr,
+  reshape2,
+  RODBC,
+  stringr,
+  tidyr
+License: Beerware
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
