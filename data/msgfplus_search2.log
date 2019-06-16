@@ -1,0 +1,138 @@
+MS-GF+ Release (v2019.04.18) (18 April 2019)
+Loading database files...
+Warning: Sequence database contains 2 counts of letter 'B', which does not correspond to an amino acid.
+Warning: Sequence database contains 104 counts of letter 'U', which does not correspond to an amino acid.
+Warning: Sequence database contains 4794 counts of letter 'X', which does not correspond to an amino acid.
+Loading database finished (elapsed time: 15.84 sec)
+Reading spectra...
+Ignoring 0 profile spectra.
+Ignoring 0 spectra having less than 5 peaks.
+Reading spectra finished (elapsed time: 141.95 sec)
+Using 7 threads.
+Search Parameters:
+	PrecursorMassTolerance: 20.0 ppm
+	IsotopeError: -1,2
+	TargetDecoyAnalysis: true
+	FragmentationMethod: As written in the spectrum or CID if no info
+	Instrument: QExactive (Q-Exactive)
+	Enzyme: Tryp
+	Protocol: Phosphorylation
+	NumTolerableTermini: 1
+	MinPepLength: 6
+	MaxPepLength: 50
+	MinCharge: 2
+	MaxCharge: 5
+	NumMatchesPerSpec: 1
+	MaxMissedCleavages: -1
+	MaxNumModsPerPeptide: 3
+	ChargeCarrierMass: 1.00727649 (proton)
+	MinNumPeaksPerSpectrum: 5
+	NumIsoforms: 128
+Post translational modifications in use:
+	Fixed (static):     TMT6plex on * at the peptide N-terminus (+229.1629)
+	Fixed (static):     TMT6plex on K (+229.1629)
+	Fixed (static):     Carbamidomethyl on C (+57.0215)
+	Variable (dynamic): Oxidation on M (+15.9949)
+
+Spectrum 0-33752 (total: 33753)
+Splitting work into 21 tasks.
+Search progress: 0 / 21 tasks, 0.00%		0.01 seconds elapsed
+Loading built-in param file: HCD_QExactive_Tryp_Phosphorylation.param
+Search progress: 0 / 21 tasks, 2.07%		59.95 seconds elapsed
+Search progress: 0 / 21 tasks, 3.50%		2.00 minutes elapsed
+Search progress: 0 / 21 tasks, 5.38%		3.00 minutes elapsed
+Search progress: 0 / 21 tasks, 7.80%		4.00 minutes elapsed
+Search progress: 0 / 21 tasks, 10.42%		4.99 minutes elapsed
+Search progress: 0 / 21 tasks, 11.40%		5.99 minutes elapsed
+Search progress: 0 / 21 tasks, 11.76%		6.99 minutes elapsed
+Search progress: 0 / 21 tasks, 12.21%		7.99 minutes elapsed
+Search progress: 0 / 21 tasks, 13.29%		8.99 minutes elapsed
+Search progress: 0 / 21 tasks, 14.93%		9.99 minutes elapsed
+Search progress: 0 / 21 tasks, 17.07%		10.99 minutes elapsed
+Search progress: 0 / 21 tasks, 18.58%		11.99 minutes elapsed
+Search progress: 0 / 21 tasks, 19.77%		12.99 minutes elapsed
+Search progress: 0 / 21 tasks, 20.32%		13.98 minutes elapsed
+Search progress: 0 / 21 tasks, 20.74%		14.98 minutes elapsed
+Search progress: 0 / 21 tasks, 21.69%		15.98 minutes elapsed
+Search progress: 0 / 21 tasks, 22.63%		16.98 minutes elapsed
+Search progress: 1 / 21 tasks, 23.69%		17.57 minutes elapsed
+Search progress: 1 / 21 tasks, 24.18%		17.98 minutes elapsed
+Search progress: 1 / 21 tasks, 25.22%		18.98 minutes elapsed
+Search progress: 1 / 21 tasks, 26.78%		19.98 minutes elapsed
+Search progress: 2 / 21 tasks, 27.01%		20.20 minutes elapsed
+Search progress: 3 / 21 tasks, 27.48%		20.31 minutes elapsed
+Search progress: 3 / 21 tasks, 28.60%		20.98 minutes elapsed
+Search progress: 3 / 21 tasks, 30.45%		21.97 minutes elapsed
+Search progress: 3 / 21 tasks, 32.44%		22.97 minutes elapsed
+Search progress: 3 / 21 tasks, 29.22%		23.61 minutes elapsed
+Search progress: 4 / 21 tasks, 34.87%		23.97 minutes elapsed
+Search progress: 5 / 21 tasks, 36.44%		24.74 minutes elapsed
+Search progress: 6 / 21 tasks, 37.21%		24.94 minutes elapsed
+Search progress: 6 / 21 tasks, 37.26%		24.97 minutes elapsed
+Search progress: 6 / 21 tasks, 38.99%		25.97 minutes elapsed
+Search progress: 6 / 21 tasks, 34.46%		26.02 minutes elapsed
+Search progress: 7 / 21 tasks, 40.54%		26.97 minutes elapsed
+Search progress: 7 / 21 tasks, 41.43%		27.97 minutes elapsed
+Search progress: 7 / 21 tasks, 42.28%		28.97 minutes elapsed
+Search progress: 7 / 21 tasks, 43.24%		29.97 minutes elapsed
+Search progress: 7 / 21 tasks, 44.28%		30.96 minutes elapsed
+Search progress: 7 / 21 tasks, 45.20%		31.96 minutes elapsed
+Search progress: 7 / 21 tasks, 46.01%		32.96 minutes elapsed
+Search progress: 7 / 21 tasks, 46.86%		33.96 minutes elapsed
+Search progress: 7 / 21 tasks, 47.40%		34.96 minutes elapsed
+Search progress: 7 / 21 tasks, 47.97%		35.96 minutes elapsed
+Search progress: 7 / 21 tasks, 48.46%		36.96 minutes elapsed
+Search progress: 7 / 21 tasks, 48.87%		37.96 minutes elapsed
+Search progress: 7 / 21 tasks, 49.21%		38.96 minutes elapsed
+Search progress: 7 / 21 tasks, 49.70%		39.95 minutes elapsed
+Search progress: 7 / 21 tasks, 50.55%		40.95 minutes elapsed
+Search progress: 7 / 21 tasks, 51.47%		41.95 minutes elapsed
+Search progress: 7 / 21 tasks, 52.32%		42.95 minutes elapsed
+Search progress: 7 / 21 tasks, 53.41%		43.95 minutes elapsed
+Search progress: 7 / 21 tasks, 54.56%		44.95 minutes elapsed
+Search progress: 7 / 21 tasks, 55.61%		45.95 minutes elapsed
+Search progress: 8 / 21 tasks, 55.91%		46.03 minutes elapsed
+Search progress: 8 / 21 tasks, 56.76%		46.95 minutes elapsed
+Search progress: 8 / 21 tasks, 57.50%		47.94 minutes elapsed
+Search progress: 8 / 21 tasks, 58.14%		48.95 minutes elapsed
+Search progress: 8 / 21 tasks, 58.75%		49.94 minutes elapsed
+Search progress: 8 / 21 tasks, 54.36%		50.14 minutes elapsed
+Search progress: 9 / 21 tasks, 59.86%		50.94 minutes elapsed
+Search progress: 9 / 21 tasks, 60.60%		51.94 minutes elapsed
+Search progress: 9 / 21 tasks, 56.45%		52.49 minutes elapsed
+Search progress: 10 / 21 tasks, 61.74%		52.94 minutes elapsed
+Search progress: 10 / 21 tasks, 62.34%		53.94 minutes elapsed
+Search progress: 10 / 21 tasks, 63.20%		54.94 minutes elapsed
+Search progress: 10 / 21 tasks, 64.05%		55.94 minutes elapsed
+Search progress: 10 / 21 tasks, 65.05%		56.93 minutes elapsed
+Search progress: 10 / 21 tasks, 66.09%		57.93 minutes elapsed
+Search progress: 10 / 21 tasks, 66.82%		58.93 minutes elapsed
+Search progress: 10 / 21 tasks, 62.37%		59.01 minutes elapsed
+Search progress: 11 / 21 tasks, 68.04%		59.93 minutes elapsed
+Search progress: 11 / 21 tasks, 69.04%		1.02 hours elapsed
+Search progress: 11 / 21 tasks, 65.53%		1.03 hours elapsed
+Search progress: 12 / 21 tasks, 66.72%		1.05 hours elapsed
+Search progress: 13 / 21 tasks, 73.15%		1.10 hours elapsed
+Search progress: 14 / 21 tasks, 74.18%		1.12 hours elapsed
+Search progress: 14 / 21 tasks, 76.71%		1.18 hours elapsed
+Search progress: 14 / 21 tasks, 79.64%		1.27 hours elapsed
+Search progress: 14 / 21 tasks, 81.62%		1.35 hours elapsed
+Search progress: 14 / 21 tasks, 82.73%		1.43 hours elapsed
+Search progress: 14 / 21 tasks, 85.55%		1.51 hours elapsed
+Search progress: 14 / 21 tasks, 88.77%		1.60 hours elapsed
+Search progress: 14 / 21 tasks, 85.10%		1.63 hours elapsed
+Search progress: 15 / 21 tasks, 91.18%		1.68 hours elapsed
+Search progress: 16 / 21 tasks, 92.80%		1.72 hours elapsed
+Search progress: 17 / 21 tasks, 93.10%		1.73 hours elapsed
+Search progress: 17 / 21 tasks, 95.80%		1.76 hours elapsed
+Search progress: 18 / 21 tasks, 97.99%		1.79 hours elapsed
+Search progress: 19 / 21 tasks, 99.01%		1.80 hours elapsed
+Search progress: 20 / 21 tasks, 99.53%		1.81 hours elapsed
+Search progress: 21 / 21 tasks, 100.00%		1.82 hours elapsed
+Search progress: 21 / 21 tasks, 100.00%		1.82 hours elapsed
+Computing q-values...
+Computing q-values finished (elapsed time: 3.13 sec)
+Writing results...
+Writing results finished (elapsed time: 94.36 sec)
+File: /data/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02_FIXED_msgfplus.mzid
+MS-GF+ complete (total elapsed time: 6774.20 sec)

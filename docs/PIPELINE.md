@@ -25,7 +25,7 @@ java.exe -Xmx4000M -jar MSGFPlus.jar -s MoTrPAC_Pilot_TMT_x.mzML -o MoTrPAC_Pilo
 
 **INPUT**:
 - `.mzML` files from step 1 (tracked in-house)
-- `pilot_data_global_20190110/processed/msgfplus_mzRefinery_input/MSGFPlus_Mods.txt`
+- `pilot_data_global_20190110/processed/msgfplus_mzRefinery_input/MSGFPlus_Mods.txt` **QUESTION**: what does it mean?
 -  `pilot_data_global_20190110/processed/msgfplus_mzRefinery_input/ID_006404_2D994010.fasta`: this is a decoy FASTA created by combining `Rattus_norvegicus_UniProt_MoTrPAC_2017-10-20.fasta` and `Tryp_Pig_Bov.fasta`
 
 **OUTPUT**: `.mzid` files (tracked in-house)
@@ -76,7 +76,17 @@ Alternatively, use the /Python switch, which creates similar plots using the PPM
 **SOFTWARE**: MS-GF+ (v2018.04.09) (9 April 2018)
 
 ```
-java.exe -Xmx4000M -jar MSGFPlus.jar -s MoTrPAC_Pilot_TMT_x.mzML -o MoTrPAC_Pilot_TMT_x_msgfplus.mzid -d ID_007275_FB1B42E8.fasta  -t 20ppm -m 0 -inst 3 -e 1 -ti -1,2 -ntt 1 -tda 1 -minLength 6 -maxLength 50 -minCharge 2 -maxCharge 5 -n 1 -protocol 1 -thread 7 -mod MSGFPlus_Mods.txt -minNumPeaks 5 -addFeatures 1
+java.exe -Xmx4000M \
+        -jar MSGFPlus.jar \
+        -s MoTrPAC_Pilot_TMT_x.mzML \
+        -o MoTrPAC_Pilot_TMT_x_msgfplus.mzid \
+        -d ID_007275_FB1B42E8.fasta  \
+        -t 20ppm -m 0 -inst 3 -e 1 -ti -1,2 -ntt 1 -tda 1 \
+        -minLength 6 -maxLength 50 -minCharge 2 -maxCharge 5 \
+        -n 1 -protocol 1 -thread 7 \
+        -mod MSGFPlus_Mods.txt \
+        -minNumPeaks 5 \
+        -addFeatures 1
 ```
 
 
@@ -87,6 +97,7 @@ java.exe -Xmx4000M -jar MSGFPlus.jar -s MoTrPAC_Pilot_TMT_x.mzML -o MoTrPAC_Pilo
 - `pilot_data_global_20190110/processed/msgfplus_input/MSGFPlus_Mods.txt`
          
 - pilot_data_global_20190110/processed/msgfplus_input/ID_007275_FB1B42E8.fasta: this is a decoy FASTA created by combining `Rattus_norvegicus_NCBI_RefSeq_2018-04-10.fasta` and `Tryp_Pig_Bov.fasta`
+
 
 **OUTPUT**:  .mzid files in directory pilot_data_global_20190110/processed/msgfplus_output/
 

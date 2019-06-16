@@ -1,0 +1,4837 @@
+Parsing *.raw
+
+Processing: 0% 
+Starting calculations
+.Loading parameter file: /data/masic_input/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml
+Source data file: /data/raw/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw
+
+Parsing MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 2, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset = 'MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 1, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset = 'MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 0, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset = 'MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 2, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset Like 'MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02%'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 1, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset Like 'MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02%'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 0, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset Like 'MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02%'
+
+Checking for existing results in the output path: /data/masic_output/
+Checking for write permission in the output path: /data/masic_output/
+.
+  : 0%
+Reading Thermo .raw file Reading Thermo .raw file
+
+Error while reading the method info: Object reference not set to an instance of an object
+
+Consider instantiating the XRawFileIO class with a ThermoReaderOptions object that has LoadMSMethodInfo = false
+.Reading Xcalibur data; Total scan count: 42,558
+..........
+  Updating BPI in scan 146 from 438.226 m/z to 371.102 m/z, and BPI Intensity from 4500096 to 4287764
+...
+  Updating BPI in scan 205 from 438.226 m/z to 371.102 m/z, and BPI Intensity from 3606210 to 3502515
+...............
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 1%
+.......Reading scan: 673
+.....................
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 3%
+.................Reading scan: 1501
+............
+  Updating BPI in scan 1815 from 371.101 m/z to 438.224 m/z, and BPI Intensity from 2951659 to 2847001
+
+  Updating BPI in scan 1826 from 438.225 m/z to 371.102 m/z, and BPI Intensity from 3689562 to 3495840
+...
+  Updating BPI in scan 1918 from 468.269 m/z to 438.224 m/z, and BPI Intensity from 8809865 to 8633641
+.
+  Updating BPI in scan 1982 from 468.268 m/z to 438.224 m/z, and BPI Intensity from 46695236 to 45475320
+....
+  Updating BPI in scan 2106 from 409.565 m/z to 458.264 m/z, and BPI Intensity from 44894612 to 44201572
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 5%
+.
+Did not find the precursor for 464.72 in scan 2215; cannot compute interference
+.....
+Did not find the precursor for 577.73 in scan 2355; cannot compute interference
+......Reading scan: 2500
+........
+Did not find the precursor for 623.83 in scan 2719; cannot compute interference
+.
+  Updating BPI in scan 2761 from 442.914 m/z to 497.244 m/z, and BPI Intensity from 40528608 to 39844976
+.....
+Did not find the precursor for 665.35 in scan 2961; cannot compute interference
+.....
+Did not find the precursor for 790.90 in scan 3135; cannot compute interference
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 8%
+..
+Did not find the precursor for 644.81 in scan 3297; cannot compute interference
+..
+Did not find the precursor for 533.80 in scan 3366; cannot compute interference
+.
+Did not find the precursor for 747.39 in scan 3398; cannot compute interference
+....
+  Updating BPI in scan 3512 from 665.856 m/z to 384.896 m/z, and BPI Intensity from 71740288 to 69387784
+.......Reading scan: 3757
+.....
+Did not find the precursor for 760.05 in scan 3860; cannot compute interference
+
+Did not find the precursor for 621.80 in scan 3868; cannot compute interference
+
+Did not find the precursor for 790.40 in scan 3869; cannot compute interference
+........
+Did not find the precursor for 449.75 in scan 4098; cannot compute interference
+....
+Did not find the precursor for 867.37 in scan 4189; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 10%
+........
+Did not find the precursor for 1023.40 in scan 4438; cannot compute interference
+
+Did not find the precursor for 974.43 in scan 4439; cannot compute interference
+
+Did not find the precursor for 1315.59 in scan 4454; cannot compute interference
+
+Did not find the precursor for 894.85 in scan 4464; cannot compute interference
+.
+Did not find the precursor for 795.14 in scan 4528; cannot compute interference
+
+Did not find the precursor for 612.37 in scan 4529; cannot compute interference
+
+Did not find the precursor for 603.62 in scan 4539; cannot compute interference
+.
+Did not find the precursor for 1029.10 in scan 4570; cannot compute interference
+.
+Did not find the precursor for 749.83 in scan 4616; cannot compute interference
+..Reading scan: 4674
+.....
+Did not find the precursor for 998.77 in scan 4752; cannot compute interference
+
+Did not find the precursor for 886.42 in scan 4770; cannot compute interference
+.
+Did not find the precursor for 796.72 in scan 4795; cannot compute interference
+..
+Did not find the precursor for 756.88 in scan 4884; cannot compute interference
+..
+Did not find the precursor for 480.28 in scan 4929; cannot compute interference
+
+Did not find the precursor for 835.69 in scan 4944; cannot compute interference
+
+Did not find the precursor for 780.38 in scan 4945; cannot compute interference
+
+Did not find the precursor for 530.77 in scan 4962; cannot compute interference
+.
+Did not find the precursor for 633.32 in scan 4994; cannot compute interference
+....
+Did not find the precursor for 772.72 in scan 5185; cannot compute interference
+..
+Did not find the precursor for 707.35 in scan 5257; cannot compute interference
+.
+Did not find the precursor for 821.44 in scan 5273; cannot compute interference
+.
+Did not find the precursor for 531.78 in scan 5303; cannot compute interference
+..
+Did not find the precursor for 501.93 in scan 5414; cannot compute interference
+
+Did not find the precursor for 516.62 in scan 5423; cannot compute interference
+
+Did not find the precursor for 566.60 in scan 5428; cannot compute interference
+
+Did not find the precursor for 556.29 in scan 5486; cannot compute interference
+
+Did not find the precursor for 525.27 in scan 5487; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 13%
+..........
+Did not find the precursor for 516.25 in scan 5995; cannot compute interference
+..
+Did not find the precursor for 1307.56 in scan 6092; cannot compute interference
+..Reading scan: 6248
+.
+Did not find the precursor for 488.26 in scan 6266; cannot compute interference
+....
+Did not find the precursor for 568.63 in scan 6449; cannot compute interference
+.
+Did not find the precursor for 404.22 in scan 6501; cannot compute interference
+..
+Did not find the precursor for 479.78 in scan 6605; cannot compute interference
+...
+Did not find the precursor for 667.34 in scan 6723; cannot compute interference
+
+Did not find the precursor for 691.33 in scan 6749; cannot compute interference
+
+Did not find the precursor for 609.29 in scan 6750; cannot compute interference
+
+Did not find the precursor for 610.28 in scan 6763; cannot compute interference
+
+Did not find the precursor for 740.90 in scan 6780; cannot compute interference
+..
+Did not find the precursor for 756.35 in scan 6849; cannot compute interference
+
+Did not find the precursor for 1005.82 in scan 6856; cannot compute interference
+..
+Did not find the precursor for 887.47 in scan 6917; cannot compute interference
+
+Did not find the precursor for 578.79 in scan 6939; cannot compute interference
+.
+Did not find the precursor for 543.59 in scan 6994; cannot compute interference
+..
+Did not find the precursor for 570.80 in scan 7027; cannot compute interference
+.
+Did not find the precursor for 391.72 in scan 7090; cannot compute interference
+.
+Did not find the precursor for 798.41 in scan 7108; cannot compute interference
+
+Did not find the precursor for 748.72 in scan 7138; cannot compute interference
+..
+Did not find the precursor for 841.43 in scan 7222; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 17%
+..
+Did not find the precursor for 529.30 in scan 7323; cannot compute interference
+.
+Did not find the precursor for 710.39 in scan 7347; cannot compute interference
+.
+Did not find the precursor for 396.40 in scan 7389; cannot compute interference
+.
+Did not find the precursor for 537.59 in scan 7427; cannot compute interference
+.
+Did not find the precursor for 712.38 in scan 7474; cannot compute interference
+
+Did not find the precursor for 428.74 in scan 7475; cannot compute interference
+
+Did not find the precursor for 710.88 in scan 7490; cannot compute interference
+.
+Did not find the precursor for 576.80 in scan 7499; cannot compute interference
+..
+Did not find the precursor for 390.61 in scan 7552; cannot compute interference
+..
+Did not find the precursor for 657.82 in scan 7667; cannot compute interference
+..
+Did not find the precursor for 522.79 in scan 7741; cannot compute interference
+.
+Did not find the precursor for 675.00 in scan 7769; cannot compute interference
+
+Did not find the precursor for 570.31 in scan 7770; cannot compute interference
+.Reading scan: 7802
+.
+Did not find the precursor for 632.68 in scan 7837; cannot compute interference
+
+Did not find the precursor for 513.59 in scan 7851; cannot compute interference
+...
+Did not find the precursor for 624.87 in scan 7937; cannot compute interference
+.
+Did not find the precursor for 478.29 in scan 7996; cannot compute interference
+..
+Did not find the precursor for 698.85 in scan 8066; cannot compute interference
+.
+Did not find the precursor for 626.32 in scan 8086; cannot compute interference
+
+Did not find the precursor for 691.34 in scan 8087; cannot compute interference
+...
+Did not find the precursor for 563.32 in scan 8221; cannot compute interference
+
+Did not find the precursor for 1124.05 in scan 8237; cannot compute interference
+
+Did not find the precursor for 624.28 in scan 8283; cannot compute interference
+.
+Did not find the precursor for 716.36 in scan 8330; cannot compute interference
+..
+Did not find the precursor for 795.42 in scan 8428; cannot compute interference
+
+Did not find the precursor for 698.33 in scan 8452; cannot compute interference
+.
+Did not find the precursor for 812.90 in scan 8489; cannot compute interference
+...
+Did not find the precursor for 711.41 in scan 8678; cannot compute interference
+..
+Did not find the precursor for 826.34 in scan 8707; cannot compute interference
+
+Did not find the precursor for 590.98 in scan 8738; cannot compute interference
+.
+Did not find the precursor for 571.85 in scan 8888; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 21%
+
+Did not find the precursor for 704.39 in scan 8911; cannot compute interference
+.
+Did not find the precursor for 680.86 in scan 8924; cannot compute interference
+
+Did not find the precursor for 573.33 in scan 8936; cannot compute interference
+
+Did not find the precursor for 545.27 in scan 8958; cannot compute interference
+
+Did not find the precursor for 684.37 in scan 8983; cannot compute interference
+
+Did not find the precursor for 645.36 in scan 8987; cannot compute interference
+.
+Did not find the precursor for 847.37 in scan 8997; cannot compute interference
+.
+Did not find the precursor for 525.75 in scan 9013; cannot compute interference
+
+Did not find the precursor for 472.25 in scan 9019; cannot compute interference
+
+Did not find the precursor for 746.40 in scan 9025; cannot compute interference
+
+Did not find the precursor for 698.89 in scan 9034; cannot compute interference
+
+Did not find the precursor for 404.45 in scan 9035; cannot compute interference
+.
+Did not find the precursor for 760.38 in scan 9072; cannot compute interference
+.
+Did not find the precursor for 667.33 in scan 9152; cannot compute interference
+
+Did not find the precursor for 481.78 in scan 9198; cannot compute interference
+
+Did not find the precursor for 909.44 in scan 9201; cannot compute interference
+...
+Did not find the precursor for 647.86 in scan 9288; cannot compute interference
+
+Did not find the precursor for 540.26 in scan 9300; cannot compute interference
+.
+Did not find the precursor for 677.35 in scan 9318; cannot compute interference
+
+Did not find the precursor for 590.34 in scan 9377; cannot compute interference
+
+Did not find the precursor for 518.27 in scan 9378; cannot compute interference
+.
+Did not find the precursor for 726.39 in scan 9399; cannot compute interference
+...
+Did not find the precursor for 665.32 in scan 9551; cannot compute interference
+
+Did not find the precursor for 1304.16 in scan 9552; cannot compute interference
+Reading scan: 9569
+...
+Did not find the precursor for 589.29 in scan 9620; cannot compute interference
+
+Did not find the precursor for 583.29 in scan 9626; cannot compute interference
+
+Did not find the precursor for 711.35 in scan 9630; cannot compute interference
+
+Did not find the precursor for 695.90 in scan 9655; cannot compute interference
+..
+Did not find the precursor for 882.92 in scan 9765; cannot compute interference
+.
+Did not find the precursor for 645.00 in scan 9824; cannot compute interference
+..
+Did not find the precursor for 379.97 in scan 9933; cannot compute interference
+..
+Did not find the precursor for 719.40 in scan 10018; cannot compute interference
+
+Did not find the precursor for 631.63 in scan 10019; cannot compute interference
+
+Did not find the precursor for 583.83 in scan 10081; cannot compute interference
+..
+Did not find the precursor for 623.81 in scan 10114; cannot compute interference
+
+Did not find the precursor for 807.40 in scan 10153; cannot compute interference
+
+Did not find the precursor for 866.43 in scan 10165; cannot compute interference
+..
+Did not find the precursor for 717.40 in scan 10248; cannot compute interference
+
+Did not find the precursor for 516.31 in scan 10262; cannot compute interference
+.
+Did not find the precursor for 756.63 in scan 10303; cannot compute interference
+
+Did not find the precursor for 523.78 in scan 10304; cannot compute interference
+
+Did not find the precursor for 358.20 in scan 10334; cannot compute interference
+.
+Did not find the precursor for 836.44 in scan 10398; cannot compute interference
+.
+Did not find the precursor for 377.23 in scan 10452; cannot compute interference
+...
+Did not find the precursor for 1253.60 in scan 10598; cannot compute interference
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 25%
+.
+Did not find the precursor for 650.91 in scan 10762; cannot compute interference
+..
+Did not find the precursor for 563.80 in scan 10815; cannot compute interference
+
+Processing: 5% 
+
+Did not find the precursor for 528.55 in scan 10863; cannot compute interference
+....
+Did not find the precursor for 530.61 in scan 11044; cannot compute interference
+
+Did not find the precursor for 718.37 in scan 11045; cannot compute interference
+.
+Did not find the precursor for 769.36 in scan 11097; cannot compute interference
+.
+Did not find the precursor for 576.84 in scan 11110; cannot compute interference
+
+Did not find the precursor for 562.32 in scan 11135; cannot compute interference
+.
+Did not find the precursor for 364.23 in scan 11179; cannot compute interference
+.
+Did not find the precursor for 836.44 in scan 11225; cannot compute interference
+
+Did not find the precursor for 689.17 in scan 11255; cannot compute interference
+
+Did not find the precursor for 840.42 in scan 11264; cannot compute interference
+.
+Did not find the precursor for 689.00 in scan 11277; cannot compute interference
+Reading scan: 11287
+.....
+Did not find the precursor for 960.46 in scan 11414; cannot compute interference
+
+Did not find the precursor for 523.96 in scan 11453; cannot compute interference
+..
+Did not find the precursor for 717.93 in scan 11516; cannot compute interference
+
+Did not find the precursor for 449.90 in scan 11529; cannot compute interference
+
+Did not find the precursor for 514.60 in scan 11558; cannot compute interference
+
+Did not find the precursor for 692.89 in scan 11586; cannot compute interference
+
+Did not find the precursor for 573.81 in scan 11597; cannot compute interference
+.
+Did not find the precursor for 707.86 in scan 11631; cannot compute interference
+
+Did not find the precursor for 388.73 in scan 11656; cannot compute interference
+
+Did not find the precursor for 357.24 in scan 11664; cannot compute interference
+...
+Did not find the precursor for 740.89 in scan 11792; cannot compute interference
+.
+Did not find the precursor for 560.79 in scan 11834; cannot compute interference
+
+Did not find the precursor for 529.61 in scan 11842; cannot compute interference
+
+Did not find the precursor for 710.37 in scan 11849; cannot compute interference
+.
+Did not find the precursor for 552.25 in scan 11954; cannot compute interference
+
+Did not find the precursor for 402.23 in scan 11955; cannot compute interference
+......
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 29%
+....
+Did not find the precursor for 660.02 in scan 12510; cannot compute interference
+.
+Did not find the precursor for 764.41 in scan 12657; cannot compute interference
+..
+Did not find the precursor for 489.27 in scan 12760; cannot compute interference
+.
+Did not find the precursor for 549.31 in scan 12767; cannot compute interference
+
+Did not find the precursor for 1370.32 in scan 12768; cannot compute interference
+.
+Did not find the precursor for 675.68 in scan 12858; cannot compute interference
+.
+Did not find the precursor for 478.26 in scan 12887; cannot compute interference
+.
+Did not find the precursor for 715.10 in scan 12909; cannot compute interference
+
+Did not find the precursor for 787.97 in scan 12973; cannot compute interference
+
+Did not find the precursor for 833.77 in scan 12974; cannot compute interference
+.
+Did not find the precursor for 598.58 in scan 12995; cannot compute interference
+.Reading scan: 13002
+.
+Did not find the precursor for 1036.50 in scan 13004; cannot compute interference
+.............
+Did not find the precursor for 806.27 in scan 13708; cannot compute interference
+
+Did not find the precursor for 1089.19 in scan 13746; cannot compute interference
+
+Did not find the precursor for 730.85 in scan 13785; cannot compute interference
+....
+Did not find the precursor for 714.38 in scan 13916; cannot compute interference
+
+Did not find the precursor for 662.34 in scan 13968; cannot compute interference
+.
+Did not find the precursor for 713.91 in scan 13992; cannot compute interference
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 33%
+
+Did not find the precursor for 886.01 in scan 14030; cannot compute interference
+...
+Did not find the precursor for 991.50 in scan 14162; cannot compute interference
+..
+Did not find the precursor for 697.87 in scan 14227; cannot compute interference
+
+Did not find the precursor for 481.26 in scan 14235; cannot compute interference
+
+Did not find the precursor for 643.83 in scan 14263; cannot compute interference
+
+Did not find the precursor for 903.98 in scan 14287; cannot compute interference
+.
+Did not find the precursor for 640.63 in scan 14317; cannot compute interference
+
+Did not find the precursor for 875.50 in scan 14325; cannot compute interference
+
+Did not find the precursor for 807.06 in scan 14326; cannot compute interference
+
+Did not find the precursor for 459.31 in scan 14335; cannot compute interference
+.
+Did not find the precursor for 674.37 in scan 14399; cannot compute interference
+.
+Did not find the precursor for 726.39 in scan 14405; cannot compute interference
+..
+Did not find the precursor for 400.75 in scan 14523; cannot compute interference
+Reading scan: 14527
+.
+Did not find the precursor for 801.42 in scan 14530; cannot compute interference
+..
+Did not find the precursor for 1031.00 in scan 14607; cannot compute interference
+
+Did not find the precursor for 550.29 in scan 14637; cannot compute interference
+.
+Did not find the precursor for 499.59 in scan 14676; cannot compute interference
+
+Did not find the precursor for 835.44 in scan 14677; cannot compute interference
+.
+Did not find the precursor for 851.42 in scan 14717; cannot compute interference
+
+Did not find the precursor for 1218.20 in scan 14718; cannot compute interference
+
+Did not find the precursor for 1046.54 in scan 14779; cannot compute interference
+.
+Did not find the precursor for 552.30 in scan 14828; cannot compute interference
+
+Did not find the precursor for 983.02 in scan 14853; cannot compute interference
+.....
+Did not find the precursor for 600.65 in scan 15204; cannot compute interference
+
+Did not find the precursor for 833.48 in scan 15230; cannot compute interference
+
+Did not find the precursor for 358.70 in scan 15266; cannot compute interference
+.
+Did not find the precursor for 699.39 in scan 15289; cannot compute interference
+.
+Did not find the precursor for 838.93 in scan 15333; cannot compute interference
+
+Did not find the precursor for 649.35 in scan 15334; cannot compute interference
+
+Did not find the precursor for 818.93 in scan 15359; cannot compute interference
+
+Did not find the precursor for 868.94 in scan 15360; cannot compute interference
+
+Did not find the precursor for 533.82 in scan 15362; cannot compute interference
+
+Did not find the precursor for 622.86 in scan 15399; cannot compute interference
+.
+Did not find the precursor for 1025.24 in scan 15419; cannot compute interference
+
+Did not find the precursor for 694.01 in scan 15465; cannot compute interference
+
+Did not find the precursor for 880.45 in scan 15477; cannot compute interference
+
+Did not find the precursor for 644.39 in scan 15483; cannot compute interference
+..
+Did not find the precursor for 622.36 in scan 15544; cannot compute interference
+
+Did not find the precursor for 886.50 in scan 15568; cannot compute interference
+
+Did not find the precursor for 880.00 in scan 15584; cannot compute interference
+
+Did not find the precursor for 893.49 in scan 15590; cannot compute interference
+
+Did not find the precursor for 472.79 in scan 15599; cannot compute interference
+
+Did not find the precursor for 894.00 in scan 15600; cannot compute interference
+.
+Did not find the precursor for 947.02 in scan 15618; cannot compute interference
+
+Did not find the precursor for 636.33 in scan 15623; cannot compute interference
+
+Did not find the precursor for 806.38 in scan 15634; cannot compute interference
+
+Did not find the precursor for 537.82 in scan 15658; cannot compute interference
+
+Did not find the precursor for 643.36 in scan 15659; cannot compute interference
+
+Did not find the precursor for 501.83 in scan 15670; cannot compute interference
+..
+Did not find the precursor for 819.38 in scan 15732; cannot compute interference
+
+Did not find the precursor for 740.90 in scan 15733; cannot compute interference
+
+Did not find the precursor for 1029.52 in scan 15735; cannot compute interference
+
+Did not find the precursor for 869.43 in scan 15748; cannot compute interference
+
+Did not find the precursor for 1025.53 in scan 15779; cannot compute interference
+
+Did not find the precursor for 1036.88 in scan 15780; cannot compute interference
+
+Did not find the precursor for 601.80 in scan 15784; cannot compute interference
+
+Did not find the precursor for 963.47 in scan 15790; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 37%
+.
+Did not find the precursor for 964.98 in scan 15816; cannot compute interference
+
+Did not find the precursor for 1063.51 in scan 15873; cannot compute interference
+.
+Did not find the precursor for 589.29 in scan 15892; cannot compute interference
+.
+Did not find the precursor for 849.42 in scan 15919; cannot compute interference
+
+Did not find the precursor for 707.05 in scan 15963; cannot compute interference
+..
+Did not find the precursor for 600.31 in scan 16042; cannot compute interference
+
+Did not find the precursor for 481.25 in scan 16044; cannot compute interference
+
+Did not find the precursor for 820.48 in scan 16067; cannot compute interference
+
+Did not find the precursor for 448.75 in scan 16084; cannot compute interference
+
+Did not find the precursor for 570.30 in scan 16094; cannot compute interference
+
+Did not find the precursor for 554.32 in scan 16095; cannot compute interference
+.
+Did not find the precursor for 603.37 in scan 16110; cannot compute interference
+.
+Did not find the precursor for 1233.59 in scan 16194; cannot compute interference
+
+Did not find the precursor for 885.43 in scan 16195; cannot compute interference
+...
+Did not find the precursor for 623.99 in scan 16341; cannot compute interference
+
+Did not find the precursor for 777.40 in scan 16377; cannot compute interference
+..
+Did not find the precursor for 826.41 in scan 16404; cannot compute interference
+
+Did not find the precursor for 616.86 in scan 16414; cannot compute interference
+
+Did not find the precursor for 824.13 in scan 16473; cannot compute interference
+.Reading scan: 16496
+..
+Did not find the precursor for 524.76 in scan 16547; cannot compute interference
+
+Did not find the precursor for 810.41 in scan 16580; cannot compute interference
+..
+Did not find the precursor for 794.86 in scan 16747; cannot compute interference
+
+Did not find the precursor for 874.43 in scan 16750; cannot compute interference
+
+Did not find the precursor for 758.41 in scan 16802; cannot compute interference
+.
+Did not find the precursor for 761.92 in scan 16859; cannot compute interference
+
+Did not find the precursor for 380.24 in scan 16888; cannot compute interference
+.
+Did not find the precursor for 408.91 in scan 16902; cannot compute interference
+...
+Did not find the precursor for 526.79 in scan 17048; cannot compute interference
+..
+Did not find the precursor for 494.27 in scan 17134; cannot compute interference
+
+Did not find the precursor for 870.91 in scan 17164; cannot compute interference
+
+Did not find the precursor for 721.68 in scan 17165; cannot compute interference
+
+Did not find the precursor for 765.35 in scan 17194; cannot compute interference
+..
+Did not find the precursor for 768.71 in scan 17230; cannot compute interference
+
+Did not find the precursor for 1136.05 in scan 17234; cannot compute interference
+
+Did not find the precursor for 885.03 in scan 17236; cannot compute interference
+
+Did not find the precursor for 897.03 in scan 17246; cannot compute interference
+
+Did not find the precursor for 720.38 in scan 17284; cannot compute interference
+
+Did not find the precursor for 667.85 in scan 17297; cannot compute interference
+
+Did not find the precursor for 394.91 in scan 17302; cannot compute interference
+.
+Did not find the precursor for 1252.89 in scan 17320; cannot compute interference
+
+Did not find the precursor for 893.93 in scan 17330; cannot compute interference
+
+Did not find the precursor for 698.85 in scan 17344; cannot compute interference
+
+Did not find the precursor for 826.47 in scan 17345; cannot compute interference
+
+Did not find the precursor for 776.89 in scan 17366; cannot compute interference
+
+Did not find the precursor for 402.23 in scan 17385; cannot compute interference
+..
+Did not find the precursor for 912.48 in scan 17403; cannot compute interference
+
+Did not find the precursor for 800.41 in scan 17409; cannot compute interference
+.
+Did not find the precursor for 828.44 in scan 17527; cannot compute interference
+
+Did not find the precursor for 441.26 in scan 17529; cannot compute interference
+
+Did not find the precursor for 569.35 in scan 17531; cannot compute interference
+
+Did not find the precursor for 586.67 in scan 17563; cannot compute interference
+
+Did not find the precursor for 590.86 in scan 17574; cannot compute interference
+
+Did not find the precursor for 762.45 in scan 17593; cannot compute interference
+
+Did not find the precursor for 633.33 in scan 17599; cannot compute interference
+.
+Did not find the precursor for 646.36 in scan 17607; cannot compute interference
+
+Did not find the precursor for 566.84 in scan 17608; cannot compute interference
+
+Did not find the precursor for 1128.05 in scan 17692; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 42%
+....
+Did not find the precursor for 416.31 in scan 17958; cannot compute interference
+
+Did not find the precursor for 668.36 in scan 17976; cannot compute interference
+
+Did not find the precursor for 912.98 in scan 17981; cannot compute interference
+
+Did not find the precursor for 782.90 in scan 17993; cannot compute interference
+..
+Did not find the precursor for 617.38 in scan 18012; cannot compute interference
+
+Did not find the precursor for 542.25 in scan 18022; cannot compute interference
+
+Did not find the precursor for 800.40 in scan 18061; cannot compute interference
+
+Did not find the precursor for 556.29 in scan 18066; cannot compute interference
+
+Did not find the precursor for 947.81 in scan 18079; cannot compute interference
+..
+Did not find the precursor for 635.34 in scan 18115; cannot compute interference
+
+Did not find the precursor for 634.67 in scan 18116; cannot compute interference
+
+Did not find the precursor for 734.88 in scan 18130; cannot compute interference
+
+Did not find the precursor for 1067.20 in scan 18146; cannot compute interference
+..
+Did not find the precursor for 876.94 in scan 18244; cannot compute interference
+
+Did not find the precursor for 1548.26 in scan 18245; cannot compute interference
+
+Did not find the precursor for 719.87 in scan 18265; cannot compute interference
+
+Did not find the precursor for 897.80 in scan 18266; cannot compute interference
+
+Did not find the precursor for 430.75 in scan 18274; cannot compute interference
+..Reading scan: 18374
+..
+Did not find the precursor for 591.36 in scan 18411; cannot compute interference
+
+Did not find the precursor for 609.31 in scan 18428; cannot compute interference
+
+Did not find the precursor for 678.67 in scan 18435; cannot compute interference
+
+Did not find the precursor for 775.69 in scan 18445; cannot compute interference
+.
+Did not find the precursor for 668.85 in scan 18486; cannot compute interference
+.
+Did not find the precursor for 787.43 in scan 18517; cannot compute interference
+
+Did not find the precursor for 685.09 in scan 18544; cannot compute interference
+..
+Did not find the precursor for 692.38 in scan 18623; cannot compute interference
+.
+Did not find the precursor for 605.32 in scan 18700; cannot compute interference
+
+Did not find the precursor for 717.72 in scan 18701; cannot compute interference
+.
+Did not find the precursor for 1016.51 in scan 18780; cannot compute interference
+..
+Did not find the precursor for 772.92 in scan 18831; cannot compute interference
+
+Did not find the precursor for 815.42 in scan 18832; cannot compute interference
+
+Did not find the precursor for 835.46 in scan 18845; cannot compute interference
+
+Did not find the precursor for 970.00 in scan 18856; cannot compute interference
+
+Did not find the precursor for 553.27 in scan 18872; cannot compute interference
+
+Did not find the precursor for 948.48 in scan 18892; cannot compute interference
+..
+Did not find the precursor for 541.04 in scan 18919; cannot compute interference
+
+Did not find the precursor for 907.94 in scan 18961; cannot compute interference
+
+Did not find the precursor for 813.99 in scan 18962; cannot compute interference
+..
+Did not find the precursor for 421.76 in scan 19029; cannot compute interference
+
+Did not find the precursor for 794.94 in scan 19054; cannot compute interference
+
+Did not find the precursor for 823.46 in scan 19070; cannot compute interference
+
+Did not find the precursor for 1204.81 in scan 19085; cannot compute interference
+.
+Did not find the precursor for 792.38 in scan 19090; cannot compute interference
+.
+Did not find the precursor for 680.37 in scan 19137; cannot compute interference
+.
+Did not find the precursor for 774.93 in scan 19178; cannot compute interference
+..
+Did not find the precursor for 579.35 in scan 19265; cannot compute interference
+.
+Did not find the precursor for 1000.50 in scan 19297; cannot compute interference
+.
+Did not find the precursor for 745.90 in scan 19316; cannot compute interference
+
+Did not find the precursor for 808.99 in scan 19339; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 45%
+..
+Did not find the precursor for 893.85 in scan 19419; cannot compute interference
+
+Did not find the precursor for 910.42 in scan 19429; cannot compute interference
+
+Did not find the precursor for 670.68 in scan 19444; cannot compute interference
+.
+Did not find the precursor for 852.10 in scan 19519; cannot compute interference
+
+Did not find the precursor for 776.38 in scan 19598; cannot compute interference
+.
+Did not find the precursor for 1303.41 in scan 19675; cannot compute interference
+
+Did not find the precursor for 909.93 in scan 19690; cannot compute interference
+
+Did not find the precursor for 958.52 in scan 19691; cannot compute interference
+..
+Did not find the precursor for 669.89 in scan 19783; cannot compute interference
+.
+Did not find the precursor for 988.02 in scan 19803; cannot compute interference
+
+Did not find the precursor for 722.94 in scan 19869; cannot compute interference
+..
+Did not find the precursor for 895.90 in scan 19929; cannot compute interference
+Reading scan: 19929
+....
+Did not find the precursor for 1738.88 in scan 20022; cannot compute interference
+...
+Did not find the precursor for 380.25 in scan 20122; cannot compute interference
+...
+Did not find the precursor for 847.91 in scan 20220; cannot compute interference
+.
+Did not find the precursor for 1052.50 in scan 20278; cannot compute interference
+
+Did not find the precursor for 754.03 in scan 20301; cannot compute interference
+.
+Did not find the precursor for 913.95 in scan 20306; cannot compute interference
+
+Did not find the precursor for 671.37 in scan 20307; cannot compute interference
+
+Did not find the precursor for 1169.24 in scan 20308; cannot compute interference
+.
+Did not find the precursor for 864.49 in scan 20356; cannot compute interference
+
+Did not find the precursor for 887.91 in scan 20357; cannot compute interference
+....
+Did not find the precursor for 607.99 in scan 20447; cannot compute interference
+..
+Did not find the precursor for 475.73 in scan 20537; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 48%
+
+Did not find the precursor for 840.40 in scan 20544; cannot compute interference
+.
+Did not find the precursor for 917.47 in scan 20604; cannot compute interference
+
+Did not find the precursor for 519.98 in scan 20669; cannot compute interference
+
+Did not find the precursor for 702.40 in scan 20700; cannot compute interference
+....
+Did not find the precursor for 466.31 in scan 20900; cannot compute interference
+.Reading scan: 20918
+.....
+Did not find the precursor for 794.92 in scan 21070; cannot compute interference
+
+Did not find the precursor for 481.32 in scan 21085; cannot compute interference
+
+Did not find the precursor for 672.39 in scan 21086; cannot compute interference
+.
+Did not find the precursor for 885.02 in scan 21166; cannot compute interference
+..
+Did not find the precursor for 1083.04 in scan 21231; cannot compute interference
+...
+Did not find the precursor for 681.04 in scan 21334; cannot compute interference
+
+Did not find the precursor for 816.96 in scan 21362; cannot compute interference
+.
+Did not find the precursor for 897.51 in scan 21368; cannot compute interference
+..
+Did not find the precursor for 600.88 in scan 21394; cannot compute interference
+
+Did not find the precursor for 698.72 in scan 21399; cannot compute interference
+.
+Did not find the precursor for 1167.89 in scan 21418; cannot compute interference
+
+Did not find the precursor for 955.19 in scan 21438; cannot compute interference
+..
+Did not find the precursor for 555.31 in scan 21503; cannot compute interference
+.
+Did not find the precursor for 828.44 in scan 21582; cannot compute interference
+.
+Did not find the precursor for 645.73 in scan 21614; cannot compute interference
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 51%
+
+Did not find the precursor for 924.03 in scan 21761; cannot compute interference
+.
+Did not find the precursor for 855.18 in scan 21802; cannot compute interference
+.
+Did not find the precursor for 881.41 in scan 21803; cannot compute interference
+
+Did not find the precursor for 699.06 in scan 21841; cannot compute interference
+
+Did not find the precursor for 945.49 in scan 21854; cannot compute interference
+..
+Did not find the precursor for 841.09 in scan 21919; cannot compute interference
+
+Processing: 10% 
+
+Did not find the precursor for 840.42 in scan 21983; cannot compute interference
+..Reading scan: 22002
+......
+Did not find the precursor for 859.98 in scan 22092; cannot compute interference
+
+Did not find the precursor for 421.73 in scan 22093; cannot compute interference
+..
+Did not find the precursor for 685.86 in scan 22129; cannot compute interference
+....
+Did not find the precursor for 986.51 in scan 22316; cannot compute interference
+
+Did not find the precursor for 719.71 in scan 22325; cannot compute interference
+
+Did not find the precursor for 1184.63 in scan 22379; cannot compute interference
+.
+Did not find the precursor for 1074.08 in scan 22442; cannot compute interference
+
+Did not find the precursor for 723.38 in scan 22462; cannot compute interference
+
+Did not find the precursor for 891.99 in scan 22463; cannot compute interference
+.
+Did not find the precursor for 749.03 in scan 22480; cannot compute interference
+..
+Did not find the precursor for 507.61 in scan 22583; cannot compute interference
+
+Did not find the precursor for 1022.05 in scan 22584; cannot compute interference
+
+Did not find the precursor for 976.51 in scan 22601; cannot compute interference
+.
+Did not find the precursor for 928.49 in scan 22618; cannot compute interference
+
+Did not find the precursor for 991.49 in scan 22647; cannot compute interference
+
+Did not find the precursor for 523.07 in scan 22654; cannot compute interference
+
+Did not find the precursor for 1185.63 in scan 22663; cannot compute interference
+.
+Did not find the precursor for 446.73 in scan 22678; cannot compute interference
+
+Did not find the precursor for 810.67 in scan 22679; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 53%
+
+Did not find the precursor for 684.38 in scan 22703; cannot compute interference
+
+Did not find the precursor for 944.45 in scan 22710; cannot compute interference
+
+Did not find the precursor for 517.77 in scan 22711; cannot compute interference
+
+Did not find the precursor for 1077.55 in scan 22717; cannot compute interference
+
+Did not find the precursor for 937.44 in scan 22723; cannot compute interference
+
+Did not find the precursor for 910.47 in scan 22728; cannot compute interference
+
+Did not find the precursor for 749.66 in scan 22742; cannot compute interference
+...
+Did not find the precursor for 663.74 in scan 22931; cannot compute interference
+
+Did not find the precursor for 926.48 in scan 22964; cannot compute interference
+
+Did not find the precursor for 976.50 in scan 22974; cannot compute interference
+....
+Did not find the precursor for 941.49 in scan 23046; cannot compute interference
+..
+Did not find the precursor for 662.88 in scan 23112; cannot compute interference
+Reading scan: 23119
+......
+Did not find the precursor for 671.90 in scan 23402; cannot compute interference
+..
+Did not find the precursor for 712.03 in scan 23492; cannot compute interference
+....
+Did not find the precursor for 473.76 in scan 23730; cannot compute interference
+.
+Did not find the precursor for 1130.04 in scan 23780; cannot compute interference
+.
+Did not find the precursor for 860.90 in scan 23813; cannot compute interference
+..
+Did not find the precursor for 741.37 in scan 23909; cannot compute interference
+
+Did not find the precursor for 444.92 in scan 23971; cannot compute interference
+..
+Did not find the precursor for 727.93 in scan 24067; cannot compute interference
+.
+Did not find the precursor for 933.82 in scan 24118; cannot compute interference
+
+Did not find the precursor for 873.11 in scan 24181; cannot compute interference
+..
+Did not find the precursor for 523.31 in scan 24224; cannot compute interference
+
+Did not find the precursor for 784.42 in scan 24244; cannot compute interference
+
+Did not find the precursor for 1402.85 in scan 24245; cannot compute interference
+
+Did not find the precursor for 762.75 in scan 24256; cannot compute interference
+
+Did not find the precursor for 518.64 in scan 24257; cannot compute interference
+
+Did not find the precursor for 659.36 in scan 24263; cannot compute interference
+.
+Did not find the precursor for 628.33 in scan 24288; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 57%
+
+Did not find the precursor for 903.43 in scan 24345; cannot compute interference
+.
+Did not find the precursor for 891.44 in scan 24399; cannot compute interference
+.
+Did not find the precursor for 955.02 in scan 24413; cannot compute interference
+
+Did not find the precursor for 934.12 in scan 24432; cannot compute interference
+
+Did not find the precursor for 876.11 in scan 24454; cannot compute interference
+.
+Did not find the precursor for 1013.58 in scan 24526; cannot compute interference
+..
+Did not find the precursor for 863.48 in scan 24622; cannot compute interference
+.
+Did not find the precursor for 795.94 in scan 24702; cannot compute interference
+.
+Did not find the precursor for 539.00 in scan 24746; cannot compute interference
+
+Did not find the precursor for 842.41 in scan 24747; cannot compute interference
+
+Did not find the precursor for 1063.83 in scan 24768; cannot compute interference
+
+Did not find the precursor for 956.97 in scan 24769; cannot compute interference
+..Reading scan: 24811
+.
+Did not find the precursor for 919.92 in scan 24890; cannot compute interference
+.
+Did not find the precursor for 1315.16 in scan 24921; cannot compute interference
+...
+Did not find the precursor for 502.75 in scan 25072; cannot compute interference
+.
+Did not find the precursor for 954.09 in scan 25100; cannot compute interference
+........
+Did not find the precursor for 1154.90 in scan 25452; cannot compute interference
+.
+Did not find the precursor for 903.43 in scan 25501; cannot compute interference
+.
+Did not find the precursor for 705.74 in scan 25546; cannot compute interference
+
+Did not find the precursor for 428.58 in scan 25547; cannot compute interference
+...
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 60%
+
+Did not find the precursor for 585.82 in scan 25617; cannot compute interference
+..
+Did not find the precursor for 951.52 in scan 25662; cannot compute interference
+
+Did not find the precursor for 833.42 in scan 25663; cannot compute interference
+.Reading scan: 25671
+....
+Did not find the precursor for 991.16 in scan 25739; cannot compute interference
+
+Did not find the precursor for 1211.15 in scan 25764; cannot compute interference
+
+Did not find the precursor for 857.91 in scan 25774; cannot compute interference
+
+Did not find the precursor for 907.47 in scan 25782; cannot compute interference
+..
+Did not find the precursor for 953.21 in scan 25818; cannot compute interference
+...
+Did not find the precursor for 842.74 in scan 25992; cannot compute interference
+....
+Did not find the precursor for 908.49 in scan 26021; cannot compute interference
+....
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 61%
+
+Did not find the precursor for 1323.15 in scan 26123; cannot compute interference
+.Reading scan: 26179
+.....
+Did not find the precursor for 1128.60 in scan 26457; cannot compute interference
+
+Did not find the precursor for 519.98 in scan 26458; cannot compute interference
+..
+Did not find the precursor for 748.40 in scan 26602; cannot compute interference
+.
+Did not find the precursor for 1051.00 in scan 26613; cannot compute interference
+
+Did not find the precursor for 864.68 in scan 26614; cannot compute interference
+
+Did not find the precursor for 865.43 in scan 26644; cannot compute interference
+
+Did not find the precursor for 1046.55 in scan 26657; cannot compute interference
+
+Did not find the precursor for 673.42 in scan 26687; cannot compute interference
+..
+Did not find the precursor for 1054.56 in scan 26710; cannot compute interference
+..
+Did not find the precursor for 924.49 in scan 26806; cannot compute interference
+
+Did not find the precursor for 976.15 in scan 26895; cannot compute interference
+..
+Did not find the precursor for 831.07 in scan 26908; cannot compute interference
+
+Did not find the precursor for 952.96 in scan 26932; cannot compute interference
+
+Did not find the precursor for 1031.15 in scan 26946; cannot compute interference
+
+Did not find the precursor for 690.43 in scan 26953; cannot compute interference
+
+Did not find the precursor for 990.59 in scan 26984; cannot compute interference
+
+Did not find the precursor for 844.82 in scan 27000; cannot compute interference
+..
+Did not find the precursor for 571.31 in scan 27071; cannot compute interference
+.
+Did not find the precursor for 574.81 in scan 27103; cannot compute interference
+
+Did not find the precursor for 895.52 in scan 27123; cannot compute interference
+
+Did not find the precursor for 992.17 in scan 27135; cannot compute interference
+
+Did not find the precursor for 932.98 in scan 27136; cannot compute interference
+.
+Did not find the precursor for 890.46 in scan 27162; cannot compute interference
+...
+Did not find the precursor for 891.55 in scan 27330; cannot compute interference
+.
+Did not find the precursor for 624.40 in scan 27411; cannot compute interference
+
+Did not find the precursor for 1025.60 in scan 27496; cannot compute interference
+.
+Did not find the precursor for 921.70 in scan 27516; cannot compute interference
+
+Did not find the precursor for 1033.59 in scan 27575; cannot compute interference
+
+Did not find the precursor for 479.05 in scan 27584; cannot compute interference
+..
+Did not find the precursor for 767.75 in scan 27615; cannot compute interference
+
+Did not find the precursor for 568.71 in scan 27620; cannot compute interference
+
+Did not find the precursor for 630.34 in scan 27649; cannot compute interference
+
+Did not find the precursor for 637.69 in scan 27664; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 65%
+.Reading scan: 27702
+.
+Did not find the precursor for 1185.13 in scan 27705; cannot compute interference
+
+Did not find the precursor for 951.20 in scan 27706; cannot compute interference
+
+Did not find the precursor for 1224.63 in scan 27711; cannot compute interference
+.
+Did not find the precursor for 478.28 in scan 27875; cannot compute interference
+.
+Did not find the precursor for 981.16 in scan 27926; cannot compute interference
+
+Did not find the precursor for 836.13 in scan 27934; cannot compute interference
+
+Did not find the precursor for 1307.67 in scan 27981; cannot compute interference
+...
+Did not find the precursor for 1083.60 in scan 28008; cannot compute interference
+
+Did not find the precursor for 826.42 in scan 28075; cannot compute interference
+.
+Did not find the precursor for 674.00 in scan 28114; cannot compute interference
+
+Did not find the precursor for 1074.27 in scan 28126; cannot compute interference
+..
+Did not find the precursor for 577.83 in scan 28212; cannot compute interference
+
+Did not find the precursor for 494.76 in scan 28218; cannot compute interference
+
+Did not find the precursor for 888.48 in scan 28226; cannot compute interference
+
+Did not find the precursor for 882.96 in scan 28227; cannot compute interference
+
+Did not find the precursor for 1028.09 in scan 28240; cannot compute interference
+
+Did not find the precursor for 1032.86 in scan 28267; cannot compute interference
+.
+Did not find the precursor for 532.35 in scan 28297; cannot compute interference
+.
+Did not find the precursor for 1478.74 in scan 28310; cannot compute interference
+
+Did not find the precursor for 1275.64 in scan 28322; cannot compute interference
+
+Did not find the precursor for 633.01 in scan 28356; cannot compute interference
+.
+Did not find the precursor for 628.85 in scan 28375; cannot compute interference
+.
+Did not find the precursor for 495.83 in scan 28412; cannot compute interference
+
+Did not find the precursor for 621.32 in scan 28474; cannot compute interference
+..
+Did not find the precursor for 1031.60 in scan 28513; cannot compute interference
+
+Did not find the precursor for 1609.84 in scan 28524; cannot compute interference
+
+Did not find the precursor for 762.43 in scan 28599; cannot compute interference
+
+Did not find the precursor for 768.90 in scan 28600; cannot compute interference
+..
+Did not find the precursor for 665.92 in scan 28631; cannot compute interference
+
+Did not find the precursor for 777.78 in scan 28636; cannot compute interference
+.
+Did not find the precursor for 941.99 in scan 28694; cannot compute interference
+.
+Did not find the precursor for 858.95 in scan 28706; cannot compute interference
+
+Did not find the precursor for 700.87 in scan 28716; cannot compute interference
+
+Did not find the precursor for 1223.12 in scan 28729; cannot compute interference
+
+Did not find the precursor for 934.47 in scan 28788; cannot compute interference
+.
+Did not find the precursor for 1026.10 in scan 28835; cannot compute interference
+..
+Did not find the precursor for 940.04 in scan 28958; cannot compute interference
+...
+Did not find the precursor for 567.33 in scan 29017; cannot compute interference
+..
+Did not find the precursor for 959.47 in scan 29160; cannot compute interference
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 69%
+.Reading scan: 29302
+.
+Did not find the precursor for 955.81 in scan 29359; cannot compute interference
+..
+Did not find the precursor for 897.85 in scan 29405; cannot compute interference
+
+Did not find the precursor for 1206.61 in scan 29417; cannot compute interference
+
+Did not find the precursor for 594.28 in scan 29468; cannot compute interference
+
+Did not find the precursor for 1074.11 in scan 29469; cannot compute interference
+
+Did not find the precursor for 480.62 in scan 29481; cannot compute interference
+.
+Did not find the precursor for 985.81 in scan 29495; cannot compute interference
+....
+Did not find the precursor for 1468.00 in scan 29765; cannot compute interference
+
+Did not find the precursor for 932.98 in scan 29777; cannot compute interference
+.
+Did not find the precursor for 457.57 in scan 29832; cannot compute interference
+.
+Did not find the precursor for 631.00 in scan 29937; cannot compute interference
+
+Did not find the precursor for 963.86 in scan 29945; cannot compute interference
+
+Did not find the precursor for 485.04 in scan 29947; cannot compute interference
+
+Did not find the precursor for 1068.88 in scan 29948; cannot compute interference
+...
+Did not find the precursor for 995.17 in scan 30021; cannot compute interference
+
+Did not find the precursor for 954.82 in scan 30022; cannot compute interference
+
+Did not find the precursor for 770.77 in scan 30034; cannot compute interference
+
+Did not find the precursor for 940.99 in scan 30035; cannot compute interference
+.
+Did not find the precursor for 749.77 in scan 30193; cannot compute interference
+..
+Did not find the precursor for 651.34 in scan 30266; cannot compute interference
+
+Did not find the precursor for 1133.92 in scan 30278; cannot compute interference
+..
+Did not find the precursor for 855.81 in scan 30438; cannot compute interference
+
+Did not find the precursor for 869.44 in scan 30439; cannot compute interference
+
+Did not find the precursor for 652.84 in scan 30445; cannot compute interference
+
+Did not find the precursor for 547.30 in scan 30448; cannot compute interference
+
+Did not find the precursor for 592.82 in scan 30477; cannot compute interference
+.
+Did not find the precursor for 731.04 in scan 30566; cannot compute interference
+
+Did not find the precursor for 505.29 in scan 30567; cannot compute interference
+.
+Did not find the precursor for 583.84 in scan 30609; cannot compute interference
+
+Did not find the precursor for 713.10 in scan 30645; cannot compute interference
+..
+Did not find the precursor for 585.31 in scan 30704; cannot compute interference
+
+Did not find the precursor for 1043.00 in scan 30745; cannot compute interference
+
+Did not find the precursor for 738.41 in scan 30761; cannot compute interference
+
+Did not find the precursor for 1109.55 in scan 30769; cannot compute interference
+
+Did not find the precursor for 1075.07 in scan 30770; cannot compute interference
+
+Did not find the precursor for 685.03 in scan 30775; cannot compute interference
+.
+Did not find the precursor for 661.33 in scan 30787; cannot compute interference
+
+Did not find the precursor for 1074.57 in scan 30794; cannot compute interference
+.
+Did not find the precursor for 937.95 in scan 30821; cannot compute interference
+
+Did not find the precursor for 878.79 in scan 30829; cannot compute interference
+
+Did not find the precursor for 1135.26 in scan 30835; cannot compute interference
+
+Did not find the precursor for 797.42 in scan 30836; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 73%
+
+Did not find the precursor for 584.84 in scan 30908; cannot compute interference
+
+Did not find the precursor for 614.33 in scan 30915; cannot compute interference
+
+Did not find the precursor for 998.09 in scan 30956; cannot compute interference
+Reading scan: 30957
+.
+Did not find the precursor for 920.86 in scan 30973; cannot compute interference
+
+Did not find the precursor for 542.30 in scan 30974; cannot compute interference
+..
+Did not find the precursor for 633.34 in scan 31064; cannot compute interference
+
+Did not find the precursor for 759.73 in scan 31079; cannot compute interference
+
+Did not find the precursor for 681.16 in scan 31082; cannot compute interference
+..
+Did not find the precursor for 884.55 in scan 31103; cannot compute interference
+
+Did not find the precursor for 797.44 in scan 31107; cannot compute interference
+
+Did not find the precursor for 754.13 in scan 31108; cannot compute interference
+
+Did not find the precursor for 615.00 in scan 31122; cannot compute interference
+
+Did not find the precursor for 565.33 in scan 31125; cannot compute interference
+
+Did not find the precursor for 1134.59 in scan 31160; cannot compute interference
+..
+Did not find the precursor for 1455.73 in scan 31215; cannot compute interference
+
+Did not find the precursor for 1113.14 in scan 31216; cannot compute interference
+
+Did not find the precursor for 822.09 in scan 31280; cannot compute interference
+
+Did not find the precursor for 690.37 in scan 31281; cannot compute interference
+
+Did not find the precursor for 822.76 in scan 31289; cannot compute interference
+.
+Did not find the precursor for 955.52 in scan 31310; cannot compute interference
+
+Did not find the precursor for 1484.25 in scan 31351; cannot compute interference
+
+Did not find the precursor for 825.10 in scan 31361; cannot compute interference
+.
+Did not find the precursor for 584.81 in scan 31387; cannot compute interference
+.
+Did not find the precursor for 829.96 in scan 31406; cannot compute interference
+..
+Did not find the precursor for 1145.21 in scan 31564; cannot compute interference
+
+Did not find the precursor for 930.75 in scan 31565; cannot compute interference
+
+Did not find the precursor for 1145.55 in scan 31573; cannot compute interference
+
+Did not find the precursor for 574.83 in scan 31578; cannot compute interference
+
+Did not find the precursor for 1164.28 in scan 31585; cannot compute interference
+..
+Did not find the precursor for 948.71 in scan 31642; cannot compute interference
+
+Did not find the precursor for 766.74 in scan 31644; cannot compute interference
+.
+Did not find the precursor for 1128.06 in scan 31702; cannot compute interference
+.
+Did not find the precursor for 954.99 in scan 31718; cannot compute interference
+
+Did not find the precursor for 978.25 in scan 31759; cannot compute interference
+.
+Did not find the precursor for 1039.52 in scan 31810; cannot compute interference
+.
+Did not find the precursor for 955.49 in scan 31887; cannot compute interference
+.
+Did not find the precursor for 866.42 in scan 31921; cannot compute interference
+.
+Did not find the precursor for 895.96 in scan 31984; cannot compute interference
+..
+Did not find the precursor for 974.00 in scan 32033; cannot compute interference
+
+Did not find the precursor for 616.33 in scan 32067; cannot compute interference
+.
+Did not find the precursor for 997.09 in scan 32091; cannot compute interference
+.
+Did not find the precursor for 905.46 in scan 32112; cannot compute interference
+.
+Did not find the precursor for 1208.11 in scan 32270; cannot compute interference
+...
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 76%
+Reading scan: 32402
+.
+Did not find the precursor for 1148.24 in scan 32438; cannot compute interference
+
+Did not find the precursor for 807.43 in scan 32479; cannot compute interference
+..
+Did not find the precursor for 1287.20 in scan 32558; cannot compute interference
+
+Did not find the precursor for 1139.93 in scan 32589; cannot compute interference
+
+Did not find the precursor for 1456.23 in scan 32598; cannot compute interference
+.
+Did not find the precursor for 1455.22 in scan 32609; cannot compute interference
+....
+Did not find the precursor for 877.97 in scan 32868; cannot compute interference
+..
+Did not find the precursor for 954.99 in scan 32949; cannot compute interference
+.
+Processing: 15% 
+........
+Did not find the precursor for 1024.53 in scan 33357; cannot compute interference
+..
+Did not find the precursor for 1034.54 in scan 33455; cannot compute interference
+......
+Did not find the precursor for 979.48 in scan 33720; cannot compute interference
+..
+Did not find the precursor for 891.16 in scan 33854; cannot compute interference
+
+Did not find the precursor for 532.33 in scan 33867; cannot compute interference
+
+Did not find the precursor for 530.78 in scan 33893; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 80%
+Reading scan: 33902
+.
+Did not find the precursor for 1085.04 in scan 33923; cannot compute interference
+
+Did not find the precursor for 1022.18 in scan 33924; cannot compute interference
+
+Did not find the precursor for 855.45 in scan 33960; cannot compute interference
+...
+Did not find the precursor for 1287.20 in scan 34063; cannot compute interference
+.
+Did not find the precursor for 935.14 in scan 34072; cannot compute interference
+
+Did not find the precursor for 1592.09 in scan 34096; cannot compute interference
+.
+Did not find the precursor for 1066.13 in scan 34114; cannot compute interference
+
+Did not find the precursor for 953.52 in scan 34115; cannot compute interference
+
+Did not find the precursor for 1074.14 in scan 34145; cannot compute interference
+
+Did not find the precursor for 998.46 in scan 34146; cannot compute interference
+.
+Did not find the precursor for 756.39 in scan 34185; cannot compute interference
+
+Did not find the precursor for 799.16 in scan 34186; cannot compute interference
+
+Did not find the precursor for 995.82 in scan 34195; cannot compute interference
+
+Did not find the precursor for 832.47 in scan 34201; cannot compute interference
+.
+Did not find the precursor for 500.66 in scan 34207; cannot compute interference
+
+Did not find the precursor for 1103.86 in scan 34208; cannot compute interference
+
+Did not find the precursor for 623.36 in scan 34216; cannot compute interference
+
+Did not find the precursor for 763.91 in scan 34253; cannot compute interference
+
+Did not find the precursor for 1104.30 in scan 34276; cannot compute interference
+
+Did not find the precursor for 822.98 in scan 34290; cannot compute interference
+
+Did not find the precursor for 755.89 in scan 34296; cannot compute interference
+.
+Did not find the precursor for 984.03 in scan 34307; cannot compute interference
+
+Did not find the precursor for 411.98 in scan 34317; cannot compute interference
+
+Did not find the precursor for 897.04 in scan 34338; cannot compute interference
+.
+Did not find the precursor for 643.60 in scan 34400; cannot compute interference
+.
+Did not find the precursor for 704.41 in scan 34403; cannot compute interference
+
+Did not find the precursor for 917.79 in scan 34436; cannot compute interference
+.
+Did not find the precursor for 748.37 in scan 34500; cannot compute interference
+.
+Did not find the precursor for 822.10 in scan 34515; cannot compute interference
+
+Did not find the precursor for 885.16 in scan 34516; cannot compute interference
+
+Did not find the precursor for 659.68 in scan 34529; cannot compute interference
+
+Did not find the precursor for 816.76 in scan 34543; cannot compute interference
+
+Did not find the precursor for 903.21 in scan 34562; cannot compute interference
+
+Did not find the precursor for 861.45 in scan 34572; cannot compute interference
+.
+Did not find the precursor for 1055.61 in scan 34583; cannot compute interference
+
+Did not find the precursor for 817.43 in scan 34588; cannot compute interference
+
+Did not find the precursor for 688.39 in scan 34596; cannot compute interference
+.
+Did not find the precursor for 499.25 in scan 34620; cannot compute interference
+
+Did not find the precursor for 510.27 in scan 34627; cannot compute interference
+
+Did not find the precursor for 988.51 in scan 34630; cannot compute interference
+
+Did not find the precursor for 1101.14 in scan 34637; cannot compute interference
+
+Did not find the precursor for 657.01 in scan 34638; cannot compute interference
+
+Did not find the precursor for 551.33 in scan 34646; cannot compute interference
+
+Did not find the precursor for 1000.83 in scan 34659; cannot compute interference
+
+Did not find the precursor for 1091.55 in scan 34678; cannot compute interference
+..
+Did not find the precursor for 590.08 in scan 34705; cannot compute interference
+
+Did not find the precursor for 930.85 in scan 34720; cannot compute interference
+
+Did not find the precursor for 933.48 in scan 34735; cannot compute interference
+
+Did not find the precursor for 599.31 in scan 34736; cannot compute interference
+
+Did not find the precursor for 989.02 in scan 34751; cannot compute interference
+
+Did not find the precursor for 1007.52 in scan 34773; cannot compute interference
+
+Did not find the precursor for 629.89 in scan 34794; cannot compute interference
+..
+Did not find the precursor for 601.95 in scan 34810; cannot compute interference
+
+Did not find the precursor for 1455.73 in scan 34832; cannot compute interference
+
+Did not find the precursor for 984.13 in scan 34833; cannot compute interference
+
+Did not find the precursor for 863.81 in scan 34836; cannot compute interference
+
+Did not find the precursor for 818.79 in scan 34870; cannot compute interference
+..
+Did not find the precursor for 1139.55 in scan 34918; cannot compute interference
+
+Did not find the precursor for 933.23 in scan 34935; cannot compute interference
+
+Did not find the precursor for 1140.22 in scan 34936; cannot compute interference
+
+Did not find the precursor for 935.46 in scan 34944; cannot compute interference
+
+Did not find the precursor for 830.70 in scan 34957; cannot compute interference
+.
+Did not find the precursor for 1055.17 in scan 34989; cannot compute interference
+..
+Did not find the precursor for 1075.57 in scan 35042; cannot compute interference
+
+Did not find the precursor for 920.96 in scan 35043; cannot compute interference
+
+Did not find the precursor for 997.00 in scan 35062; cannot compute interference
+
+Did not find the precursor for 1076.24 in scan 35063; cannot compute interference
+Reading scan: 35071
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 82%
+
+Did not find the precursor for 904.94 in scan 35101; cannot compute interference
+.
+Did not find the precursor for 823.09 in scan 35114; cannot compute interference
+
+Did not find the precursor for 927.49 in scan 35120; cannot compute interference
+.
+Did not find the precursor for 882.97 in scan 35263; cannot compute interference
+.
+Did not find the precursor for 988.51 in scan 35300; cannot compute interference
+....
+Did not find the precursor for 596.62 in scan 35440; cannot compute interference
+..
+Did not find the precursor for 838.94 in scan 35569; cannot compute interference
+
+Did not find the precursor for 652.67 in scan 35590; cannot compute interference
+.
+Did not find the precursor for 1212.23 in scan 35660; cannot compute interference
+.
+Did not find the precursor for 852.80 in scan 35672; cannot compute interference
+..
+Did not find the precursor for 991.83 in scan 35764; cannot compute interference
+.
+Did not find the precursor for 929.49 in scan 35788; cannot compute interference
+
+Did not find the precursor for 854.91 in scan 35796; cannot compute interference
+
+Did not find the precursor for 908.70 in scan 35801; cannot compute interference
+
+Did not find the precursor for 890.80 in scan 35802; cannot compute interference
+.
+Did not find the precursor for 1054.07 in scan 35822; cannot compute interference
+..
+Did not find the precursor for 1143.27 in scan 35923; cannot compute interference
+
+Did not find the precursor for 892.17 in scan 35924; cannot compute interference
+
+Did not find the precursor for 891.46 in scan 35931; cannot compute interference
+
+Did not find the precursor for 758.09 in scan 35940; cannot compute interference
+
+Did not find the precursor for 1008.19 in scan 35975; cannot compute interference
+
+Did not find the precursor for 490.78 in scan 35994; cannot compute interference
+....
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 85%
+Reading scan: 36102
+.
+Did not find the precursor for 506.78 in scan 36123; cannot compute interference
+.
+Did not find the precursor for 904.46 in scan 36170; cannot compute interference
+
+Did not find the precursor for 982.03 in scan 36183; cannot compute interference
+.
+Did not find the precursor for 1107.10 in scan 36223; cannot compute interference
+....
+Did not find the precursor for 1090.24 in scan 36325; cannot compute interference
+
+Did not find the precursor for 1084.91 in scan 36326; cannot compute interference
+...
+Did not find the precursor for 832.83 in scan 36492; cannot compute interference
+...
+Did not find the precursor for 1134.25 in scan 36606; cannot compute interference
+
+Did not find the precursor for 1000.07 in scan 36607; cannot compute interference
+
+Did not find the precursor for 735.61 in scan 36620; cannot compute interference
+
+Did not find the precursor for 747.38 in scan 36625; cannot compute interference
+
+Did not find the precursor for 790.09 in scan 36633; cannot compute interference
+..
+Did not find the precursor for 650.34 in scan 36741; cannot compute interference
+
+Did not find the precursor for 869.44 in scan 36763; cannot compute interference
+.
+Did not find the precursor for 819.07 in scan 36781; cannot compute interference
+
+Did not find the precursor for 1161.06 in scan 36787; cannot compute interference
+
+Did not find the precursor for 976.15 in scan 36796; cannot compute interference
+
+Did not find the precursor for 997.59 in scan 36797; cannot compute interference
+..
+Did not find the precursor for 918.79 in scan 36845; cannot compute interference
+
+Did not find the precursor for 1024.51 in scan 36870; cannot compute interference
+
+Did not find the precursor for 451.26 in scan 36871; cannot compute interference
+.
+Did not find the precursor for 975.82 in scan 36908; cannot compute interference
+
+Did not find the precursor for 912.95 in scan 36909; cannot compute interference
+
+Did not find the precursor for 750.12 in scan 36917; cannot compute interference
+.
+Did not find the precursor for 1155.22 in scan 36978; cannot compute interference
+..Reading scan: 37007
+.
+Did not find the precursor for 1336.20 in scan 37025; cannot compute interference
+
+Did not find the precursor for 948.15 in scan 37048; cannot compute interference
+
+Did not find the precursor for 1081.24 in scan 37064; cannot compute interference
+
+Did not find the precursor for 991.17 in scan 37067; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 87%
+
+Did not find the precursor for 805.44 in scan 37098; cannot compute interference
+.
+Did not find the precursor for 1107.10 in scan 37179; cannot compute interference
+..
+Did not find the precursor for 1124.58 in scan 37270; cannot compute interference
+.
+Did not find the precursor for 1019.05 in scan 37372; cannot compute interference
+.
+Did not find the precursor for 1179.59 in scan 37382; cannot compute interference
+
+Did not find the precursor for 1046.24 in scan 37383; cannot compute interference
+.
+Did not find the precursor for 1086.61 in scan 37415; cannot compute interference
+.
+Did not find the precursor for 976.08 in scan 37475; cannot compute interference
+
+Did not find the precursor for 890.44 in scan 37494; cannot compute interference
+
+Did not find the precursor for 718.13 in scan 37495; cannot compute interference
+.
+Did not find the precursor for 761.68 in scan 37565; cannot compute interference
+
+Did not find the precursor for 1166.24 in scan 37571; cannot compute interference
+..
+Did not find the precursor for 1366.22 in scan 37629; cannot compute interference
+
+Did not find the precursor for 1279.65 in scan 37630; cannot compute interference
+
+Did not find the precursor for 1480.27 in scan 37631; cannot compute interference
+
+Did not find the precursor for 922.50 in scan 37633; cannot compute interference
+..
+Did not find the precursor for 1274.72 in scan 37753; cannot compute interference
+.
+Did not find the precursor for 1447.73 in scan 37783; cannot compute interference
+
+Did not find the precursor for 812.18 in scan 37784; cannot compute interference
+.
+Did not find the precursor for 837.75 in scan 37821; cannot compute interference
+
+Did not find the precursor for 834.70 in scan 37842; cannot compute interference
+
+Did not find the precursor for 885.20 in scan 37844; cannot compute interference
+
+Did not find the precursor for 1180.08 in scan 37847; cannot compute interference
+
+Did not find the precursor for 891.14 in scan 37860; cannot compute interference
+
+Did not find the precursor for 1180.58 in scan 37861; cannot compute interference
+
+Did not find the precursor for 832.08 in scan 37863; cannot compute interference
+...
+Did not find the precursor for 959.81 in scan 37970; cannot compute interference
+...Reading scan: 38017
+.
+Did not find the precursor for 994.84 in scan 38029; cannot compute interference
+
+Did not find the precursor for 1034.50 in scan 38045; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 90%
+.
+Did not find the precursor for 1574.74 in scan 38160; cannot compute interference
+.
+Did not find the precursor for 1178.65 in scan 38178; cannot compute interference
+
+Did not find the precursor for 1274.17 in scan 38181; cannot compute interference
+
+Did not find the precursor for 845.43 in scan 38184; cannot compute interference
+
+Did not find the precursor for 1035.50 in scan 38194; cannot compute interference
+.
+Did not find the precursor for 1096.93 in scan 38210; cannot compute interference
+
+Did not find the precursor for 980.49 in scan 38229; cannot compute interference
+
+Did not find the precursor for 928.84 in scan 38251; cannot compute interference
+.
+Did not find the precursor for 912.17 in scan 38281; cannot compute interference
+.
+Did not find the precursor for 880.17 in scan 38332; cannot compute interference
+
+Did not find the precursor for 923.99 in scan 38333; cannot compute interference
+
+Did not find the precursor for 989.16 in scan 38341; cannot compute interference
+
+Did not find the precursor for 1183.65 in scan 38360; cannot compute interference
+
+Did not find the precursor for 1084.57 in scan 38370; cannot compute interference
+
+Did not find the precursor for 1766.46 in scan 38373; cannot compute interference
+.
+Did not find the precursor for 558.31 in scan 38385; cannot compute interference
+.
+Did not find the precursor for 1154.55 in scan 38426; cannot compute interference
+
+Did not find the precursor for 1150.56 in scan 38451; cannot compute interference
+.
+Did not find the precursor for 1013.17 in scan 38467; cannot compute interference
+
+Did not find the precursor for 1448.23 in scan 38472; cannot compute interference
+
+Did not find the precursor for 897.14 in scan 38485; cannot compute interference
+
+Did not find the precursor for 927.11 in scan 38490; cannot compute interference
+.
+Did not find the precursor for 993.25 in scan 38511; cannot compute interference
+
+Did not find the precursor for 915.52 in scan 38512; cannot compute interference
+
+Did not find the precursor for 1034.83 in scan 38532; cannot compute interference
+
+Did not find the precursor for 396.72 in scan 38566; cannot compute interference
+.
+Did not find the precursor for 1053.57 in scan 38599; cannot compute interference
+.
+Did not find the precursor for 535.70 in scan 38616; cannot compute interference
+
+Did not find the precursor for 607.99 in scan 38636; cannot compute interference
+.
+Did not find the precursor for 660.38 in scan 38688; cannot compute interference
+
+Did not find the precursor for 407.72 in scan 38689; cannot compute interference
+
+Did not find the precursor for 845.43 in scan 38692; cannot compute interference
+.
+Did not find the precursor for 1096.60 in scan 38693; cannot compute interference
+..
+Did not find the precursor for 515.79 in scan 38769; cannot compute interference
+.
+Did not find the precursor for 1310.19 in scan 38798; cannot compute interference
+
+Did not find the precursor for 856.43 in scan 38799; cannot compute interference
+
+Did not find the precursor for 843.49 in scan 38800; cannot compute interference
+.
+Did not find the precursor for 941.46 in scan 38821; cannot compute interference
+
+Did not find the precursor for 945.21 in scan 38842; cannot compute interference
+
+Did not find the precursor for 1179.68 in scan 38847; cannot compute interference
+
+Did not find the precursor for 990.91 in scan 38850; cannot compute interference
+
+Did not find the precursor for 1191.14 in scan 38852; cannot compute interference
+.
+Did not find the precursor for 1046.56 in scan 38877; cannot compute interference
+
+Did not find the precursor for 1485.85 in scan 38878; cannot compute interference
+.
+Did not find the precursor for 1040.59 in scan 38901; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 91%
+Reading scan: 38902
+...
+Did not find the precursor for 827.95 in scan 38975; cannot compute interference
+...
+Did not find the precursor for 1096.60 in scan 39023; cannot compute interference
+.
+Did not find the precursor for 893.42 in scan 39037; cannot compute interference
+
+Did not find the precursor for 985.49 in scan 39047; cannot compute interference
+.
+Did not find the precursor for 912.14 in scan 39083; cannot compute interference
+..
+Did not find the precursor for 939.50 in scan 39174; cannot compute interference
+
+Did not find the precursor for 1037.55 in scan 39175; cannot compute interference
+
+Did not find the precursor for 896.46 in scan 39196; cannot compute interference
+.
+Did not find the precursor for 1078.27 in scan 39218; cannot compute interference
+
+Did not find the precursor for 533.32 in scan 39219; cannot compute interference
+
+Did not find the precursor for 536.82 in scan 39221; cannot compute interference
+
+Did not find the precursor for 852.47 in scan 39223; cannot compute interference
+
+Did not find the precursor for 1498.25 in scan 39226; cannot compute interference
+...
+Did not find the precursor for 466.26 in scan 39372; cannot compute interference
+.
+Did not find the precursor for 1310.20 in scan 39409; cannot compute interference
+
+Did not find the precursor for 668.35 in scan 39412; cannot compute interference
+
+Did not find the precursor for 933.51 in scan 39413; cannot compute interference
+
+Did not find the precursor for 979.79 in scan 39416; cannot compute interference
+
+Did not find the precursor for 632.00 in scan 39417; cannot compute interference
+
+Did not find the precursor for 757.38 in scan 39418; cannot compute interference
+.
+Did not find the precursor for 627.70 in scan 39469; cannot compute interference
+
+Did not find the precursor for 924.49 in scan 39481; cannot compute interference
+.
+Did not find the precursor for 598.87 in scan 39534; cannot compute interference
+.
+Did not find the precursor for 956.52 in scan 39574; cannot compute interference
+
+Did not find the precursor for 885.48 in scan 39576; cannot compute interference
+
+Did not find the precursor for 1028.58 in scan 39577; cannot compute interference
+
+Did not find the precursor for 864.47 in scan 39579; cannot compute interference
+.
+Did not find the precursor for 1192.67 in scan 39604; cannot compute interference
+
+Did not find the precursor for 944.46 in scan 39684; cannot compute interference
+..
+Did not find the precursor for 1007.52 in scan 39735; cannot compute interference
+..
+Did not find the precursor for 867.79 in scan 39822; cannot compute interference
+
+Did not find the precursor for 1069.23 in scan 39823; cannot compute interference
+
+Did not find the precursor for 878.15 in scan 39830; cannot compute interference
+..Reading scan: 39907
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 94%
+
+Did not find the precursor for 1498.25 in scan 39949; cannot compute interference
+
+Did not find the precursor for 576.34 in scan 39977; cannot compute interference
+
+Did not find the precursor for 1470.22 in scan 39978; cannot compute interference
+......
+Did not find the precursor for 1513.76 in scan 40124; cannot compute interference
+
+Did not find the precursor for 1290.16 in scan 40125; cannot compute interference
+
+Did not find the precursor for 550.99 in scan 40146; cannot compute interference
+
+Did not find the precursor for 1034.83 in scan 40147; cannot compute interference
+.
+Did not find the precursor for 1107.11 in scan 40167; cannot compute interference
+..
+Did not find the precursor for 986.16 in scan 40236; cannot compute interference
+
+Did not find the precursor for 888.47 in scan 40253; cannot compute interference
+..
+Did not find the precursor for 1498.25 in scan 40287; cannot compute interference
+.......
+Did not find the precursor for 926.78 in scan 40458; cannot compute interference
+.
+Did not find the precursor for 1142.84 in scan 40473; cannot compute interference
+
+Did not find the precursor for 934.21 in scan 40476; cannot compute interference
+
+Did not find the precursor for 1135.67 in scan 40477; cannot compute interference
+.
+Did not find the precursor for 1275.23 in scan 40494; cannot compute interference
+..
+Did not find the precursor for 904.45 in scan 40569; cannot compute interference
+..Reading scan: 40602
+..
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 95%
+
+Did not find the precursor for 890.80 in scan 40637; cannot compute interference
+.
+Did not find the precursor for 932.77 in scan 40702; cannot compute interference
+.......
+Did not find the precursor for 834.95 in scan 40910; cannot compute interference
+
+Did not find the precursor for 538.31 in scan 40917; cannot compute interference
+.
+Did not find the precursor for 866.41 in scan 40960; cannot compute interference
+.
+Did not find the precursor for 1046.56 in scan 40987; cannot compute interference
+
+Did not find the precursor for 912.95 in scan 40994; cannot compute interference
+....
+Did not find the precursor for 793.43 in scan 41113; cannot compute interference
+
+Did not find the precursor for 1126.58 in scan 41117; cannot compute interference
+
+Did not find the precursor for 845.98 in scan 41118; cannot compute interference
+..
+Did not find the precursor for 902.50 in scan 41197; cannot compute interference
+..
+Did not find the precursor for 1326.25 in scan 41251; cannot compute interference
+.
+Did not find the precursor for 810.15 in scan 41256; cannot compute interference
+
+Did not find the precursor for 873.80 in scan 41274; cannot compute interference
+.....Reading scan: 41387
+..
+Did not find the precursor for 934.60 in scan 41389; cannot compute interference
+
+Did not find the precursor for 895.50 in scan 41390; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 97%
+.....
+Did not find the precursor for 1057.57 in scan 41522; cannot compute interference
+.
+Did not find the precursor for 1107.11 in scan 41549; cannot compute interference
+
+Did not find the precursor for 685.39 in scan 41550; cannot compute interference
+
+Did not find the precursor for 923.84 in scan 41555; cannot compute interference
+....
+Did not find the precursor for 934.60 in scan 41691; cannot compute interference
+....
+Did not find the precursor for 1158.06 in scan 41802; cannot compute interference
+...
+Did not find the precursor for 1498.25 in scan 41861; cannot compute interference
+....
+Did not find the precursor for 980.16 in scan 41973; cannot compute interference
+..Reading scan: 42011
+..
+Did not find the precursor for 1065.05 in scan 42056; cannot compute interference
+.
+  Reading Xcalibur data (42,558 scans)
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw: 99%
+...
+Did not find the precursor for 1036.09 in scan 42127; cannot compute interference
+..................
+
+Could not determine the precursor for 2.8% of the MS2 spectra (916 / 32374 scans). These scans will have an Interference Score of 1 (to avoid accidentally filtering out low intensity results).
+Processing Data for MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw (19.7% complete)
+.ProcessFile: Call SaveBPIs
+Saving Decon2LS MS Chromatogram File to MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MS_scans.csv
+.
+  Saving chromatograms to disk: 67%
+Saving Decon2LS MSMS Chromatogram File to MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MSMS_scans.csv
+.ProcessFile: Close outputFileHandles.ScanStats
+ProcessFile: Create DatasetInfo File
+.
+Reporter Ion Correction Matrix; mode = TMTTenMZ
+        0       1       2       3       4       5       6       7       8       9    
+      ------  ------  ------  ------  ------  ------  ------  ------  ------  ------ 
+  0   0.9260    0     0.0050    0       0       0       0       0       0       0    
+  1     0     0.9210    0     0.0070    0       0       0       0       0       0    
+  2   0.0720    0     0.9320    0     0.0140    0       0       0       0       0    
+  3     0     0.0730    0     0.9360    0     0.0250    0       0       0       0    
+  4   0.0020    0     0.0630    0     0.9350    0     0.0230    0     0.0040    0    
+  5     0     0.0020    0     0.0570    0     0.9250    0     0.0270    0       0    
+  6     0       0       0       0     0.0510    0     0.9340    0     0.0290    0    
+  7     0       0       0       0       0     0.0500    0     0.9340    0     0.0340 
+  8     0       0       0       0       0       0     0.0430    0     0.9340    0    
+  9     0       0       0       0       0       0       0     0.0390    0     0.9330 
+
+.
+  Searching for reporter ions: 0%
+.............................
+  Searching for reporter ions: 12%
+...........................
+  Searching for reporter ions: 28%
+..........................
+  Searching for reporter ions: 47%
+............................
+  Searching for reporter ions: 66%
+.........................
+  Searching for reporter ions: 86%
+....................ProcessFile: Call CreateParentIonSICs
+Creating SIC's for parent ionsCreating SIC's for parent ions
+.....
+  Loading raw SIC data: 600 / 10184: 0%
+............................
+  Loading raw SIC data: 5600 / 10184: 0%
+.........................
+  Loading raw SIC data: 9200 / 10184: 0%
+...................
+Processing: 20% 
+..........Parent Ions Processed: 300
+..
+  Creating SIC's for parent ions: 1%
+.................................
+  Loading raw SIC data: 3800 / 10184: 0%
+............................
+  Loading raw SIC data: 9000 / 10184: 0%
+..............Parent Ions Processed: 600
+..................
+  Creating SIC's for parent ions: 3%
+..Parent Ions Processed: 1000
+..............................
+  Loading raw SIC data: 3200 / 10184: 0%
+............................
+  Loading raw SIC data: 8900 / 10184: 0%
+................Parent Ions Processed: 1300
+..................
+  Creating SIC's for parent ions: 5%
+..................................
+  Loading raw SIC data: 3900 / 10184: 0%
+..........................
+  Loading raw SIC data: 9300 / 10184: 0%
+............Parent Ions Processed: 2000
+.......................
+  Creating SIC's for parent ions: 7%
+..........Parent Ions Processed: 2500
+......................
+  Loading raw SIC data: 4300 / 10184: 0%
+.............................
+  Loading raw SIC data: 9500 / 10184: 0%
+.........Parent Ions Processed: 2600
+........
+Processing: 25% 
+................
+  Creating SIC's for parent ions: 10%
+............................
+  Loading raw SIC data: 6400 / 10184: 0%
+...........................Parent Ions Processed: 3200
+....
+  Creating SIC's for parent ions: 10%
+.................................
+  Loading raw SIC data: 2000 / 10184: 0%
+.............................
+  Loading raw SIC data: 8500 / 10184: 0%
+................Parent Ions Processed: 3900
+......Parent Ions Processed: 4000
+.............
+  Creating SIC's for parent ions: 13%
+..........Parent Ions Processed: 4500
+.......................
+  Loading raw SIC data: 5200 / 10184: 0%
+...........................
+  Loading raw SIC data: 10000 / 10184: 0%
+......Parent Ions Processed: 4600
+.................
+Processing: 30% 
+............
+  Loading raw SIC data: 800 / 10184: 0%
+.............................
+  Loading raw SIC data: 7800 / 10184: 0%
+..........................Parent Ions Processed: 5500
+......
+  Creating SIC's for parent ions: 17%
+.................................
+  Loading raw SIC data: 5100 / 10184: 0%
+.............................
+  Creating SIC's for parent ions: 19%
+Parent Ions Processed: 6000
+.................Parent Ions Processed: 6500
+...................
+  Loading raw SIC data: 2400 / 10184: 0%
+.............................
+  Loading raw SIC data: 9100 / 10184: 0%
+..................Parent Ions Processed: 6900
+...................
+  Creating SIC's for parent ions: 23%
+...............................
+  Loading raw SIC data: 7100 / 10184: 0%
+....................Parent Ions Processed: 7400
+........
+Processing: 35% 
+....
+  Creating SIC's for parent ions: 24%
+............Parent Ions Processed: 8000
+.......................
+  Loading raw SIC data: 3700 / 10184: 0%
+.............................
+  Loading raw SIC data: 9500 / 10184: 0%
+.......Parent Ions Processed: 8100
+...................Parent Ions Processed: 8500
+...........
+  Creating SIC's for parent ions: 27%
+..............................
+  Loading raw SIC data: 5800 / 10184: 0%
+............................
+  Loading raw SIC data: 10000 / 10184: 0%
+..Parent Ions Processed: 8800
+..........Parent Ions Processed: 9000
+........................
+  Loading raw SIC data: 100 / 10184: 0%
+...............................
+  Loading raw SIC data: 6800 / 10184: 0%
+........................
+  Loading raw SIC data: 10100 / 10184: 0%
+.Parent Ions Processed: 9500
+.......................Parent Ions Processed: 10000
+............
+Processing: 40% 
+..
+  Loading raw SIC data: 200 / 10184: 0%
+............................
+  Loading raw SIC data: 5800 / 10184: 0%
+..........................
+  Loading raw SIC data: 9500 / 10184: 0%
+..........................Parent Ions Processed: 10600
+.........
+  Creating SIC's for parent ions: 33%
+..............................
+  Loading raw SIC data: 4400 / 10184: 0%
+............................
+  Loading raw SIC data: 8900 / 10184: 0%
+................Parent Ions Processed: 11000
+................
+  Creating SIC's for parent ions: 35%
+...........Parent Ions Processed: 11500
+........................
+  Loading raw SIC data: 2400 / 10184: 0%
+...........................
+  Loading raw SIC data: 8400 / 10184: 0%
+.................Parent Ions Processed: 11700
+.............
+  Creating SIC's for parent ions: 37%
+..Parent Ions Processed: 12000
+................................
+  Loading raw SIC data: 2100 / 10184: 0%
+............................
+  Loading raw SIC data: 7300 / 10184: 0%
+.......................
+Processing: 45% 
+.Parent Ions Processed: 12500
+...
+  Creating SIC's for parent ions: 39%
+.....................Parent Ions Processed: 13000
+...............
+  Loading raw SIC data: 600 / 10184: 0%
+.............................
+  Loading raw SIC data: 7100 / 10184: 0%
+.........................
+  Creating SIC's for parent ions: 41%
+...Parent Ions Processed: 13300
+.................................
+  Loading raw SIC data: 500 / 10184: 0%
+.............................
+  Loading raw SIC data: 6800 / 10184: 0%
+...........................
+  Creating SIC's for parent ions: 43%
+Parent Ions Processed: 14000
+.....................................
+  Loading raw SIC data: 1000 / 10184: 0%
+..............................
+  Loading raw SIC data: 7000 / 10184: 0%
+...........................
+  Creating SIC's for parent ions: 46%
+...Parent Ions Processed: 14900
+........
+Processing: 50% 
+...................Parent Ions Processed: 15500
+.....
+  Loading raw SIC data: 800 / 10184: 0%
+.............................
+  Loading raw SIC data: 6500 / 10184: 0%
+..........................
+  Loading raw SIC data: 9900 / 10184: 0%
+........Parent Ions Processed: 15600
+.....................Parent Ions Processed: 16000
+........
+  Creating SIC's for parent ions: 50%
+...............................
+  Loading raw SIC data: 5000 / 10184: 0%
+.............................
+  Loading raw SIC data: 9300 / 10184: 0%
+...............Parent Ions Processed: 16400
+...................
+  Creating SIC's for parent ions: 52%
+.................................
+  Loading raw SIC data: 4100 / 10184: 0%
+.............................
+  Loading raw SIC data: 8900 / 10184: 0%
+.............Parent Ions Processed: 17000
+..................
+  Creating SIC's for parent ions: 54%
+...........
+Processing: 55% 
+......................
+  Loading raw SIC data: 3800 / 10184: 0%
+..........................
+  Loading raw SIC data: 8900 / 10184: 0%
+................Parent Ions Processed: 17800
+.........Parent Ions Processed: 18000
+.........
+  Creating SIC's for parent ions: 56%
+..............................
+  Loading raw SIC data: 2700 / 10184: 0%
+............................
+  Loading raw SIC data: 7900 / 10184: 0%
+.......................Parent Ions Processed: 18500
+.....
+  Creating SIC's for parent ions: 57%
+...................Parent Ions Processed: 19000
+.................
+  Loading raw SIC data: 1800 / 10184: 0%
+.............................
+  Loading raw SIC data: 7500 / 10184: 0%
+........................Parent Ions Processed: 19200
+.......
+  Creating SIC's for parent ions: 60%
+.................................
+  Loading raw SIC data: 2000 / 10184: 0%
+..............................
+  Loading raw SIC data: 7400 / 10184: 0%
+.......................Parent Ions Processed: 19900
+.
+Processing: 60% 
+....Parent Ions Processed: 20000
+..
+  Creating SIC's for parent ions: 62%
+.....................Parent Ions Processed: 20500
+..............
+  Loading raw SIC data: 1900 / 10184: 0%
+...............................
+  Loading raw SIC data: 7500 / 10184: 0%
+.........................Parent Ions Processed: 20700
+....
+  Creating SIC's for parent ions: 64%
+..........Parent Ions Processed: 21000
+.........................
+  Loading raw SIC data: 2000 / 10184: 0%
+............................
+  Loading raw SIC data: 7600 / 10184: 0%
+......................Parent Ions Processed: 21400
+.......
+  Creating SIC's for parent ions: 66%
+......................Parent Ions Processed: 22000
+..............
+  Loading raw SIC data: 1400 / 10184: 0%
+...............................
+  Loading raw SIC data: 7100 / 10184: 0%
+........................Parent Ions Processed: 22200
+....
+  Creating SIC's for parent ions: 69%
+.........
+Processing: 65% 
+..........................
+  Loading raw SIC data: 1700 / 10184: 0%
+.............................
+  Loading raw SIC data: 7500 / 10184: 0%
+.........................Parent Ions Processed: 23000
+....
+  Creating SIC's for parent ions: 71%
+.................Parent Ions Processed: 23500
+................
+  Loading raw SIC data: 2300 / 10184: 0%
+.............................
+  Loading raw SIC data: 7900 / 10184: 0%
+...........................
+  Creating SIC's for parent ions: 74%
+.............Parent Ions Processed: 24200
+.....................
+  Loading raw SIC data: 2200 / 10184: 0%
+.............................
+  Loading raw SIC data: 7500 / 10184: 0%
+...........................Parent Ions Processed: 24600
+..
+  Creating SIC's for parent ions: 76%
+.................
+Processing: 70% 
+..............
+  Loading raw SIC data: 2800 / 10184: 0%
+..............................
+  Loading raw SIC data: 8400 / 10184: 0%
+.......................Parent Ions Processed: 25300
+........
+  Creating SIC's for parent ions: 79%
+................................
+  Loading raw SIC data: 3500 / 10184: 0%
+.............................
+  Loading raw SIC data: 8800 / 10184: 0%
+................Parent Ions Processed: 25900
+................
+  Creating SIC's for parent ions: 81%
+............Parent Ions Processed: 26500
+...................
+  Loading raw SIC data: 3900 / 10184: 0%
+..............................
+  Loading raw SIC data: 8900 / 10184: 0%
+...........................Parent Ions Processed: 26900
+....Parent Ions Processed: 27000
+...
+  Creating SIC's for parent ions: 84%
+.................................
+  Loading raw SIC data: 4200 / 10184: 0%
+.............................
+  Loading raw SIC data: 9100 / 10184: 0%
+.............Parent Ions Processed: 27400
+.....Parent Ions Processed: 27500
+..........
+Processing: 75% 
+.....
+  Creating SIC's for parent ions: 86%
+................................
+  Loading raw SIC data: 2600 / 10184: 0%
+...........................
+  Loading raw SIC data: 7400 / 10184: 0%
+.........................
+  Creating SIC's for parent ions: 87%
+...Parent Ions Processed: 28100
+..................Parent Ions Processed: 28500
+..............
+  Loading raw SIC data: 500 / 10184: 0%
+..............................
+  Loading raw SIC data: 6400 / 10184: 0%
+............................
+  Loading raw SIC data: 10000 / 10184: 0%
+...Parent Ions Processed: 28700
+..............Parent Ions Processed: 29000
+.....................
+  Loading raw SIC data: 1000 / 10184: 0%
+.............................
+  Loading raw SIC data: 7000 / 10184: 0%
+.........................
+  Creating SIC's for parent ions: 91%
+Parent Ions Processed: 29400
+..........................
+Processing: 80% 
+..Parent Ions Processed: 30000
+........
+  Creating SIC's for parent ions: 93%
+.....................
+  Loading raw SIC data: 3600 / 10184: 0%
+......................
+  Loading raw SIC data: 7100 / 10184: 0%
+......................
+  Loading raw SIC data: 9700 / 10184: 0%
+...............Parent Ions Processed: 30300
+...........Parent Ions Processed: 30500
+.......
+  Creating SIC's for parent ions: 95%
+................................
+  Loading raw SIC data: 4200 / 10184: 0%
+............................
+  Loading raw SIC data: 8800 / 10184: 0%
+..............Parent Ions Processed: 30800
+.............Parent Ions Processed: 31000
+....
+  Creating SIC's for parent ions: 96%
+..............................
+  Loading raw SIC data: 2800 / 10184: 0%
+..............................
+  Loading raw SIC data: 8900 / 10184: 0%
+................Parent Ions Processed: 31500
+...................
+  Creating SIC's for parent ions: 99%
+.............................
+  Loading raw SIC data: 6800 / 10184: 0%
+........................Parent Ions Processed: 32000
+.....
+  Creating SIC's for parent ions: 99%
+............
+ProcessFile: Call FindSimilarParentIons
+Finding similar parent ions Finding similar parent ions
+FindSimilarParentIons: Sorting the mz arrays
+FindSimilarParentIons: Populate objSearchRange
+FindSimilarParentIons: Sort the intensity arrays
+FindSimilarParentIons: Look for similar parent ions by using m/z and scan
+.....Parent Ion Index: 500
+..
+  Finding similar parent ions: 2%
+....Parent Ion Index: 1000
+..
+Processing: 85% 
+...Parent Ion Index: 1500
+...
+  Finding similar parent ions: 5%
+...Parent Ion Index: 2000
+......Parent Ion Index: 2500
+......Parent Ion Index: 3000
+..
+  Finding similar parent ions: 10%
+....Parent Ion Index: 3500
+......Parent Ion Index: 4000
+......Parent Ion Index: 4500
+...
+  Finding similar parent ions: 15%
+...Parent Ion Index: 5000
+......Parent Ion Index: 5500
+......Parent Ion Index: 6000
+......
+  Finding similar parent ions: 20%
+Parent Ion Index: 6500
+......Parent Ion Index: 7000
+......Parent Ion Index: 7500
+......Parent Ion Index: 8000
+......Parent Ion Index: 8500
+..
+  Finding similar parent ions: 27%
+....Parent Ion Index: 9000
+......Parent Ion Index: 9500
+......Parent Ion Index: 10000
+......Parent Ion Index: 10500
+......Parent Ion Index: 11000
+..
+  Finding similar parent ions: 34%
+....Parent Ion Index: 11500
+......Parent Ion Index: 12000
+.....Parent Ion Index: 12500
+......Parent Ion Index: 13000
+...Parent Ion Index: 13500
+.....Parent Ion Index: 14000
+.
+  Finding similar parent ions: 44%
+...Parent Ion Index: 14500
+....Parent Ion Index: 15000
+...Parent Ion Index: 15500
+....Parent Ion Index: 16000
+....Parent Ion Index: 16500
+....Parent Ion Index: 17000
+....Parent Ion Index: 17500
+...
+  Finding similar parent ions: 55%
+..Parent Ion Index: 18000
+....Parent Ion Index: 18500
+...
+Processing: 90% 
+Parent Ion Index: 19000
+....Parent Ion Index: 19500
+....Parent Ion Index: 20000
+...Parent Ion Index: 20500
+...Parent Ion Index: 21000
+...Parent Ion Index: 21500
+....Parent Ion Index: 22000
+...
+  Finding similar parent ions: 69%
+Parent Ion Index: 22500
+..Parent Ion Index: 23000
+..Parent Ion Index: 23500
+...Parent Ion Index: 24000
+..Parent Ion Index: 24500
+..Parent Ion Index: 25000
+..Parent Ion Index: 25500
+...Parent Ion Index: 26000
+..Parent Ion Index: 26500
+..Parent Ion Index: 27000
+...Parent Ion Index: 27500
+..Parent Ion Index: 28000
+..Parent Ion Index: 28500
+...Parent Ion Index: 29000
+...Parent Ion Index: 29500
+...Parent Ion Index: 30000
+..Parent Ion Index: 30500
+...Parent Ion Index: 31000
+..Parent Ion Index: 31500
+..Parent Ion Index: 32000
+.
+FindSimilarParentIons: Update the scan numbers for the unique ions
+ProcessFile: Call SaveExtendedScanStatsFiles
+Saving extended scan stats flat file to disk: MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_ScanStatsEx.txt
+.
+  Saving extended scan stats to flat file: 0%
+....................................
+  Saving extended scan stats to flat file: 35%
+..............................
+  Saving extended scan stats to flat file: 66%
+.............................
+  Saving extended scan stats to flat file: 0%
+ProcessFile: Call SaveSICStatsFlatFile
+Saving SIC flat file to disk: MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_SICstats.txt
+..........ProcessFile: Call FinalizeXMLFile
+ProcessFile: Call XmlOutputFileUpdateEntries
+.........
+Processing: 95% 
+
+  Updating XML file with optimal peak apex values: 11%
+..........................
+  Updating XML file with optimal peak apex values: 48%
+............................
+  Updating XML file with optimal peak apex values: 83%
+................
+Processing: 100% 
+.ProcessFile: Processing nearly complete
+
+Processing complete.  Results can be found in directory: /data/masic_output/
+ProcessingStats: Memory Usage At Start (MB) = 34.36719
+ProcessingStats: Peak memory usage (MB) = 1271.199
+ProcessingStats: File Load Time (seconds) = 356.421793
+ProcessingStats: Memory Usage During Load (MB) = 1837.934
+ProcessingStats: Processing Time (seconds) = 2024.778954
+ProcessingStats: Memory Usage At End (MB) = 1036.48
+ProcessingStats: Cache Event Count = 706878
+ProcessingStats: UncCache Event Count = 665320
+Processing complete
+50.0% complete
+.Starting calculations
+Loading parameter file: /data/masic_input/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml
+Source data file: /data/raw/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw
+
+Parsing MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 2, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset = 'MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 1, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset = 'MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 0, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset = 'MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 2, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset Like 'MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02%'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 1, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset Like 'MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02%'
+
+
+Exception querying database (called from GetDatasetIDFromDatabase): Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35)
+Snix_Connect (provider: SNI_PN7, error: 35 - SNI_ERROR_35); ConnectionString: Data Source=gigasax;Initial Catalog=DMS5;User=DMSReader;Password=dms4fun, RetryCount = 0, Query Select Dataset, ID FROM V_Dataset_Export WHERE Dataset Like 'MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02%'
+
+Checking for existing results in the output path: /data/masic_output/
+Checking for write permission in the output path: /data/masic_output/
+.
+  Updating XML file with optimal peak apex values: 0%
+Reading Thermo .raw file Reading Thermo .raw file
+
+Error while reading the method info: Object reference not set to an instance of an object
+
+Consider instantiating the XRawFileIO class with a ThermoReaderOptions object that has LoadMSMethodInfo = false
+.Reading Xcalibur data; Total scan count: 43,286
+................
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 1%
+........Reading scan: 724
+...........................
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 3%
+......
+  Updating BPI in scan 1602 from 371.101 m/z to 391.285 m/z, and BPI Intensity from 1599530 to 1554749
+.....
+  Updating BPI in scan 1700 from 371.101 m/z to 425.790 m/z, and BPI Intensity from 1704714 to 1671461
+.Reading scan: 1702
+...
+  Updating BPI in scan 1736 from 371.102 m/z to 391.285 m/z, and BPI Intensity from 1341396 to 1340912
+
+  Updating BPI in scan 1747 from 559.255 m/z to 371.102 m/z, and BPI Intensity from 2040244 to 2009471
+..................
+Did not find the precursor for 603.79 in scan 2166; cannot compute interference
+
+Did not find the precursor for 452.57 in scan 2194; cannot compute interference
+.
+Did not find the precursor for 606.11 in scan 2211; cannot compute interference
+.
+Did not find the precursor for 486.76 in scan 2249; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 5%
+..
+Did not find the precursor for 572.79 in scan 2364; cannot compute interference
+.
+Did not find the precursor for 506.74 in scan 2400; cannot compute interference
+..
+  Updating BPI in scan 2501 from 354.528 m/z to 359.724 m/z, and BPI Intensity from 100549060 to 98127736
+......
+Did not find the precursor for 448.74 in scan 2700; cannot compute interference
+.Reading scan: 2759
+.......
+Did not find the precursor for 1225.02 in scan 3092; cannot compute interference
+..
+Did not find the precursor for 687.35 in scan 3206; cannot compute interference
+..
+Did not find the precursor for 583.31 in scan 3413; cannot compute interference
+.
+Did not find the precursor for 586.32 in scan 3438; cannot compute interference
+
+Did not find the precursor for 471.27 in scan 3448; cannot compute interference
+.
+Did not find the precursor for 531.26 in scan 3540; cannot compute interference
+....
+Did not find the precursor for 492.25 in scan 3875; cannot compute interference
+.
+  Updating BPI in scan 3890 from 502.232 m/z to 406.566 m/z, and BPI Intensity from 117862830 to 115282264
+.
+Did not find the precursor for 642.32 in scan 3937; cannot compute interference
+.
+Did not find the precursor for 540.77 in scan 3983; cannot compute interference
+..
+  Updating BPI in scan 4072 from 522.274 m/z to 600.832 m/z, and BPI Intensity from 16557077 to 16138562
+.
+Did not find the precursor for 911.79 in scan 4172; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 10%
+
+Did not find the precursor for 621.31 in scan 4297; cannot compute interference
+.
+Did not find the precursor for 655.32 in scan 4320; cannot compute interference
+
+Did not find the precursor for 690.38 in scan 4342; cannot compute interference
+
+Did not find the precursor for 575.81 in scan 4343; cannot compute interference
+
+Did not find the precursor for 577.79 in scan 4383; cannot compute interference
+.
+Did not find the precursor for 577.28 in scan 4427; cannot compute interference
+.
+Did not find the precursor for 488.60 in scan 4472; cannot compute interference
+
+Did not find the precursor for 1054.52 in scan 4490; cannot compute interference
+.
+  Updating BPI in scan 4536 from 380.205 m/z to 605.332 m/z, and BPI Intensity from 154082540 to 149512656
+
+Did not find the precursor for 613.32 in scan 4596; cannot compute interference
+...
+Did not find the precursor for 965.06 in scan 4776; cannot compute interference
+.
+Did not find the precursor for 863.72 in scan 4816; cannot compute interference
+
+Did not find the precursor for 637.33 in scan 4828; cannot compute interference
+
+Did not find the precursor for 1295.07 in scan 4840; cannot compute interference
+
+Did not find the precursor for 548.82 in scan 4857; cannot compute interference
+
+Did not find the precursor for 636.85 in scan 4870; cannot compute interference
+..
+Did not find the precursor for 751.34 in scan 4962; cannot compute interference
+
+Did not find the precursor for 891.73 in scan 4992; cannot compute interference
+
+Did not find the precursor for 752.87 in scan 4993; cannot compute interference
+.Reading scan: 5002
+.
+Did not find the precursor for 586.79 in scan 5004; cannot compute interference
+
+Did not find the precursor for 480.25 in scan 5019; cannot compute interference
+
+Did not find the precursor for 631.55 in scan 5031; cannot compute interference
+
+Did not find the precursor for 698.68 in scan 5053; cannot compute interference
+.
+  Updating BPI in scan 5073 from 515.796 m/z to 569.791 m/z, and BPI Intensity from 1664886800 to 1592991360
+
+Did not find the precursor for 438.75 in scan 5095; cannot compute interference
+.
+Did not find the precursor for 625.85 in scan 5116; cannot compute interference
+
+Did not find the precursor for 580.78 in scan 5117; cannot compute interference
+
+Did not find the precursor for 594.78 in scan 5150; cannot compute interference
+..
+Did not find the precursor for 542.28 in scan 5203; cannot compute interference
+
+Did not find the precursor for 643.97 in scan 5210; cannot compute interference
+
+Did not find the precursor for 472.24 in scan 5229; cannot compute interference
+
+Did not find the precursor for 564.29 in scan 5238; cannot compute interference
+..
+Did not find the precursor for 803.86 in scan 5340; cannot compute interference
+.
+Did not find the precursor for 659.13 in scan 5417; cannot compute interference
+...
+Did not find the precursor for 603.33 in scan 5614; cannot compute interference
+...
+Did not find the precursor for 742.71 in scan 5820; cannot compute interference
+
+Did not find the precursor for 553.28 in scan 5844; cannot compute interference
+.
+Did not find the precursor for 613.81 in scan 5994; cannot compute interference
+..
+Did not find the precursor for 565.81 in scan 6012; cannot compute interference
+
+Did not find the precursor for 731.35 in scan 6020; cannot compute interference
+
+Did not find the precursor for 814.89 in scan 6052; cannot compute interference
+
+Did not find the precursor for 546.28 in scan 6068; cannot compute interference
+....
+Did not find the precursor for 624.83 in scan 6296; cannot compute interference
+.
+Did not find the precursor for 593.62 in scan 6350; cannot compute interference
+.
+Did not find the precursor for 717.86 in scan 6378; cannot compute interference
+
+Did not find the precursor for 584.80 in scan 6393; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 15%
+
+Did not find the precursor for 549.79 in scan 6449; cannot compute interference
+..
+Did not find the precursor for 696.37 in scan 6515; cannot compute interference
+
+Did not find the precursor for 704.31 in scan 6532; cannot compute interference
+.
+Did not find the precursor for 704.64 in scan 6600; cannot compute interference
+.
+Did not find the precursor for 575.29 in scan 6626; cannot compute interference
+
+Did not find the precursor for 661.67 in scan 6635; cannot compute interference
+
+Did not find the precursor for 481.92 in scan 6654; cannot compute interference
+
+Did not find the precursor for 804.86 in scan 6664; cannot compute interference
+..
+Did not find the precursor for 798.69 in scan 6810; cannot compute interference
+
+Did not find the precursor for 442.56 in scan 6811; cannot compute interference
+
+Did not find the precursor for 556.96 in scan 6816; cannot compute interference
+
+Did not find the precursor for 538.79 in scan 6845; cannot compute interference
+
+Did not find the precursor for 634.82 in scan 6861; cannot compute interference
+.
+Did not find the precursor for 1198.20 in scan 6940; cannot compute interference
+.
+Did not find the precursor for 530.80 in scan 6979; cannot compute interference
+
+Did not find the precursor for 510.29 in scan 6986; cannot compute interference
+..
+Did not find the precursor for 583.30 in scan 7099; cannot compute interference
+.
+Did not find the precursor for 558.26 in scan 7116; cannot compute interference
+Reading scan: 7133
+.....
+Did not find the precursor for 644.83 in scan 7569; cannot compute interference
+
+Did not find the precursor for 449.93 in scan 7587; cannot compute interference
+.
+Did not find the precursor for 533.77 in scan 7643; cannot compute interference
+
+Did not find the precursor for 411.72 in scan 7644; cannot compute interference
+
+Did not find the precursor for 502.93 in scan 7667; cannot compute interference
+
+Did not find the precursor for 593.34 in scan 7682; cannot compute interference
+.
+Did not find the precursor for 602.83 in scan 7775; cannot compute interference
+
+Did not find the precursor for 519.95 in scan 7787; cannot compute interference
+.
+Did not find the precursor for 422.74 in scan 7886; cannot compute interference
+.
+Did not find the precursor for 782.35 in scan 7916; cannot compute interference
+.
+Did not find the precursor for 580.33 in scan 8059; cannot compute interference
+
+Did not find the precursor for 665.35 in scan 8066; cannot compute interference
+
+Did not find the precursor for 614.29 in scan 8085; cannot compute interference
+
+Did not find the precursor for 427.57 in scan 8090; cannot compute interference
+
+Did not find the precursor for 392.88 in scan 8091; cannot compute interference
+.
+Did not find the precursor for 822.41 in scan 8117; cannot compute interference
+
+Did not find the precursor for 859.44 in scan 8165; cannot compute interference
+.
+Did not find the precursor for 705.36 in scan 8183; cannot compute interference
+
+Did not find the precursor for 637.86 in scan 8184; cannot compute interference
+.
+Did not find the precursor for 438.25 in scan 8207; cannot compute interference
+.
+Did not find the precursor for 864.43 in scan 8252; cannot compute interference
+.
+Did not find the precursor for 623.31 in scan 8312; cannot compute interference
+
+Did not find the precursor for 720.04 in scan 8364; cannot compute interference
+.
+Did not find the precursor for 651.82 in scan 8388; cannot compute interference
+
+Did not find the precursor for 610.30 in scan 8395; cannot compute interference
+..
+Did not find the precursor for 798.38 in scan 8504; cannot compute interference
+
+Did not find the precursor for 681.99 in scan 8533; cannot compute interference
+
+Did not find the precursor for 479.78 in scan 8563; cannot compute interference
+
+Did not find the precursor for 717.70 in scan 8564; cannot compute interference
+
+Did not find the precursor for 563.68 in scan 8584; cannot compute interference
+..
+Did not find the precursor for 780.87 in scan 8686; cannot compute interference
+.
+Did not find the precursor for 594.31 in scan 8730; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 20%
+....
+Did not find the precursor for 570.29 in scan 9054; cannot compute interference
+.
+Did not find the precursor for 779.90 in scan 9119; cannot compute interference
+
+Did not find the precursor for 648.35 in scan 9137; cannot compute interference
+
+Did not find the precursor for 547.82 in scan 9182; cannot compute interference
+.
+Did not find the precursor for 721.77 in scan 9221; cannot compute interference
+...
+Did not find the precursor for 600.36 in scan 9425; cannot compute interference
+
+Did not find the precursor for 460.58 in scan 9436; cannot compute interference
+.
+Did not find the precursor for 671.87 in scan 9451; cannot compute interference
+Reading scan: 9488
+..
+Did not find the precursor for 432.58 in scan 9533; cannot compute interference
+
+Did not find the precursor for 813.89 in scan 9573; cannot compute interference
+.
+Did not find the precursor for 893.41 in scan 9607; cannot compute interference
+
+Did not find the precursor for 420.90 in scan 9619; cannot compute interference
+
+Did not find the precursor for 562.29 in scan 9639; cannot compute interference
+
+Did not find the precursor for 453.59 in scan 9696; cannot compute interference
+.
+Did not find the precursor for 542.96 in scan 9717; cannot compute interference
+
+Did not find the precursor for 542.30 in scan 9739; cannot compute interference
+
+Did not find the precursor for 723.34 in scan 9772; cannot compute interference
+
+Did not find the precursor for 509.80 in scan 9797; cannot compute interference
+.
+Did not find the precursor for 634.97 in scan 9818; cannot compute interference
+
+Did not find the precursor for 881.10 in scan 9865; cannot compute interference
+
+Did not find the precursor for 1039.19 in scan 9866; cannot compute interference
+.
+Did not find the precursor for 746.36 in scan 9892; cannot compute interference
+......
+Did not find the precursor for 615.85 in scan 10226; cannot compute interference
+
+Did not find the precursor for 368.22 in scan 10227; cannot compute interference
+
+Did not find the precursor for 634.33 in scan 10229; cannot compute interference
+.
+Did not find the precursor for 600.32 in scan 10348; cannot compute interference
+
+Did not find the precursor for 438.25 in scan 10370; cannot compute interference
+..
+Did not find the precursor for 453.59 in scan 10439; cannot compute interference
+.
+Did not find the precursor for 836.44 in scan 10534; cannot compute interference
+.
+Did not find the precursor for 456.24 in scan 10603; cannot compute interference
+
+Did not find the precursor for 503.94 in scan 10621; cannot compute interference
+
+Did not find the precursor for 646.88 in scan 10669; cannot compute interference
+..
+Did not find the precursor for 771.37 in scan 10821; cannot compute interference
+.
+Did not find the precursor for 639.87 in scan 10843; cannot compute interference
+
+Did not find the precursor for 681.88 in scan 10844; cannot compute interference
+
+Did not find the precursor for 704.87 in scan 10847; cannot compute interference
+
+Did not find the precursor for 543.29 in scan 10860; cannot compute interference
+
+Did not find the precursor for 793.93 in scan 10872; cannot compute interference
+
+Did not find the precursor for 592.95 in scan 10880; cannot compute interference
+
+Did not find the precursor for 634.82 in scan 10892; cannot compute interference
+
+Did not find the precursor for 487.27 in scan 10893; cannot compute interference
+
+Did not find the precursor for 823.46 in scan 10902; cannot compute interference
+.
+Did not find the precursor for 555.83 in scan 10922; cannot compute interference
+
+Did not find the precursor for 512.75 in scan 10976; cannot compute interference
+.
+Did not find the precursor for 533.95 in scan 11011; cannot compute interference
+
+Did not find the precursor for 536.86 in scan 11039; cannot compute interference
+
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 26%
+
+Did not find the precursor for 906.47 in scan 11045; cannot compute interference
+
+Did not find the precursor for 559.80 in scan 11061; cannot compute interference
+
+Did not find the precursor for 661.35 in scan 11062; cannot compute interference
+
+Did not find the precursor for 720.88 in scan 11093; cannot compute interference
+.
+Did not find the precursor for 466.28 in scan 11135; cannot compute interference
+
+Did not find the precursor for 788.39 in scan 11153; cannot compute interference
+.
+Did not find the precursor for 898.45 in scan 11206; cannot compute interference
+.
+Did not find the precursor for 436.26 in scan 11299; cannot compute interference
+.
+Did not find the precursor for 922.95 in scan 11314; cannot compute interference
+
+Did not find the precursor for 867.45 in scan 11317; cannot compute interference
+
+Did not find the precursor for 835.94 in scan 11327; cannot compute interference
+
+Did not find the precursor for 486.96 in scan 11328; cannot compute interference
+
+Did not find the precursor for 1109.02 in scan 11372; cannot compute interference
+.
+Did not find the precursor for 864.38 in scan 11426; cannot compute interference
+.
+Did not find the precursor for 1088.52 in scan 11433; cannot compute interference
+
+Did not find the precursor for 1096.52 in scan 11455; cannot compute interference
+.
+Did not find the precursor for 709.01 in scan 11506; cannot compute interference
+
+Did not find the precursor for 634.36 in scan 11544; cannot compute interference
+
+Did not find the precursor for 479.81 in scan 11560; cannot compute interference
+..
+Did not find the precursor for 598.64 in scan 11667; cannot compute interference
+.Reading scan: 11702
+.
+Did not find the precursor for 742.37 in scan 11704; cannot compute interference
+
+Did not find the precursor for 870.11 in scan 11717; cannot compute interference
+
+Did not find the precursor for 802.65 in scan 11748; cannot compute interference
+
+Did not find the precursor for 388.20 in scan 11787; cannot compute interference
+..
+Did not find the precursor for 518.27 in scan 11854; cannot compute interference
+.
+Did not find the precursor for 740.89 in scan 11958; cannot compute interference
+
+Did not find the precursor for 845.01 in scan 11982; cannot compute interference
+
+Did not find the precursor for 594.33 in scan 11983; cannot compute interference
+.
+Did not find the precursor for 805.38 in scan 12019; cannot compute interference
+
+Did not find the precursor for 351.23 in scan 12031; cannot compute interference
+.
+Did not find the precursor for 870.47 in scan 12086; cannot compute interference
+.
+Did not find the precursor for 731.70 in scan 12107; cannot compute interference
+
+Did not find the precursor for 798.91 in scan 12108; cannot compute interference
+
+Did not find the precursor for 1053.53 in scan 12171; cannot compute interference
+..
+Did not find the precursor for 885.41 in scan 12246; cannot compute interference
+
+Did not find the precursor for 946.00 in scan 12247; cannot compute interference
+
+Did not find the precursor for 544.31 in scan 12259; cannot compute interference
+
+Did not find the precursor for 798.41 in scan 12260; cannot compute interference
+.
+Did not find the precursor for 691.89 in scan 12307; cannot compute interference
+
+Did not find the precursor for 916.40 in scan 12379; cannot compute interference
+
+Did not find the precursor for 670.36 in scan 12391; cannot compute interference
+.....
+Did not find the precursor for 790.44 in scan 12678; cannot compute interference
+.
+Did not find the precursor for 1142.79 in scan 12715; cannot compute interference
+
+Did not find the precursor for 649.33 in scan 12723; cannot compute interference
+
+Did not find the precursor for 842.41 in scan 12757; cannot compute interference
+
+Did not find the precursor for 705.88 in scan 12770; cannot compute interference
+.
+Did not find the precursor for 668.88 in scan 12896; cannot compute interference
+
+Did not find the precursor for 604.29 in scan 12898; cannot compute interference
+....
+Did not find the precursor for 637.90 in scan 13051; cannot compute interference
+
+Did not find the precursor for 666.87 in scan 13054; cannot compute interference
+.
+Did not find the precursor for 792.02 in scan 13112; cannot compute interference
+
+Did not find the precursor for 432.58 in scan 13152; cannot compute interference
+
+Did not find the precursor for 423.72 in scan 13166; cannot compute interference
+
+Did not find the precursor for 625.36 in scan 13174; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 30%
+
+Did not find the precursor for 784.49 in scan 13223; cannot compute interference
+
+Did not find the precursor for 680.68 in scan 13224; cannot compute interference
+
+Did not find the precursor for 604.33 in scan 13244; cannot compute interference
+
+Did not find the precursor for 411.51 in scan 13255; cannot compute interference
+
+Did not find the precursor for 606.73 in scan 13265; cannot compute interference
+
+Did not find the precursor for 577.33 in scan 13271; cannot compute interference
+..
+Did not find the precursor for 537.24 in scan 13314; cannot compute interference
+
+Did not find the precursor for 629.67 in scan 13315; cannot compute interference
+
+Did not find the precursor for 749.36 in scan 13356; cannot compute interference
+
+Did not find the precursor for 811.98 in scan 13359; cannot compute interference
+.
+Did not find the precursor for 559.99 in scan 13415; cannot compute interference
+.
+Did not find the precursor for 593.37 in scan 13433; cannot compute interference
+.
+Did not find the precursor for 726.90 in scan 13550; cannot compute interference
+
+Did not find the precursor for 705.34 in scan 13555; cannot compute interference
+
+Did not find the precursor for 395.27 in scan 13565; cannot compute interference
+.
+Did not find the precursor for 710.88 in scan 13641; cannot compute interference
+
+Did not find the precursor for 681.88 in scan 13642; cannot compute interference
+
+Did not find the precursor for 529.27 in scan 13647; cannot compute interference
+.
+Did not find the precursor for 498.28 in scan 13726; cannot compute interference
+
+Did not find the precursor for 990.03 in scan 13778; cannot compute interference
+.Reading scan: 13821
+.
+Did not find the precursor for 645.89 in scan 13833; cannot compute interference
+.
+Did not find the precursor for 619.32 in scan 13938; cannot compute interference
+
+Did not find the precursor for 625.37 in scan 13939; cannot compute interference
+
+Did not find the precursor for 536.31 in scan 13952; cannot compute interference
+
+Did not find the precursor for 484.77 in scan 13974; cannot compute interference
+.
+Did not find the precursor for 784.88 in scan 14014; cannot compute interference
+....
+Did not find the precursor for 814.91 in scan 14278; cannot compute interference
+.
+Did not find the precursor for 582.88 in scan 14304; cannot compute interference
+.
+Did not find the precursor for 764.69 in scan 14395; cannot compute interference
+..
+Did not find the precursor for 565.80 in scan 14480; cannot compute interference
+.
+Did not find the precursor for 586.83 in scan 14555; cannot compute interference
+
+Did not find the precursor for 599.31 in scan 14577; cannot compute interference
+
+Did not find the precursor for 955.47 in scan 14587; cannot compute interference
+
+Did not find the precursor for 672.38 in scan 14594; cannot compute interference
+.
+Did not find the precursor for 824.43 in scan 14640; cannot compute interference
+
+Did not find the precursor for 650.35 in scan 14641; cannot compute interference
+
+Did not find the precursor for 834.43 in scan 14677; cannot compute interference
+
+Did not find the precursor for 789.95 in scan 14699; cannot compute interference
+.
+Did not find the precursor for 537.60 in scan 14717; cannot compute interference
+
+Did not find the precursor for 783.84 in scan 14750; cannot compute interference
+
+Did not find the precursor for 638.83 in scan 14766; cannot compute interference
+..
+Did not find the precursor for 507.28 in scan 14848; cannot compute interference
+..
+Did not find the precursor for 509.95 in scan 15000; cannot compute interference
+....
+Did not find the precursor for 885.43 in scan 15119; cannot compute interference
+
+Did not find the precursor for 672.35 in scan 15140; cannot compute interference
+
+Did not find the precursor for 579.87 in scan 15177; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 35%
+
+Did not find the precursor for 708.73 in scan 15223; cannot compute interference
+
+Did not find the precursor for 807.94 in scan 15244; cannot compute interference
+..
+Did not find the precursor for 428.70 in scan 15369; cannot compute interference
+.
+Did not find the precursor for 872.45 in scan 15417; cannot compute interference
+..
+Did not find the precursor for 582.31 in scan 15507; cannot compute interference
+..
+Did not find the precursor for 862.94 in scan 15679; cannot compute interference
+
+Did not find the precursor for 860.44 in scan 15680; cannot compute interference
+
+Did not find the precursor for 567.96 in scan 15695; cannot compute interference
+.Reading scan: 15712
+...
+Did not find the precursor for 805.43 in scan 15815; cannot compute interference
+
+Did not find the precursor for 881.96 in scan 15845; cannot compute interference
+
+Did not find the precursor for 724.91 in scan 15849; cannot compute interference
+
+Did not find the precursor for 618.37 in scan 15872; cannot compute interference
+..
+Did not find the precursor for 522.62 in scan 15949; cannot compute interference
+
+Did not find the precursor for 586.77 in scan 15997; cannot compute interference
+
+Did not find the precursor for 706.04 in scan 15998; cannot compute interference
+..
+Did not find the precursor for 863.96 in scan 16007; cannot compute interference
+
+Did not find the precursor for 626.86 in scan 16017; cannot compute interference
+.
+Did not find the precursor for 796.80 in scan 16091; cannot compute interference
+.
+Did not find the precursor for 664.88 in scan 16107; cannot compute interference
+
+Did not find the precursor for 748.37 in scan 16108; cannot compute interference
+..
+Did not find the precursor for 812.44 in scan 16206; cannot compute interference
+
+Did not find the precursor for 725.42 in scan 16214; cannot compute interference
+
+Did not find the precursor for 693.88 in scan 16232; cannot compute interference
+
+Did not find the precursor for 869.65 in scan 16233; cannot compute interference
+.
+Did not find the precursor for 1296.64 in scan 16320; cannot compute interference
+
+Did not find the precursor for 768.05 in scan 16321; cannot compute interference
+..
+Did not find the precursor for 709.37 in scan 16408; cannot compute interference
+
+Did not find the precursor for 446.62 in scan 16474; cannot compute interference
+..
+Did not find the precursor for 1017.49 in scan 16511; cannot compute interference
+.
+Did not find the precursor for 596.30 in scan 16586; cannot compute interference
+
+Did not find the precursor for 866.97 in scan 16598; cannot compute interference
+
+Did not find the precursor for 413.25 in scan 16599; cannot compute interference
+....
+Did not find the precursor for 570.31 in scan 16834; cannot compute interference
+..
+Did not find the precursor for 645.37 in scan 16925; cannot compute interference
+
+Did not find the precursor for 369.56 in scan 16983; cannot compute interference
+
+Did not find the precursor for 759.43 in scan 16984; cannot compute interference
+
+Did not find the precursor for 430.00 in scan 16987; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 39%
+.
+Did not find the precursor for 699.04 in scan 17031; cannot compute interference
+
+Did not find the precursor for 613.00 in scan 17045; cannot compute interference
+
+Did not find the precursor for 416.61 in scan 17083; cannot compute interference
+..
+Did not find the precursor for 613.67 in scan 17123; cannot compute interference
+..
+Did not find the precursor for 931.31 in scan 17203; cannot compute interference
+
+Did not find the precursor for 1240.41 in scan 17204; cannot compute interference
+
+Did not find the precursor for 709.37 in scan 17239; cannot compute interference
+..
+Did not find the precursor for 827.94 in scan 17391; cannot compute interference
+.
+Did not find the precursor for 581.88 in scan 17398; cannot compute interference
+.Reading scan: 17407
+.
+Did not find the precursor for 791.39 in scan 17428; cannot compute interference
+
+Did not find the precursor for 710.06 in scan 17451; cannot compute interference
+..
+Did not find the precursor for 714.03 in scan 17508; cannot compute interference
+
+Did not find the precursor for 539.33 in scan 17515; cannot compute interference
+
+Did not find the precursor for 649.03 in scan 17547; cannot compute interference
+
+Did not find the precursor for 651.99 in scan 17552; cannot compute interference
+
+Did not find the precursor for 892.41 in scan 17584; cannot compute interference
+.
+Did not find the precursor for 396.59 in scan 17648; cannot compute interference
+.....
+Did not find the precursor for 596.37 in scan 17801; cannot compute interference
+.
+Did not find the precursor for 550.26 in scan 17851; cannot compute interference
+
+Did not find the precursor for 827.44 in scan 17888; cannot compute interference
+.
+Did not find the precursor for 640.35 in scan 17996; cannot compute interference
+.
+Did not find the precursor for 870.46 in scan 18002; cannot compute interference
+..
+Did not find the precursor for 867.98 in scan 18187; cannot compute interference
+.
+Did not find the precursor for 1112.60 in scan 18294; cannot compute interference
+
+Did not find the precursor for 400.72 in scan 18300; cannot compute interference
+.
+Did not find the precursor for 1241.08 in scan 18356; cannot compute interference
+
+Did not find the precursor for 659.35 in scan 18364; cannot compute interference
+
+Did not find the precursor for 1024.81 in scan 18400; cannot compute interference
+
+Did not find the precursor for 753.94 in scan 18401; cannot compute interference
+.
+Did not find the precursor for 701.91 in scan 18408; cannot compute interference
+
+Did not find the precursor for 767.90 in scan 18438; cannot compute interference
+.
+Did not find the precursor for 688.88 in scan 18505; cannot compute interference
+...
+Did not find the precursor for 632.35 in scan 18621; cannot compute interference
+
+Did not find the precursor for 709.90 in scan 18645; cannot compute interference
+
+Did not find the precursor for 820.95 in scan 18665; cannot compute interference
+
+Did not find the precursor for 708.91 in scan 18672; cannot compute interference
+.
+Did not find the precursor for 454.89 in scan 18764; cannot compute interference
+
+Did not find the precursor for 701.43 in scan 18771; cannot compute interference
+
+Did not find the precursor for 863.93 in scan 18781; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 43%
+
+Did not find the precursor for 520.26 in scan 18808; cannot compute interference
+
+Did not find the precursor for 849.51 in scan 18862; cannot compute interference
+.
+Did not find the precursor for 935.42 in scan 18953; cannot compute interference
+
+Did not find the precursor for 414.72 in scan 18974; cannot compute interference
+..
+Did not find the precursor for 1206.49 in scan 19038; cannot compute interference
+.
+Did not find the precursor for 1246.08 in scan 19133; cannot compute interference
+
+Did not find the precursor for 842.40 in scan 19158; cannot compute interference
+..Reading scan: 19202
+.
+Did not find the precursor for 940.29 in scan 19295; cannot compute interference
+
+Did not find the precursor for 1157.83 in scan 19296; cannot compute interference
+.
+Did not find the precursor for 696.85 in scan 19349; cannot compute interference
+...
+Did not find the precursor for 476.01 in scan 19525; cannot compute interference
+.....
+Did not find the precursor for 813.99 in scan 19841; cannot compute interference
+..
+Did not find the precursor for 1188.80 in scan 19945; cannot compute interference
+
+Did not find the precursor for 1000.77 in scan 19999; cannot compute interference
+..
+Did not find the precursor for 487.93 in scan 20064; cannot compute interference
+..
+Did not find the precursor for 729.38 in scan 20165; cannot compute interference
+
+Did not find the precursor for 1117.03 in scan 20193; cannot compute interference
+.
+Did not find the precursor for 564.33 in scan 20206; cannot compute interference
+
+Did not find the precursor for 657.40 in scan 20259; cannot compute interference
+
+Did not find the precursor for 771.08 in scan 20271; cannot compute interference
+
+Did not find the precursor for 928.99 in scan 20301; cannot compute interference
+.
+Did not find the precursor for 709.44 in scan 20351; cannot compute interference
+..
+Did not find the precursor for 882.89 in scan 20521; cannot compute interference
+
+Did not find the precursor for 957.57 in scan 20560; cannot compute interference
+
+Did not find the precursor for 810.47 in scan 20601; cannot compute interference
+.
+Did not find the precursor for 557.94 in scan 20614; cannot compute interference
+
+Did not find the precursor for 969.49 in scan 20639; cannot compute interference
+
+Did not find the precursor for 755.14 in scan 20640; cannot compute interference
+
+Did not find the precursor for 841.96 in scan 20666; cannot compute interference
+
+Did not find the precursor for 442.08 in scan 20693; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 48%
+
+Did not find the precursor for 693.70 in scan 20708; cannot compute interference
+
+Did not find the precursor for 1119.05 in scan 20736; cannot compute interference
+
+Did not find the precursor for 528.28 in scan 20744; cannot compute interference
+
+Did not find the precursor for 673.91 in scan 20758; cannot compute interference
+
+Did not find the precursor for 656.72 in scan 20794; cannot compute interference
+.
+Did not find the precursor for 908.47 in scan 20815; cannot compute interference
+
+Did not find the precursor for 763.91 in scan 20837; cannot compute interference
+..
+Did not find the precursor for 1115.06 in scan 20933; cannot compute interference
+
+Did not find the precursor for 1072.54 in scan 20938; cannot compute interference
+
+Did not find the precursor for 453.31 in scan 20959; cannot compute interference
+
+Did not find the precursor for 979.03 in scan 20969; cannot compute interference
+.
+Did not find the precursor for 597.37 in scan 21044; cannot compute interference
+
+Did not find the precursor for 697.03 in scan 21090; cannot compute interference
+..
+Did not find the precursor for 508.37 in scan 21119; cannot compute interference
+Reading scan: 21123
+.
+Did not find the precursor for 957.02 in scan 21164; cannot compute interference
+.
+Did not find the precursor for 999.58 in scan 21256; cannot compute interference
+...
+Did not find the precursor for 745.03 in scan 21435; cannot compute interference
+.
+Did not find the precursor for 478.59 in scan 21512; cannot compute interference
+
+Did not find the precursor for 584.32 in scan 21516; cannot compute interference
+
+Did not find the precursor for 876.48 in scan 21522; cannot compute interference
+
+Did not find the precursor for 792.93 in scan 21557; cannot compute interference
+
+Did not find the precursor for 993.97 in scan 21595; cannot compute interference
+.
+Did not find the precursor for 778.93 in scan 21612; cannot compute interference
+
+Did not find the precursor for 827.94 in scan 21668; cannot compute interference
+.
+Did not find the precursor for 800.95 in scan 21711; cannot compute interference
+
+Did not find the precursor for 594.80 in scan 21728; cannot compute interference
+
+Did not find the precursor for 882.87 in scan 21729; cannot compute interference
+
+Did not find the precursor for 1177.16 in scan 21801; cannot compute interference
+.
+Did not find the precursor for 745.40 in scan 21833; cannot compute interference
+.
+Did not find the precursor for 827.94 in scan 21988; cannot compute interference
+
+Did not find the precursor for 631.83 in scan 21999; cannot compute interference
+..
+Did not find the precursor for 674.01 in scan 22022; cannot compute interference
+
+Did not find the precursor for 1080.87 in scan 22068; cannot compute interference
+
+Did not find the precursor for 990.52 in scan 22080; cannot compute interference
+.
+Did not find the precursor for 1167.03 in scan 22096; cannot compute interference
+.
+Did not find the precursor for 798.41 in scan 22116; cannot compute interference
+
+Did not find the precursor for 1025.15 in scan 22117; cannot compute interference
+
+Did not find the precursor for 576.28 in scan 22134; cannot compute interference
+
+Did not find the precursor for 1111.09 in scan 22178; cannot compute interference
+
+Did not find the precursor for 795.37 in scan 22196; cannot compute interference
+.
+Did not find the precursor for 502.29 in scan 22273; cannot compute interference
+.
+Did not find the precursor for 814.42 in scan 22308; cannot compute interference
+
+Did not find the precursor for 782.65 in scan 22325; cannot compute interference
+
+Did not find the precursor for 827.94 in scan 22360; cannot compute interference
+..
+Did not find the precursor for 831.91 in scan 22467; cannot compute interference
+.
+Did not find the precursor for 809.08 in scan 22523; cannot compute interference
+
+Did not find the precursor for 977.59 in scan 22572; cannot compute interference
+
+Did not find the precursor for 692.85 in scan 22577; cannot compute interference
+
+Did not find the precursor for 944.01 in scan 22589; cannot compute interference
+..
+Did not find the precursor for 831.07 in scan 22672; cannot compute interference
+
+Did not find the precursor for 1133.63 in scan 22692; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 52%
+
+Did not find the precursor for 1121.13 in scan 22768; cannot compute interference
+.
+Did not find the precursor for 726.43 in scan 22835; cannot compute interference
+.....Reading scan: 23102
+.
+Did not find the precursor for 1013.05 in scan 23135; cannot compute interference
+
+Did not find the precursor for 801.81 in scan 23157; cannot compute interference
+.
+Did not find the precursor for 878.10 in scan 23215; cannot compute interference
+
+Did not find the precursor for 1084.44 in scan 23231; cannot compute interference
+
+Did not find the precursor for 1236.08 in scan 23244; cannot compute interference
+
+Did not find the precursor for 617.83 in scan 23259; cannot compute interference
+
+Did not find the precursor for 955.04 in scan 23275; cannot compute interference
+..
+Did not find the precursor for 1035.52 in scan 23325; cannot compute interference
+
+Did not find the precursor for 796.73 in scan 23359; cannot compute interference
+
+Did not find the precursor for 358.70 in scan 23367; cannot compute interference
+
+Did not find the precursor for 872.98 in scan 23384; cannot compute interference
+
+Did not find the precursor for 790.90 in scan 23391; cannot compute interference
+..
+Did not find the precursor for 911.83 in scan 23416; cannot compute interference
+
+Did not find the precursor for 924.89 in scan 23418; cannot compute interference
+..
+Did not find the precursor for 1079.58 in scan 23575; cannot compute interference
+
+Did not find the precursor for 1128.63 in scan 23589; cannot compute interference
+.
+Did not find the precursor for 682.68 in scan 23684; cannot compute interference
+.
+Did not find the precursor for 822.13 in scan 23722; cannot compute interference
+
+Did not find the precursor for 999.49 in scan 23744; cannot compute interference
+
+Did not find the precursor for 447.94 in scan 23763; cannot compute interference
+
+Did not find the precursor for 1123.05 in scan 23766; cannot compute interference
+
+Did not find the precursor for 593.82 in scan 23780; cannot compute interference
+.
+Did not find the precursor for 767.38 in scan 23810; cannot compute interference
+
+Did not find the precursor for 948.52 in scan 23864; cannot compute interference
+
+Did not find the precursor for 703.71 in scan 23865; cannot compute interference
+
+Did not find the precursor for 353.21 in scan 23871; cannot compute interference
+..
+Did not find the precursor for 550.00 in scan 23911; cannot compute interference
+
+Did not find the precursor for 826.80 in scan 23937; cannot compute interference
+
+Did not find the precursor for 647.34 in scan 23951; cannot compute interference
+..
+Did not find the precursor for 481.75 in scan 24027; cannot compute interference
+.
+Did not find the precursor for 534.51 in scan 24109; cannot compute interference
+
+Did not find the precursor for 532.28 in scan 24166; cannot compute interference
+
+Did not find the precursor for 985.13 in scan 24196; cannot compute interference
+.
+Did not find the precursor for 781.76 in scan 24221; cannot compute interference
+
+Did not find the precursor for 960.91 in scan 24227; cannot compute interference
+..
+Did not find the precursor for 1028.53 in scan 24361; cannot compute interference
+.
+Did not find the precursor for 1063.55 in scan 24405; cannot compute interference
+
+Did not find the precursor for 698.67 in scan 24422; cannot compute interference
+
+Did not find the precursor for 887.42 in scan 24429; cannot compute interference
+
+Did not find the precursor for 1216.12 in scan 24471; cannot compute interference
+.
+Did not find the precursor for 769.06 in scan 24504; cannot compute interference
+
+Did not find the precursor for 815.09 in scan 24520; cannot compute interference
+
+Did not find the precursor for 772.74 in scan 24554; cannot compute interference
+
+Did not find the precursor for 509.50 in scan 24568; cannot compute interference
+
+Did not find the precursor for 662.85 in scan 24582; cannot compute interference
+
+Did not find the precursor for 771.94 in scan 24592; cannot compute interference
+
+Did not find the precursor for 851.10 in scan 24593; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 57%
+
+Did not find the precursor for 958.97 in scan 24615; cannot compute interference
+
+Did not find the precursor for 831.90 in scan 24653; cannot compute interference
+
+Did not find the precursor for 819.38 in scan 24654; cannot compute interference
+.
+Did not find the precursor for 1015.03 in scan 24701; cannot compute interference
+..
+Did not find the precursor for 885.92 in scan 24786; cannot compute interference
+.
+Did not find the precursor for 622.59 in scan 24864; cannot compute interference
+..Reading scan: 24932
+....
+Did not find the precursor for 543.54 in scan 25008; cannot compute interference
+
+Did not find the precursor for 1056.07 in scan 25060; cannot compute interference
+
+Did not find the precursor for 1108.54 in scan 25061; cannot compute interference
+
+Did not find the precursor for 1177.16 in scan 25072; cannot compute interference
+.
+Did not find the precursor for 805.42 in scan 25172; cannot compute interference
+
+Did not find the precursor for 762.93 in scan 25183; cannot compute interference
+..
+Did not find the precursor for 606.31 in scan 25213; cannot compute interference
+...
+Did not find the precursor for 1238.10 in scan 25428; cannot compute interference
+....
+Did not find the precursor for 830.47 in scan 25624; cannot compute interference
+
+Did not find the precursor for 860.46 in scan 25651; cannot compute interference
+..
+Did not find the precursor for 810.42 in scan 25715; cannot compute interference
+
+Did not find the precursor for 588.32 in scan 25728; cannot compute interference
+
+Did not find the precursor for 941.20 in scan 25795; cannot compute interference
+...
+Did not find the precursor for 715.43 in scan 25937; cannot compute interference
+..
+Did not find the precursor for 589.36 in scan 26028; cannot compute interference
+
+Did not find the precursor for 703.87 in scan 26094; cannot compute interference
+.
+Did not find the precursor for 680.71 in scan 26132; cannot compute interference
+.
+Did not find the precursor for 700.03 in scan 26188; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 61%
+
+Did not find the precursor for 952.51 in scan 26234; cannot compute interference
+
+Did not find the precursor for 1208.31 in scan 26242; cannot compute interference
+.
+Did not find the precursor for 510.99 in scan 26299; cannot compute interference
+.
+Did not find the precursor for 525.79 in scan 26355; cannot compute interference
+
+Did not find the precursor for 793.37 in scan 26383; cannot compute interference
+..
+Did not find the precursor for 729.42 in scan 26460; cannot compute interference
+
+Did not find the precursor for 1265.69 in scan 26476; cannot compute interference
+..
+Did not find the precursor for 831.44 in scan 26513; cannot compute interference
+
+Did not find the precursor for 905.80 in scan 26538; cannot compute interference
+Reading scan: 26571
+.
+Did not find the precursor for 1119.12 in scan 26578; cannot compute interference
+..
+Did not find the precursor for 987.99 in scan 26604; cannot compute interference
+
+Did not find the precursor for 771.91 in scan 26639; cannot compute interference
+.
+Did not find the precursor for 873.52 in scan 26717; cannot compute interference
+
+Did not find the precursor for 726.36 in scan 26770; cannot compute interference
+..
+Did not find the precursor for 944.02 in scan 26876; cannot compute interference
+
+Did not find the precursor for 649.83 in scan 26877; cannot compute interference
+....
+Did not find the precursor for 1154.54 in scan 27013; cannot compute interference
+
+Did not find the precursor for 640.85 in scan 27080; cannot compute interference
+.
+Did not find the precursor for 693.89 in scan 27105; cannot compute interference
+
+Did not find the precursor for 962.20 in scan 27184; cannot compute interference
+.........
+Did not find the precursor for 1045.04 in scan 27629; cannot compute interference
+.
+Did not find the precursor for 469.27 in scan 27735; cannot compute interference
+
+Did not find the precursor for 757.39 in scan 27746; cannot compute interference
+
+Did not find the precursor for 714.92 in scan 27755; cannot compute interference
+
+Did not find the precursor for 906.50 in scan 27764; cannot compute interference
+
+Did not find the precursor for 759.93 in scan 27765; cannot compute interference
+
+Did not find the precursor for 642.99 in scan 27783; cannot compute interference
+
+Did not find the precursor for 1047.99 in scan 27784; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 64%
+..
+Did not find the precursor for 657.41 in scan 27979; cannot compute interference
+.
+Did not find the precursor for 753.39 in scan 27989; cannot compute interference
+.
+Did not find the precursor for 929.98 in scan 28002; cannot compute interference
+.Reading scan: 28029
+.
+Did not find the precursor for 791.07 in scan 28040; cannot compute interference
+..
+Did not find the precursor for 817.95 in scan 28123; cannot compute interference
+
+Did not find the precursor for 702.46 in scan 28164; cannot compute interference
+
+Did not find the precursor for 571.02 in scan 28167; cannot compute interference
+
+Did not find the precursor for 860.43 in scan 28195; cannot compute interference
+
+Did not find the precursor for 468.31 in scan 28196; cannot compute interference
+..
+Did not find the precursor for 769.91 in scan 28210; cannot compute interference
+
+Did not find the precursor for 513.25 in scan 28218; cannot compute interference
+
+Did not find the precursor for 838.94 in scan 28243; cannot compute interference
+
+Did not find the precursor for 760.42 in scan 28270; cannot compute interference
+..
+Did not find the precursor for 878.77 in scan 28345; cannot compute interference
+
+Did not find the precursor for 1332.04 in scan 28400; cannot compute interference
+.
+Did not find the precursor for 788.92 in scan 28414; cannot compute interference
+
+Did not find the precursor for 897.96 in scan 28449; cannot compute interference
+
+Did not find the precursor for 773.08 in scan 28478; cannot compute interference
+
+Did not find the precursor for 1078.90 in scan 28486; cannot compute interference
+..
+Did not find the precursor for 880.46 in scan 28513; cannot compute interference
+
+Did not find the precursor for 920.13 in scan 28552; cannot compute interference
+
+Did not find the precursor for 846.97 in scan 28557; cannot compute interference
+...
+Did not find the precursor for 1088.22 in scan 28672; cannot compute interference
+
+Did not find the precursor for 473.28 in scan 28681; cannot compute interference
+
+Did not find the precursor for 891.40 in scan 28688; cannot compute interference
+.
+Did not find the precursor for 1176.49 in scan 28722; cannot compute interference
+
+Did not find the precursor for 971.32 in scan 28746; cannot compute interference
+.
+Did not find the precursor for 1054.21 in scan 28796; cannot compute interference
+.
+Did not find the precursor for 532.95 in scan 28808; cannot compute interference
+
+Did not find the precursor for 1089.54 in scan 28820; cannot compute interference
+...
+Did not find the precursor for 928.44 in scan 28978; cannot compute interference
+..
+Did not find the precursor for 1017.53 in scan 29009; cannot compute interference
+
+Did not find the precursor for 887.79 in scan 29052; cannot compute interference
+
+Did not find the precursor for 472.29 in scan 29057; cannot compute interference
+..
+Did not find the precursor for 841.82 in scan 29104; cannot compute interference
+
+Did not find the precursor for 936.48 in scan 29159; cannot compute interference
+
+Did not find the precursor for 570.98 in scan 29171; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 67%
+..
+Did not find the precursor for 955.46 in scan 29346; cannot compute interference
+.
+Did not find the precursor for 1095.49 in scan 29400; cannot compute interference
+.
+Did not find the precursor for 428.49 in scan 29415; cannot compute interference
+
+Did not find the precursor for 926.47 in scan 29454; cannot compute interference
+.Reading scan: 29490
+....
+Did not find the precursor for 866.43 in scan 29616; cannot compute interference
+
+Did not find the precursor for 383.83 in scan 29617; cannot compute interference
+
+Did not find the precursor for 394.73 in scan 29684; cannot compute interference
+
+Did not find the precursor for 1234.39 in scan 29694; cannot compute interference
+...
+Did not find the precursor for 1010.51 in scan 29838; cannot compute interference
+
+Did not find the precursor for 861.70 in scan 29859; cannot compute interference
+.
+Did not find the precursor for 989.01 in scan 29891; cannot compute interference
+.
+Did not find the precursor for 880.80 in scan 29913; cannot compute interference
+...
+Did not find the precursor for 942.46 in scan 30043; cannot compute interference
+
+Did not find the precursor for 865.46 in scan 30044; cannot compute interference
+..
+Did not find the precursor for 858.95 in scan 30184; cannot compute interference
+.
+Did not find the precursor for 874.48 in scan 30224; cannot compute interference
+..
+Did not find the precursor for 1123.07 in scan 30344; cannot compute interference
+..
+Did not find the precursor for 1004.84 in scan 30450; cannot compute interference
+.
+Did not find the precursor for 992.50 in scan 30500; cannot compute interference
+.
+Did not find the precursor for 428.75 in scan 30572; cannot compute interference
+
+Did not find the precursor for 1041.52 in scan 30584; cannot compute interference
+.
+Did not find the precursor for 444.76 in scan 30598; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 71%
+.
+Did not find the precursor for 1248.23 in scan 30770; cannot compute interference
+..
+Did not find the precursor for 994.88 in scan 30827; cannot compute interference
+
+Did not find the precursor for 1168.14 in scan 30855; cannot compute interference
+.
+Did not find the precursor for 579.03 in scan 30885; cannot compute interference
+.Reading scan: 30902
+.
+Did not find the precursor for 1586.36 in scan 30950; cannot compute interference
+
+Did not find the precursor for 1009.50 in scan 30987; cannot compute interference
+..
+Did not find the precursor for 895.98 in scan 31007; cannot compute interference
+.
+Did not find the precursor for 838.94 in scan 31101; cannot compute interference
+.
+Did not find the precursor for 876.54 in scan 31119; cannot compute interference
+
+Did not find the precursor for 383.63 in scan 31163; cannot compute interference
+..
+Did not find the precursor for 1031.17 in scan 31203; cannot compute interference
+
+Did not find the precursor for 1033.53 in scan 31204; cannot compute interference
+
+Did not find the precursor for 529.31 in scan 31252; cannot compute interference
+
+Did not find the precursor for 1209.60 in scan 31258; cannot compute interference
+
+Did not find the precursor for 940.69 in scan 31279; cannot compute interference
+..
+Did not find the precursor for 1071.73 in scan 31319; cannot compute interference
+
+Did not find the precursor for 654.90 in scan 31359; cannot compute interference
+.
+Did not find the precursor for 532.03 in scan 31409; cannot compute interference
+.
+Did not find the precursor for 597.70 in scan 31494; cannot compute interference
+..
+Did not find the precursor for 866.95 in scan 31579; cannot compute interference
+
+Did not find the precursor for 1132.93 in scan 31589; cannot compute interference
+.
+Did not find the precursor for 1175.33 in scan 31630; cannot compute interference
+
+Did not find the precursor for 1037.52 in scan 31636; cannot compute interference
+
+Did not find the precursor for 996.05 in scan 31661; cannot compute interference
+.
+Did not find the precursor for 864.11 in scan 31685; cannot compute interference
+.
+Did not find the precursor for 1088.53 in scan 31708; cannot compute interference
+
+Did not find the precursor for 908.80 in scan 31740; cannot compute interference
+
+Did not find the precursor for 1001.83 in scan 31779; cannot compute interference
+..
+Did not find the precursor for 676.43 in scan 31805; cannot compute interference
+
+Did not find the precursor for 703.36 in scan 31839; cannot compute interference
+
+Did not find the precursor for 961.84 in scan 31884; cannot compute interference
+
+Did not find the precursor for 1026.08 in scan 31889; cannot compute interference
+.
+Did not find the precursor for 909.47 in scan 31899; cannot compute interference
+....
+Did not find the precursor for 885.66 in scan 32009; cannot compute interference
+
+Did not find the precursor for 963.48 in scan 32050; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 74%
+....Reading scan: 32302
+...
+Did not find the precursor for 1030.84 in scan 32431; cannot compute interference
+....
+Did not find the precursor for 955.50 in scan 32667; cannot compute interference
+..
+Did not find the precursor for 870.97 in scan 32718; cannot compute interference
+
+Did not find the precursor for 1092.61 in scan 32737; cannot compute interference
+
+Did not find the precursor for 595.33 in scan 32763; cannot compute interference
+.
+Did not find the precursor for 588.06 in scan 32792; cannot compute interference
+.
+Did not find the precursor for 1109.26 in scan 32874; cannot compute interference
+.
+Did not find the precursor for 527.29 in scan 32900; cannot compute interference
+.
+Did not find the precursor for 501.62 in scan 32951; cannot compute interference
+...
+Did not find the precursor for 866.45 in scan 33049; cannot compute interference
+..
+Did not find the precursor for 842.93 in scan 33114; cannot compute interference
+....
+Did not find the precursor for 1045.89 in scan 33321; cannot compute interference
+..
+Did not find the precursor for 1045.56 in scan 33431; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 77%
+
+Did not find the precursor for 915.47 in scan 33581; cannot compute interference
+
+Did not find the precursor for 791.40 in scan 33600; cannot compute interference
+.
+Did not find the precursor for 1254.27 in scan 33608; cannot compute interference
+
+Did not find the precursor for 775.89 in scan 33643; cannot compute interference
+
+Did not find the precursor for 1008.58 in scan 33644; cannot compute interference
+
+Did not find the precursor for 359.23 in scan 33661; cannot compute interference
+..Reading scan: 33702
+.
+Did not find the precursor for 811.18 in scan 33725; cannot compute interference
+
+Did not find the precursor for 874.43 in scan 33734; cannot compute interference
+
+Did not find the precursor for 1193.91 in scan 33735; cannot compute interference
+
+Did not find the precursor for 794.93 in scan 33748; cannot compute interference
+.
+Did not find the precursor for 636.00 in scan 33797; cannot compute interference
+
+Did not find the precursor for 946.00 in scan 33798; cannot compute interference
+.
+Did not find the precursor for 432.24 in scan 33816; cannot compute interference
+
+Did not find the precursor for 562.36 in scan 33841; cannot compute interference
+...
+Did not find the precursor for 536.81 in scan 33996; cannot compute interference
+...
+Did not find the precursor for 439.62 in scan 34094; cannot compute interference
+
+Did not find the precursor for 927.98 in scan 34102; cannot compute interference
+.
+Did not find the precursor for 1019.52 in scan 34103; cannot compute interference
+
+Did not find the precursor for 1070.01 in scan 34119; cannot compute interference
+
+Did not find the precursor for 1235.74 in scan 34158; cannot compute interference
+......
+Did not find the precursor for 1146.59 in scan 34422; cannot compute interference
+.......
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 80%
+
+Did not find the precursor for 689.33 in scan 34704; cannot compute interference
+
+Did not find the precursor for 943.05 in scan 34710; cannot compute interference
+
+Did not find the precursor for 586.69 in scan 34711; cannot compute interference
+
+Did not find the precursor for 711.88 in scan 34712; cannot compute interference
+
+Did not find the precursor for 530.90 in scan 34713; cannot compute interference
+
+Did not find the precursor for 1015.47 in scan 34716; cannot compute interference
+
+Did not find the precursor for 738.71 in scan 34734; cannot compute interference
+..
+Did not find the precursor for 562.36 in scan 34857; cannot compute interference
+
+Did not find the precursor for 955.48 in scan 34863; cannot compute interference
+
+Did not find the precursor for 690.36 in scan 34873; cannot compute interference
+
+Did not find the precursor for 631.01 in scan 34875; cannot compute interference
+
+Did not find the precursor for 828.43 in scan 34896; cannot compute interference
+.
+Did not find the precursor for 587.29 in scan 34905; cannot compute interference
+Reading scan: 34905
+.
+Did not find the precursor for 827.75 in scan 34906; cannot compute interference
+
+Did not find the precursor for 805.43 in scan 34918; cannot compute interference
+...
+Did not find the precursor for 925.24 in scan 35006; cannot compute interference
+
+Did not find the precursor for 1224.17 in scan 35060; cannot compute interference
+
+Did not find the precursor for 1123.56 in scan 35061; cannot compute interference
+.
+Did not find the precursor for 943.05 in scan 35095; cannot compute interference
+
+Did not find the precursor for 1126.15 in scan 35100; cannot compute interference
+.
+Did not find the precursor for 985.00 in scan 35112; cannot compute interference
+
+Did not find the precursor for 799.98 in scan 35139; cannot compute interference
+.
+Did not find the precursor for 630.01 in scan 35173; cannot compute interference
+
+Did not find the precursor for 705.08 in scan 35181; cannot compute interference
+
+Did not find the precursor for 981.51 in scan 35199; cannot compute interference
+.
+Did not find the precursor for 566.84 in scan 35205; cannot compute interference
+
+Did not find the precursor for 1102.63 in scan 35234; cannot compute interference
+
+Did not find the precursor for 656.61 in scan 35241; cannot compute interference
+
+Did not find the precursor for 693.88 in scan 35268; cannot compute interference
+
+Did not find the precursor for 797.77 in scan 35276; cannot compute interference
+
+Did not find the precursor for 1088.54 in scan 35283; cannot compute interference
+
+Did not find the precursor for 617.32 in scan 35296; cannot compute interference
+.
+Did not find the precursor for 978.02 in scan 35357; cannot compute interference
+
+Did not find the precursor for 846.76 in scan 35382; cannot compute interference
+
+Did not find the precursor for 811.44 in scan 35387; cannot compute interference
+
+Did not find the precursor for 1376.66 in scan 35388; cannot compute interference
+.
+Did not find the precursor for 906.98 in scan 35394; cannot compute interference
+.
+Did not find the precursor for 644.03 in scan 35423; cannot compute interference
+
+Did not find the precursor for 862.78 in scan 35487; cannot compute interference
+
+Did not find the precursor for 1086.23 in scan 35488; cannot compute interference
+.
+Did not find the precursor for 1086.57 in scan 35499; cannot compute interference
+.
+Did not find the precursor for 951.50 in scan 35551; cannot compute interference
+
+Did not find the precursor for 1179.60 in scan 35552; cannot compute interference
+
+Did not find the precursor for 842.51 in scan 35577; cannot compute interference
+....
+Did not find the precursor for 1216.59 in scan 35737; cannot compute interference
+....
+Did not find the precursor for 1293.03 in scan 35953; cannot compute interference
+.....
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 83%
+...Reading scan: 36302
+..
+Did not find the precursor for 831.43 in scan 36419; cannot compute interference
+.
+Did not find the precursor for 1108.85 in scan 36523; cannot compute interference
+.....
+Did not find the precursor for 571.70 in scan 36868; cannot compute interference
+
+Did not find the precursor for 1367.12 in scan 36879; cannot compute interference
+..
+Did not find the precursor for 1067.05 in scan 36944; cannot compute interference
+
+Did not find the precursor for 1249.10 in scan 36969; cannot compute interference
+...
+Did not find the precursor for 1107.56 in scan 37035; cannot compute interference
+....
+Did not find the precursor for 1287.85 in scan 37271; cannot compute interference
+......
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 87%
+...Reading scan: 37702
+........
+Did not find the precursor for 887.50 in scan 38024; cannot compute interference
+..
+Did not find the precursor for 646.37 in scan 38124; cannot compute interference
+
+Did not find the precursor for 1068.62 in scan 38152; cannot compute interference
+..
+Did not find the precursor for 1210.61 in scan 38234; cannot compute interference
+
+Did not find the precursor for 714.41 in scan 38235; cannot compute interference
+..
+Did not find the precursor for 817.46 in scan 38341; cannot compute interference
+
+Did not find the precursor for 949.51 in scan 38342; cannot compute interference
+
+Did not find the precursor for 818.73 in scan 38386; cannot compute interference
+..
+Did not find the precursor for 1047.52 in scan 38409; cannot compute interference
+
+Did not find the precursor for 999.53 in scan 38435; cannot compute interference
+
+Did not find the precursor for 623.35 in scan 38442; cannot compute interference
+
+Did not find the precursor for 1220.86 in scan 38450; cannot compute interference
+
+Did not find the precursor for 906.86 in scan 38483; cannot compute interference
+..
+Did not find the precursor for 647.35 in scan 38514; cannot compute interference
+
+Did not find the precursor for 1051.08 in scan 38531; cannot compute interference
+
+Did not find the precursor for 1387.73 in scan 38532; cannot compute interference
+..
+Did not find the precursor for 518.30 in scan 38608; cannot compute interference
+
+Did not find the precursor for 866.98 in scan 38626; cannot compute interference
+..
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 90%
+.
+Did not find the precursor for 1372.19 in scan 38794; cannot compute interference
+...Reading scan: 38902
+..........
+Did not find the precursor for 1054.84 in scan 39202; cannot compute interference
+..
+Did not find the precursor for 1053.10 in scan 39267; cannot compute interference
+
+Did not find the precursor for 1097.26 in scan 39296; cannot compute interference
+...
+Did not find the precursor for 1015.18 in scan 39420; cannot compute interference
+.....
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 92%
+...Reading scan: 39849
+......
+Did not find the precursor for 1117.88 in scan 40040; cannot compute interference
+..
+Did not find the precursor for 931.81 in scan 40192; cannot compute interference
+.
+Did not find the precursor for 1130.06 in scan 40260; cannot compute interference
+..
+Did not find the precursor for 540.31 in scan 40306; cannot compute interference
+
+Did not find the precursor for 872.54 in scan 40307; cannot compute interference
+
+Did not find the precursor for 933.48 in scan 40355; cannot compute interference
+.
+Did not find the precursor for 1498.25 in scan 40416; cannot compute interference
+...
+Did not find the precursor for 1095.61 in scan 40604; cannot compute interference
+
+Did not find the precursor for 1494.33 in scan 40608; cannot compute interference
+
+Did not find the precursor for 1046.61 in scan 40636; cannot compute interference
+.
+Did not find the precursor for 995.17 in scan 40684; cannot compute interference
+..
+Did not find the precursor for 1175.35 in scan 40762; cannot compute interference
+
+Did not find the precursor for 932.17 in scan 40793; cannot compute interference
+.
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 94%
+.....Reading scan: 41000
+..
+Did not find the precursor for 1145.54 in scan 41026; cannot compute interference
+
+Did not find the precursor for 874.45 in scan 41048; cannot compute interference
+..
+Did not find the precursor for 695.85 in scan 41100; cannot compute interference
+....
+Did not find the precursor for 943.48 in scan 41275; cannot compute interference
+.
+Did not find the precursor for 1096.60 in scan 41384; cannot compute interference
+
+Did not find the precursor for 834.45 in scan 41385; cannot compute interference
+..
+Did not find the precursor for 845.01 in scan 41403; cannot compute interference
+
+Did not find the precursor for 1406.75 in scan 41428; cannot compute interference
+
+Did not find the precursor for 1127.14 in scan 41450; cannot compute interference
+.
+Did not find the precursor for 975.48 in scan 41461; cannot compute interference
+
+Did not find the precursor for 1018.84 in scan 41479; cannot compute interference
+....
+Did not find the precursor for 1217.66 in scan 41619; cannot compute interference
+...
+Did not find the precursor for 1057.21 in scan 41706; cannot compute interference
+
+Did not find the precursor for 606.51 in scan 41723; cannot compute interference
+...
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 97%
+...Reading scan: 41902
+.
+Did not find the precursor for 700.91 in scan 41923; cannot compute interference
+....
+Did not find the precursor for 1150.21 in scan 41997; cannot compute interference
+......................
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 98%
+.Reading scan: 42387
+................
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 98%
+Reading scan: 42502
+.......................
+Did not find the precursor for 868.05 in scan 42886; cannot compute interference
+........
+  Reading Xcalibur data (43,286 scans)
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw: 99%
+Reading scan: 43000
+..............
+
+Could not determine the precursor for 2.2% of the MS2 spectra (750 / 33753 scans). These scans will have an Interference Score of 1 (to avoid accidentally filtering out low intensity results).
+Processing Data for MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw (19.7% complete)
+.ProcessFile: Call SaveBPIs
+Saving Decon2LS MS Chromatogram File to MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02_MS_scans.csv
+  7250 / 9533 scans processed
+.
+  Saving chromatograms to disk: 67%
+Saving Decon2LS MSMS Chromatogram File to MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02_MSMS_scans.csv
+.
+  Saving chromatograms to disk: 100%
+ProcessFile: Close outputFileHandles.ScanStats
+ProcessFile: Create DatasetInfo File
+.
+Reporter Ion Correction Matrix; mode = TMTTenMZ
+        0       1       2       3       4       5       6       7       8       9    
+      ------  ------  ------  ------  ------  ------  ------  ------  ------  ------ 
+  0   0.9260    0     0.0050    0       0       0       0       0       0       0    
+  1     0     0.9210    0     0.0070    0       0       0       0       0       0    
+  2   0.0720    0     0.9320    0     0.0140    0       0       0       0       0    
+  3     0     0.0730    0     0.9360    0     0.0250    0       0       0       0    
+  4   0.0020    0     0.0630    0     0.9350    0     0.0230    0     0.0040    0    
+  5     0     0.0020    0     0.0570    0     0.9250    0     0.0270    0       0    
+  6     0       0       0       0     0.0510    0     0.9340    0     0.0290    0    
+  7     0       0       0       0       0     0.0500    0     0.9340    0     0.0340 
+  8     0       0       0       0       0       0     0.0430    0     0.9340    0    
+  9     0       0       0       0       0       0       0     0.0390    0     0.9330 
+
+..................
+  Searching for reporter ions: 14%
+............................
+  Searching for reporter ions: 32%
+..........................
+  Searching for reporter ions: 49%
+.........................
+  Searching for reporter ions: 63%
+........................
+  Searching for reporter ions: 77%
+.......................
+  Searching for reporter ions: 94%
+........ProcessFile: Call CreateParentIonSICs
+Creating SIC's for parent ionsCreating SIC's for parent ions
+...............
+  Loading raw SIC data: 2400 / 9533: 0%
+.............................
+  Loading raw SIC data: 8200 / 9533: 0%
+.................Parent Ions Processed: 100
+...........
+  Creating SIC's for parent ions: 1%
+...........Parent Ions Processed: 500
+.......................
+  Loading raw SIC data: 600 / 9533: 0%
+.......................
+  Loading raw SIC data: 4200 / 9533: 0%
+...................
+  Loading raw SIC data: 7400 / 9533: 0%
+.......................
+  Creating SIC's for parent ions: 3%
+......Parent Ions Processed: 1000
+..............................
+  Loading raw SIC data: 900 / 9533: 0%
+............................
+  Loading raw SIC data: 6800 / 9533: 0%
+......................Parent Ions Processed: 1500
+.....
+  Creating SIC's for parent ions: 5%
+...........................Parent Ions Processed: 2000
+.........
+  Loading raw SIC data: 600 / 9533: 0%
+............................
+  Loading raw SIC data: 5900 / 9533: 0%
+................
+  Loading raw SIC data: 8200 / 9533: 0%
+............
+  Loading raw SIC data: 9400 / 9533: 0%
+......Parent Ions Processed: 2200
+.........................
+  Creating SIC's for parent ions: 7%
+.............Parent Ions Processed: 2500
+.....................
+  Creating SIC's for parent ions: 8%
+............................
+  Loading raw SIC data: 4000 / 9533: 0%
+....................
+  Loading raw SIC data: 6700 / 9533: 0%
+.................
+  Loading raw SIC data: 8600 / 9533: 0%
+..................Parent Ions Processed: 2900
+....
+  Creating SIC's for parent ions: 9%
+..Parent Ions Processed: 3000
+................................
+  Loading raw SIC data: 1800 / 9533: 0%
+.............................
+  Loading raw SIC data: 8200 / 9533: 0%
+..............Parent Ions Processed: 3500
+................
+  Creating SIC's for parent ions: 11%
+..........Parent Ions Processed: 4000
+......................
+  Loading raw SIC data: 2600 / 9533: 0%
+............................
+  Loading raw SIC data: 8500 / 9533: 0%
+.............Parent Ions Processed: 4200
+.........
+  Creating SIC's for parent ions: 13%
+..................................
+  Loading raw SIC data: 2600 / 9533: 0%
+..............................
+  Loading raw SIC data: 8200 / 9533: 0%
+......................Parent Ions Processed: 5000
+.....
+  Creating SIC's for parent ions: 15%
+.................................
+  Loading raw SIC data: 2500 / 9533: 0%
+..............................
+  Loading raw SIC data: 8100 / 9533: 0%
+..........................
+  Creating SIC's for parent ions: 17%
+...Parent Ions Processed: 5900
+.....Parent Ions Processed: 6000
+.........................
+  Loading raw SIC data: 2100 / 9533: 0%
+.............................
+  Loading raw SIC data: 8600 / 9533: 0%
+..........Parent Ions Processed: 6400
+.....................Parent Ions Processed: 7000
+...
+  Creating SIC's for parent ions: 21%
+.............................
+  Loading raw SIC data: 5200 / 9533: 0%
+..........................
+  Loading raw SIC data: 8900 / 9533: 0%
+................Parent Ions Processed: 7300
+.................
+  Creating SIC's for parent ions: 23%
+.............................
+  Loading raw SIC data: 5300 / 9533: 0%
+......................
+  Loading raw SIC data: 8500 / 9533: 0%
+.....
+  Loading raw SIC data: 9000 / 9533: 0%
+........Parent Ions Processed: 7900
+.....Parent Ions Processed: 8000
+..........
+  Creating SIC's for parent ions: 24%
+.............Parent Ions Processed: 8500
+.....................
+  Loading raw SIC data: 2300 / 9533: 0%
+...........................
+  Loading raw SIC data: 7600 / 9533: 0%
+....................Parent Ions Processed: 8700
+........
+  Creating SIC's for parent ions: 26%
+..Parent Ions Processed: 9000
+...............................
+  Loading raw SIC data: 2800 / 9533: 0%
+..........................
+  Loading raw SIC data: 7800 / 9533: 0%
+.............
+  Loading raw SIC data: 9200 / 9533: 0%
+......
+  Creating SIC's for parent ions: 28%
+.Parent Ions Processed: 9400
+.........Parent Ions Processed: 9500
+............................
+  Creating SIC's for parent ions: 29%
+....Parent Ions Processed: 10000
+........................
+  Loading raw SIC data: 1700 / 9533: 0%
+........................
+  Loading raw SIC data: 6300 / 9533: 0%
+...................
+  Loading raw SIC data: 8600 / 9533: 0%
+........
+  Loading raw SIC data: 9400 / 9533: 0%
+......Parent Ions Processed: 10200
+.............................
+  Creating SIC's for parent ions: 32%
+....................
+  Loading raw SIC data: 2100 / 9533: 0%
+........................
+  Loading raw SIC data: 7100 / 9533: 0%
+.....................
+  Creating SIC's for parent ions: 0%
+Parent Ions Processed: 10900
+.....Parent Ions Processed: 11000
+......................Parent Ions Processed: 11500
+..........
+  Loading raw SIC data: 300 / 9533: 0%
+..........................
+  Loading raw SIC data: 5500 / 9533: 0%
+......................
+  Loading raw SIC data: 8500 / 9533: 0%
+................Parent Ions Processed: 11700
+....
+  Creating SIC's for parent ions: 35%
+..............Parent Ions Processed: 12000
+.........
+  Creating SIC's for parent ions: 36%
+...............................
+  Loading raw SIC data: 2700 / 9533: 0%
+...........................
+  Loading raw SIC data: 7700 / 9533: 0%
+..................
+  Creating SIC's for parent ions: 37%
+.Parent Ions Processed: 12500
+...................................
+  Loading raw SIC data: 200 / 9533: 0%
+..............................
+  Loading raw SIC data: 6100 / 9533: 0%
+......................
+  Loading raw SIC data: 9200 / 9533: 0%
+.....Parent Ions Processed: 13300
+...............................
+  Creating SIC's for parent ions: 42%
+............................
+  Loading raw SIC data: 5800 / 9533: 0%
+........................
+  Loading raw SIC data: 9200 / 9533: 0%
+....Parent Ions Processed: 14100
+..............................
+  Loading raw SIC data: 700 / 9533: 0%
+............................
+  Loading raw SIC data: 6200 / 9533: 0%
+.......................
+  Loading raw SIC data: 9200 / 9533: 0%
+................Parent Ions Processed: 15200
+.................Parent Ions Processed: 15500
+...
+  Creating SIC's for parent ions: 46%
+.......................
+  Loading raw SIC data: 3700 / 9533: 0%
+..........................
+  Loading raw SIC data: 8500 / 9533: 0%
+..........Parent Ions Processed: 15600
+..................
+  Creating SIC's for parent ions: 47%
+........................Parent Ions Processed: 16300
+.......
+  Loading raw SIC data: 300 / 9533: 0%
+.........................
+  Loading raw SIC data: 5400 / 9533: 0%
+........................
+  Loading raw SIC data: 8900 / 9533: 0%
+........Parent Ions Processed: 16400
+.....Parent Ions Processed: 16500
+....................
+  Creating SIC's for parent ions: 50%
+...Parent Ions Processed: 17000
+...........................
+  Loading raw SIC data: 4500 / 9533: 0%
+...........................
+  Loading raw SIC data: 9000 / 9533: 0%
+.....Parent Ions Processed: 17100
+...........................
+  Creating SIC's for parent ions: 52%
+.............................
+  Loading raw SIC data: 3900 / 9533: 0%
+..........................
+  Loading raw SIC data: 8700 / 9533: 0%
+.........Parent Ions Processed: 17900
+....Parent Ions Processed: 18000
+..................
+  Creating SIC's for parent ions: 55%
+..............................
+  Loading raw SIC data: 3600 / 9533: 0%
+............................
+  Loading raw SIC data: 8300 / 9533: 0%
+................Parent Ions Processed: 18800
+..........Parent Ions Processed: 19000
+...
+  Creating SIC's for parent ions: 56%
+..............................
+  Loading raw SIC data: 2600 / 9533: 0%
+...........................
+  Loading raw SIC data: 7400 / 9533: 0%
+...................Parent Ions Processed: 19500
+.......
+  Creating SIC's for parent ions: 58%
+...............................
+  Loading raw SIC data: 2300 / 9533: 0%
+...........................
+  Loading raw SIC data: 8400 / 9533: 0%
+..................Parent Ions Processed: 20300
+.........Parent Ions Processed: 20500
+....
+  Creating SIC's for parent ions: 61%
+..............................
+  Loading raw SIC data: 2900 / 9533: 0%
+..............................
+  Loading raw SIC data: 8400 / 9533: 0%
+............................
+  Creating SIC's for parent ions: 63%
+.........Parent Ions Processed: 21600
+.......................
+  Loading raw SIC data: 2600 / 9533: 0%
+............................
+  Loading raw SIC data: 7700 / 9533: 0%
+...............Parent Ions Processed: 21800
+...........
+  Creating SIC's for parent ions: 65%
+.........................Parent Ions Processed: 22400
+....Parent Ions Processed: 22500
+.....
+  Creating SIC's for parent ions: 67%
+...............
+  Loading raw SIC data: 700 / 9533: 0%
+...........................
+  Loading raw SIC data: 5000 / 9533: 0%
+...........................
+  Loading raw SIC data: 8500 / 9533: 0%
+...............Parent Ions Processed: 22700
+...........
+  Creating SIC's for parent ions: 68%
+........Parent Ions Processed: 23000
+.......................
+  Creating SIC's for parent ions: 69%
+..........Parent Ions Processed: 23400
+...................
+  Loading raw SIC data: 2600 / 9533: 0%
+....................
+  Loading raw SIC data: 5700 / 9533: 0%
+........................
+  Loading raw SIC data: 8700 / 9533: 0%
+....................Parent Ions Processed: 23700
+......
+  Creating SIC's for parent ions: 71%
+................................
+  Loading raw SIC data: 3600 / 9533: 0%
+............................
+  Loading raw SIC data: 8700 / 9533: 0%
+............Parent Ions Processed: 24200
+.............Parent Ions Processed: 24500
+......
+  Creating SIC's for parent ions: 73%
+..............................
+  Loading raw SIC data: 2900 / 9533: 0%
+............................
+  Loading raw SIC data: 8100 / 9533: 0%
+..........................Parent Ions Processed: 25300
+...
+  Creating SIC's for parent ions: 75%
+............................
+  Loading raw SIC data: 3800 / 9533: 0%
+...........................
+  Loading raw SIC data: 9000 / 9533: 0%
+.....Parent Ions Processed: 25700
+..................Parent Ions Processed: 26000
+...........
+  Creating SIC's for parent ions: 78%
+.............................
+  Loading raw SIC data: 3700 / 9533: 0%
+..........................
+  Loading raw SIC data: 8500 / 9533: 0%
+...............Parent Ions Processed: 26600
+..............
+  Creating SIC's for parent ions: 80%
+..............................
+  Loading raw SIC data: 2800 / 9533: 0%
+............................
+  Loading raw SIC data: 7900 / 9533: 0%
+.................Parent Ions Processed: 27300
+........
+  Creating SIC's for parent ions: 81%
+..............................
+  Loading raw SIC data: 3500 / 9533: 0%
+............................
+  Loading raw SIC data: 8500 / 9533: 0%
+..........Parent Ions Processed: 27900
+....Parent Ions Processed: 28000
+.................
+  Creating SIC's for parent ions: 84%
+..Parent Ions Processed: 28500
+............................
+  Loading raw SIC data: 5800 / 9533: 0%
+........................Parent Ions Processed: 28600
+...
+  Creating SIC's for parent ions: 85%
+............Parent Ions Processed: 29000
+..............
+  Creating SIC's for parent ions: 87%
+...........................
+  Loading raw SIC data: 5300 / 9533: 0%
+.......................
+  Loading raw SIC data: 8800 / 9533: 0%
+............Parent Ions Processed: 29400
+......Parent Ions Processed: 29500
+.............
+  Creating SIC's for parent ions: 88%
+................
+  Loading raw SIC data: 900 / 9533: 0%
+.....................
+  Loading raw SIC data: 4300 / 9533: 0%
+......................
+  Loading raw SIC data: 7300 / 9533: 0%
+.................
+  Loading raw SIC data: 9100 / 9533: 0%
+............Parent Ions Processed: 30100
+.................
+  Creating SIC's for parent ions: 90%
+......Parent Ions Processed: 30500
+.....................
+  Loading raw SIC data: 1800 / 9533: 0%
+.........................
+  Loading raw SIC data: 6500 / 9533: 0%
+........................
+  Loading raw SIC data: 9500 / 9533: 0%
+Parent Ions Processed: 30600
+................Parent Ions Processed: 31000
+....................
+  Loading raw SIC data: 700 / 9533: 0%
+...........................
+  Loading raw SIC data: 5800 / 9533: 0%
+.........................
+  Loading raw SIC data: 9200 / 9533: 0%
+......................Parent Ions Processed: 31800
+...........
+  Loading raw SIC data: 600 / 9533: 0%
+...........................
+  Loading raw SIC data: 5900 / 9533: 0%
+.........................
+  Loading raw SIC data: 9300 / 9533: 0%
+...Parent Ions Processed: 32000
+.......................Parent Ions Processed: 32500
+..........
+  Loading raw SIC data: 700 / 9533: 0%
+............................
+  Loading raw SIC data: 7000 / 9533: 0%
+..................Parent Ions Processed: 32600
+...........
+  Creating SIC's for parent ions: 97%
+....Parent Ions Processed: 33000
+............................
+  Loading raw SIC data: 4200 / 9533: 0%
+............................
+  Loading raw SIC data: 8800 / 9533: 0%
+..........Parent Ions Processed: 33300
+..........Parent Ions Processed: 33500
+.............
+  Creating SIC's for parent ions: 100%
+.
+ProcessFile: Call FindSimilarParentIons
+Finding similar parent ions Finding similar parent ions
+FindSimilarParentIons: Sorting the mz arrays
+FindSimilarParentIons: Populate objSearchRange
+FindSimilarParentIons: Sort the intensity arrays
+FindSimilarParentIons: Look for similar parent ions by using m/z and scan
+.....Parent Ion Index: 500
+.....
+  Finding similar parent ions: 3%
+.Parent Ion Index: 1000
+......Parent Ion Index: 1500
+......
+  Finding similar parent ions: 6%
+Parent Ion Index: 2000
+......Parent Ion Index: 2500
+......Parent Ion Index: 3000
+...
+  Finding similar parent ions: 9%
+...Parent Ion Index: 3500
+......Parent Ion Index: 4000
+......
+  Finding similar parent ions: 13%
+Parent Ion Index: 4500
+......Parent Ion Index: 5000
+......Parent Ion Index: 5500
+......
+  Finding similar parent ions: 18%
+Parent Ion Index: 6000
+......Parent Ion Index: 6500
+......Parent Ion Index: 7000
+......Parent Ion Index: 7500
+..
+  Finding similar parent ions: 23%
+....Parent Ion Index: 8000
+......Parent Ion Index: 8500
+......Parent Ion Index: 9000
+......Parent Ion Index: 9500
+..
+  Finding similar parent ions: 28%
+....Parent Ion Index: 10000
+......Parent Ion Index: 10500
+......Parent Ion Index: 11000
+......Parent Ion Index: 11500
+...
+  Finding similar parent ions: 35%
+...Parent Ion Index: 12000
+......Parent Ion Index: 12500
+......Parent Ion Index: 13000
+.....Parent Ion Index: 13500
+....Parent Ion Index: 14000
+...
+  Finding similar parent ions: 43%
+.Parent Ion Index: 14500
+....Parent Ion Index: 15000
+....Parent Ion Index: 15500
+...Parent Ion Index: 16000
+.....Parent Ion Index: 16500
+....Parent Ion Index: 17000
+..Parent Ion Index: 17500
+....Parent Ion Index: 18000
+..
+  Finding similar parent ions: 54%
+Parent Ion Index: 18500
+....Parent Ion Index: 19000
+...Parent Ion Index: 19500
+.....Parent Ion Index: 20000
+...Parent Ion Index: 20500
+....Parent Ion Index: 21000
+....Parent Ion Index: 21500
+...Parent Ion Index: 22000
+...
+  Finding similar parent ions: 66%
+Parent Ion Index: 22500
+....Parent Ion Index: 23000
+...Parent Ion Index: 23500
+...Parent Ion Index: 24000
+...Parent Ion Index: 24500
+...Parent Ion Index: 25000
+...Parent Ion Index: 25500
+..Parent Ion Index: 26000
+....Parent Ion Index: 26500
+...Parent Ion Index: 27000
+...Parent Ion Index: 27500
+..Parent Ion Index: 28000
+...Parent Ion Index: 28500
+..
+  Finding similar parent ions: 86%
+Parent Ion Index: 29000
+..Parent Ion Index: 29500
+..Parent Ion Index: 30000
+...Parent Ion Index: 30500
+..Parent Ion Index: 31000
+..Parent Ion Index: 31500
+....Parent Ion Index: 32000
+.Parent Ion Index: 32500
+..Parent Ion Index: 33000
+..Parent Ion Index: 33500
+..
+FindSimilarParentIons: Update the scan numbers for the unique ions
+ProcessFile: Call SaveExtendedScanStatsFiles
+Saving extended scan stats flat file to disk: MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02_ScanStatsEx.txt
+................
+  Saving extended scan stats to flat file: 14%
+...............................
+  Saving extended scan stats to flat file: 48%
+................................
+  Saving extended scan stats to flat file: 81%
+...................ProcessFile: Call SaveSICStatsFlatFile
+Saving SIC flat file to disk: MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02_SICstats.txt
+.............ProcessFile: Call FinalizeXMLFile
+ProcessFile: Call XmlOutputFileUpdateEntries
+.
+  Updating XML file with optimal peak apex values: 0%
+...........................
+  Updating XML file with optimal peak apex values: 40%
+..........................
+  Updating XML file with optimal peak apex values: 74%
+......................ProcessFile: Processing nearly complete
+
+Processing complete.  Results can be found in directory: /data/masic_output/
+ProcessingStats: Memory Usage At Start (MB) = 1037.211
+ProcessingStats: Peak memory usage (MB) = 1627.547
+ProcessingStats: File Load Time (seconds) = 311.112942
+ProcessingStats: Memory Usage During Load (MB) = 2074.137
+ProcessingStats: Processing Time (seconds) = 2259.53634
+ProcessingStats: Memory Usage At End (MB) = 1160.59
+ProcessingStats: Cache Event Count = 691016
+ProcessingStats: UncCache Event Count = 648730
+Processing complete
+100.0% complete
+

@@ -1,0 +1,13 @@
+# This file is used to specify modifications for MS-GF+
+
+# Max Number of Modifications per peptide
+# If this value is large, the search will be slow
+NumMods=3
+
+# Static mods
+229.1629,*,fix,N-term,TMT6plex
+229.1629,K,fix,any,TMT6plex
+C2H3N1O1,C,fix,any,Carbamidomethyl     # Fixed Carbamidomethyl C (alkylation)
+
+# Dynamic mods
+O1,M,opt,any,Oxidation     # Oxidized methionine
