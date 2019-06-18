@@ -30,6 +30,15 @@ Although all of our `C#`-based tools should work on Linux via `mono`, PNNL team 
 
 ## Tests
 
+Two `raw` files used for testing purposes from the pilot project global protein abundance dataset:
+
+```
+MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw
+MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw
+```
+
+**Note**: None of these files (or any of the intermediate files) were committed.
+
 
 ### Step01: Convert raw
 
