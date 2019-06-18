@@ -1,5 +1,6 @@
-## ERROR ON MAC, version 2019
+## MSGFPlus_v20190418 WARNING ON MAC, version 2019
 
+```
 --> time java -Xmx4000M -jar MSGFPlus.jar \
     -s data/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzML \
     -o data/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid \
@@ -19,9 +20,11 @@ WARNING: All illegal access operations will be denied in a future release
 real	97m11.733s
 user	449m40.125s
 sys	45m48.224s
+```
 
+## MSGFPlus_v20190418 WARNING ON DOCKER, version 2019
 
-MSGFPlus_v20190418
+```
 --> java -Xmx4000M -jar MSGFPlus.jar -s data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzML -o data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -d data/ID_007275_FB1B42E8.fasta  -t 20ppm -m 0 -inst 3 -e 1 -ti -1,2 -ntt 1 -tda 1 -minLength 6 -maxLength 50 -minCharge 2 -maxCharge 5 -n 1 -protocol 1 -thread 7 -mod data/MSGFPlus_Mods.txt -minNumPeaks 5 -addFeatures 1
 MS-GF+ Release (v2019.04.18) (18 April 2019)
 Loading database files...
@@ -52,10 +55,12 @@ WARNING: Illegal reflective access by com.sun.xml.bind.v2.runtime.reflect.opt.In
 WARNING: Please consider reporting this to the maintainers of com.sun.xml.bind.v2.runtime.reflect.opt.Injector$1
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
+```
 
 
-## ERROR ON DOCKER CONTAINER:
+## MS-GF+ Release (v2017.08.23 ERROR ON DOCKER CONTAINER:
 
+```
 MS-GF+ Release (v2017.08.23) (23 August 2017)
 Loading database files...
 Warning: Sequence database contains 2 counts of letter 'B', which does not correspond to an amino acid.
@@ -130,4 +135,4 @@ Caused by: java.lang.ClassNotFoundException: com.sun.xml.internal.bind.v2.Contex
 	at javax.xml.bind.ContextFinder.safeLoadClass(ContextFinder.java:573)
 	at javax.xml.bind.ContextFinder.newInstance(ContextFinder.java:239)
 	... 20 more
-
+```

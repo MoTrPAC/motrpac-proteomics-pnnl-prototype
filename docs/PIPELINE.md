@@ -109,7 +109,7 @@ java.exe -Xmx4000M \
 MASIC.exe /I:MoTrPAC_Pilot_TMT_x.raw /P:TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml
 
 **INPUT**:  files in directory pilot_data_global_20190110/raw/
-         TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml in directory pilot_data_global_20190110/processed/MASIC_input
+TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml in directory pilot_data_global_20190110/processed/MASIC_input
 
 **OUTPUT**:  files in directory pilot_data_global_20190110/processed/MASIC_output/
 

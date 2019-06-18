@@ -240,7 +240,10 @@ docker run -v $PWD/data:/data:rw -it biodavidjm:masic /bin/bash
 Run in container:
 
 ```
-mono /app/MASIC_Console.exe /I:/data/raw/*.raw /O:/data/masic_output/ /P:/data/masic_input/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml > /data/masic.log
+mono /app/MASIC_Console.exe \
+/I:/data/raw/*.raw /O:/data/masic_output/ \
+/P:/data/masic_input/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml \
+> /data/masic.log
 ```
 
 Check log: `/data/masic.log`
@@ -250,5 +253,5 @@ Check log: `/data/masic.log`
 
 - ~~Why is the MSGF+ version so old (v2017.08.23) (23 August 2017)? (which fails)~~: Matt: Use the latest version.
 - How to resolve: `1000_collect_data.R` used to create `msgfData_original.RData`  (only works inside PNNL due to dependency on internal resources)
-- Fasta file names differ between step01:`ID_006404_2D994010.fasta` and step04:`ID_007275_FB1B42E8.fasta`
+- PIPELINE.md: why fasta file names differ between step01:`ID_006404_2D994010.fasta` and step04:`ID_007275_FB1B42E8.fasta`?
 
