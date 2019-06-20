@@ -172,10 +172,15 @@ docker run -v $PWD/data:/data:rw -it mono  /bin/bash
 apt-get update
 apt-get -y install wget
 apt-get -y install unzip
-wget https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.1.7068/PPMErrorCharter_Program.zip
-unzip PPMErrorCharter_Program.zip
-
-mono PPMErrorCharter.exe -I:/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -EValue:1E-10 -Python
+mkdir app && cd app
+wget https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.2.7190/PPMErrorCharterPython_Program.zip
+unzip PPMErrorCharterPython_Program.zip
+apt-get -y install python3
+apt-get -y install python3-pip
+apt-get -y install python3-matplotlib
+apt-get -y install python3-pandas
+apt-get -y install python3-numpy
+mono PPMErrorCharterPython.exe -I:/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -EValue:1E-10 -Python
 
 ```
 
@@ -201,9 +206,13 @@ Generating plots with Python
 Error occurred in Program->Main: Could not load type of field 'PPMErrorCharter.IdentDataPlotter:<ErrorHistogramBitmap>k__BackingField' (0) due to: Could not load file or assembly 'PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies.
 ```
 
+New version
+
+
+
 ***!!!!!!!!!!!!!!!!!!!!!***
 
-**Test DID NOT passed**
+**Test DID NOT pass**
 
 ***!!!!!!!!!!!!!!!!!!!!!***
 
