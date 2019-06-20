@@ -175,15 +175,30 @@ apt-get -y install unzip
 wget https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.1.7068/PPMErrorCharter_Program.zip
 unzip PPMErrorCharter_Program.zip
 
-mono PPMErrorCharter.exe /data/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid
+mono PPMErrorCharter.exe -I:/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -EValue:1E-10 -Python
+
 ```
 
 Output
 
 ```
-Validation error:
-
-PSM results file not specified
+PPMErrorCharter, version 1.1.7068.23133 (May 9, 2019)
+ 
+ 
+Using options:
+ 
+PSM results file: /data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid
+ 
+Spec EValue threshold: 1.0E-10
+ 
+PPM Error histogram bin size: 0.5
+ 
+Generating plots with Python
+ 
+ 
+------------------------------------------------------------------------------
+ 
+Error occurred in Program->Main: Could not load type of field 'PPMErrorCharter.IdentDataPlotter:<ErrorHistogramBitmap>k__BackingField' (0) due to: Could not load file or assembly 'PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies.
 ```
 
 ***!!!!!!!!!!!!!!!!!!!!!***
