@@ -164,57 +164,102 @@ PSM results file not specified
 
 - Test on docker
 
+Docker 1: Docker with python and mono pre-installed
+
 ```
-docker pull mono
+docker pull jonemo/pythonnet:python3.6.4-mono5.4.1.6-pythonnet2.4.0.dev0
+docker run -v $PWD/data:/data:rw -it jonemo/pythonnet:python3.6.4-mono5.4.1.6-pythonnet2.4.0.dev0 /bin/bash
+```
 
-docker run -v $PWD/data:/data:rw -it mono  /bin/bash
-
+```
 apt-get update
-apt-get -y install wget
-apt-get -y install unzip
-mkdir app && cd app
-wget https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.2.7190/PPMErrorCharterPython_Program.zip
+apt-get install unzip
+pip install --upgrade pip
+python3.6 -m pip install matplotlib
+python3.6 -m pip install pandas
+mkdir app
+cd app && wget https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.2.7111/PPMErrorCharterPython_Program.zip
 unzip PPMErrorCharterPython_Program.zip
-apt-get -y install python3
-apt-get -y install python3-pip
-apt-get -y install python3-matplotlib
-apt-get -y install python3-pandas
-apt-get -y install python3-numpy
-mono PPMErrorCharterPython.exe -I:/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -EValue:1E-10 -Python
+ln -s /usr/local/bin/python3 /usr/bin/python3
+mono PPMErrorCharterPython.exe -I:/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -EValue:1E-10
 
 ```
 
 Output
 
 ```
-PPMErrorCharter, version 1.1.7068.23133 (May 9, 2019)
- 
- 
+mono PPMErrorCharterPython.exe -I:/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid -EValue:1E-10
+PPMErrorCharter, version 1.2.7111.20545 (June 21, 2019)
+
 Using options:
- 
-PSM results file: /data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid
- 
-Spec EValue threshold: 1.0E-10
- 
-PPM Error histogram bin size: 0.5
- 
-Generating plots with Python
- 
- 
-------------------------------------------------------------------------------
- 
-Error occurred in Program->Main: Could not load type of field 'PPMErrorCharter.IdentDataPlotter:<ErrorHistogramBitmap>k__BackingField' (0) due to: Could not load file or assembly 'PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies.
+ PSM results file: /data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid
+ Spec EValue threshold: 1.0E-10
+ PPM Error histogram bin size: 0.5
+ Generating plots with OxyPlot
+
+Creating plots for "MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid"
+  Using fixed data file "/data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_FIXED.mzML"
+
+Loading data from the .mzid file
+  6,290 PSMs passed the filters
+
+Loading data from MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_FIXED.mzML
+  25% complete
+  54% complete
+  82% complete
+
+	Statistic                   Original    Refined
+	MeanMassErrorPPM:              2.207      0.143
+	MedianMassErrorPPM:            2.035     -0.001
+	StDev(Mean):                   2.961      2.941
+	StDev(Median):                 2.966      2.944
+	PPM Window for 99%: 0 +/-     10.932      8.834
+	PPM Window for 99%: high:     10.932      8.833
+	PPM Window for 99%:  low:     -6.863     -8.834
+
+Using data points with original and refined MassError between -0.2 and 0.2 Da
+Using data points with original and refined PpmError between -50 and 50 ppm
+
+Removed 0 out-of-range items from the original 6,290 items.
+
+  Assuming Python 3 is at /usr/bin/python3
+
+  /usr/bin/python3 /app/PPMErrorCharter_Plotter.py /data/MZRefinery_Plotting_Metadata.txt
+Reading metadata file: /data/MZRefinery_Plotting_Metadata.txt
+
+Reading MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_Histograms_TmpExportData.txt
+Reading MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MassErrorsVsTime_TmpExportData.txt
+Reading MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MassErrorsVsMass_TmpExportData.txt
+
+Output: MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MZRefinery_Histograms.png
+
+Plot "Mass error (PPM)" vs. "Original: Counts"
+  87 data points
+
+Mass error histogram created
+
+Output: MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MZRefinery_MassErrors.png
+
+Plot "Scan Time (minutes)" vs. "Original: Mass Error (PPM)" and
+Plot "m/z" vs. "Original: Mass Error (PPM)"
+  6,290 data points
+  6,290 data points
+
+Mass error trend plot created
+Generated plots; see:
+  /data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_Histograms.png
+and
+  /data/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MassErrors.png
+Processing completed successfully
 ```
 
-New version
+![MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MZRefinery_MassErrors](https://user-images.githubusercontent.com/6676074/59978326-1b751d00-9590-11e9-8a50-f605e0e97f91.png)
+
+![MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MZRefinery_Histograms](https://user-images.githubusercontent.com/6676074/59978342-3778be80-9590-11e9-8131-b67799948ebe.png)
 
 
 
-***!!!!!!!!!!!!!!!!!!!!!***
-
-**Test DID NOT pass**
-
-***!!!!!!!!!!!!!!!!!!!!!***
+**Test passed** BUT results might be wrong.
 
 
 ## Step 04: PROTEIN IDENTIFICATION AND QUANTIFICATION

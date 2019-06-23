@@ -1,4 +1,0 @@
-BaseOutputName=MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02
-HistogramData=MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_Histograms_TmpExportData.txt
-MassErrorVsTimeData=MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MassErrorsVsTime_TmpExportData.txt
-MassErrorVsMassData=MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_MassErrorsVsMass_TmpExportData.txt
