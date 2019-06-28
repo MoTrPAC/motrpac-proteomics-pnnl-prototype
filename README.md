@@ -34,7 +34,7 @@ docker build -t "biodavidjm:masic" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -it biodavidjm:masic /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:masic /bin/bash
 ```
 
 Run in container:
@@ -72,7 +72,7 @@ docker build -t "biodavidjm:msgfplus" .
 And start container:
 
 ```
-docker run -v $PWD/data:/data:rw -it biodavidjm:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:msgfplus  /bin/bash
 ```
 
 Run in docker: [step02/step02msgfplus_tryptic.sh](step02/step02msgfplus_tryptic.sh)
@@ -109,7 +109,7 @@ docker build -t "biodavidjm:ppmerror" .
 Start container:
 
 ```
-docker run -v $PWD/data:/data:rw -it biodavidjm:ppmerror /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ppmerror /bin/bash
 ```
 
 Run in docker:
@@ -134,7 +134,7 @@ Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file
 Run the same docker container as in step02
 
 ```
-docker run -v $PWD/data:/data:rw -it biodavidjm:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:msgfplus  /bin/bash
 ```
 
 And execute: [step04/step04msgfplus.sh](step04/step04msgfplus.sh)
@@ -154,7 +154,7 @@ docker build -t "biodavidjm:mzid2tsv" .
 Start container:
 
 ```
-docker run -v $PWD/data:/data:rw -it biodavidjm:mzid2tsv /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:mzid2tsv /bin/bash
 ```
 
 And run in docker: [step05/step05net462.sh](step05/step05net462.sh)
@@ -177,7 +177,7 @@ docker build -t "biodavidjm:ascore" .
 Start container:
 
 ```
-docker run -v $PWD/data:/data:rw -it biodavidjm:ascore /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ascore /bin/bash
 ```
 
 And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
