@@ -23,9 +23,18 @@ MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.raw
 MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw
 ```
 
+## PHOSPHO PROTEOME Test files
+
+Two `raw` files used for testing purposes from the pilot project phospho protein abundance dataset:
+
+```
+MoTrPAC_Pilot_TMT_P_S1_08_24Oct17_Elm_AQ-17-09-02.raw
+MoTrPAC_Pilot_TMT_P_S1_09_24Oct17_Elm_AQ-17-09-02.raw
+```
+
 ## Step 00: MASIC
 
-Build Dockerfile (one time):
+Build Docker image (one time, or after a new version of MASIC is released):
 
 ```
 docker build -t "biodavidjm:masic" .
@@ -43,27 +52,25 @@ Run in container:
 mono /app/MASIC_Console.exe \
 /I:/data/test_global/raw/*.raw \
 /O:/data/test_global/masic_output/ \
-/P:/data/test_global/masic_output/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml \
-> data/test_global/step00.masic.log
+/P:/parameters/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml \
+> /data/test_global/step00_masic.log
 
 ```
 
 
 ## STEP 01: convert `.raw` to `.mzML` files
 
-
-- Input folder/files: `data/test_global/raw/*.raw`
+- Input directory/files: `/data/test_global/raw/*.raw`
 - Run: [step01/convertRaw.sh](step01/convertRaw.sh)
-- Output folder: `msgfplus_input/*.mzML`
+- Output directory: `msgfplus_input/*.mzML`
 
 ## STEP 02: FULLY TRYPTIC SEARCH
 
 Run on Docker MS-GF+ using the `.mzML` file from `msconvert` (step 1), get a `.mzid` file
   
+Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in directory [`step02`](step02/Dockerfile).  
 
-Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in folder [`step02`](step02/Dockerfile).  
-
-Build (only one time):
+Build Docker image (one time, or after a new version of MS-GF+ is released):
 
 ```
 docker build -t "biodavidjm:msgfplus" .
@@ -77,17 +84,18 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 
 Run in docker: [step02/step02msgfplus_tryptic.sh](step02/step02msgfplus_tryptic.sh)
 
-- Input folder/files: `data/test_global/msgfplus_input/`
+- Input directory/files: `/data/test_global/msgfplus_input/`
   + `*.mzML`
   +  `sequence_db.fasta` sequence db
   +  `MSGFPlus_Mods.txt` config file
-- Output folder/file: `data/test_global/msgfplus_output/*.mzid`
+- Output directory/file: `/data/test_global/msgfplus_output/*.mzid`
 
 
 **ISSUE**: [Error] Cannot create folder `/data/msgfplus_output/filename.mzid`
 
-**SUGGESTION**: Let MSGF+ create the output folder/file name by default
+**SUGGESTION**: Let MSGF+ create the output directory/file name by default
 
+**FIX**: Release 2019.06.28 (commit [59a093c](https://github.com/MSGFPlus/msgfplus/commit/59a093c4a0ca999dc24cf289ccbf261e9511610a))
 
 ## Step 3:
 
@@ -95,11 +103,11 @@ Run in docker: [step02/step02msgfplus_tryptic.sh](step02/step02msgfplus_tryptic.
 
 [`step03/step03a.sh`](step03/step03a.sh)
 
-**ISSUE**: msconvert ignores the path to the specified output folder
+**ISSUE**: msconvert ignores the path to the specified output directory
 
 ### B) Run `PPMErrorCharter` using the `.mzid` file from step 2a and the `_FIXED.mzML` file from step 3a
 
-Build image (only once)
+Build Docker image (only once)
 
 ```
 cd step03/
@@ -116,15 +124,15 @@ Run in docker:
 
 ```
 mono /app/PPMErrorCharterPython.exe \
--I:/data/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid \
--EValue:1E-10 > /data/step03b.log
+-I:/data/test_global/msgfplus_tryptic_output/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid \
+-EValue:1E-10 > /data/test_global/step03b.log
 
 mono /app/PPMErrorCharterPython.exe \
--I:/data/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid \
--EValue:1E-10 >> /data/step03b.log
+-I:/data/test_global/msgfplus_tryptic_output/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid \
+-EValue:1E-10 >> /data/test_global/step03b.log
 ```
 
-**ISSUE**: `PPMErrorCharterPython.exe` automatically searches for the corresponding `_FIXED.mzML` file in the same folder as the input. Could be the whole path be provided (and if the folder does not exist, to be created)?
+**ISSUE**: `PPMErrorCharterPython.exe` automatically searches for the corresponding `_FIXED.mzML` file in the same directory as the input. Could be the whole path be provided (and if the directory does not exist, to be created)?
  
 
 ## Step 4: Protein Identification and Quantification
@@ -144,7 +152,7 @@ And execute: [step04/step04msgfplus.sh](step04/step04msgfplus.sh)
 
 Run MzidToTSVConverter to convert `Dataset_final.mzid` to `Dataset.tsv`
 
-Build Dockerfile:
+Build Docker image (one time, or after a new version of MzidToTsvConverter is released):
 
 ```
 cd step05/
@@ -167,7 +175,7 @@ And run in docker: [step05/step05net462.sh](step05/step05net462.sh)
 
 Run PeptideHitResultsProcRunner using the .tsv file from step 5:
 
-Build Dockerfile:
+Build Docker image (one time, or after a new version of PeptideHitResultsProcRunner is released):
 
 ```
 cd step06/
