@@ -6,7 +6,7 @@ mono /app/phrp/PeptideHitResultsProcRunner.exe \
 -T:/parameters/Mass_Correction_Tags.txt \
 -N:/parameters/MSGFPlus_PartTryp_DynMetOx_Stat_CysAlk_TMT_6Plex_20ppmParTol.txt \
 -SynPvalue:0.2 -SynProb:0.05 \
--L:/data/test_phospho/ascore_ouput/PHRP_LogFile.txt \
+-L:/data/test_phospho/ascore_output/PHRP_LogFile.txt \
 -ProteinMods \
 -F:/data/ID_007275_FB1B42E8.fasta > /data/test_phospho/step06_phrp_phospho.log
 
@@ -17,6 +17,6 @@ mono /app/phrp/PeptideHitResultsProcRunner.exe \
 -T:/parameters/Mass_Correction_Tags.txt \
 -N:/parameters/MSGFPlus_PartTryp_DynMetOx_Stat_CysAlk_TMT_6Plex_20ppmParTol.txt \
 -SynPvalue:0.2 -SynProb:0.05 \
--L:/data/test_phospho/ascore_ouput/PHRP_LogFile.txt \
+-L:/data/test_phospho/ascore_output/PHRP_LogFile.txt \
 -ProteinMods \
 -F:/data/ID_007275_FB1B42E8.fasta >> /data/test_phospho/step06_phrp_phospho.log

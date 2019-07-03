@@ -231,21 +231,9 @@ Search result contains a numeric mod mass that could not be associated with a mo
 Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 277, ModMass = +79.966
 Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 278, ModMass = +79.966
 Too many numeric mod mass results have been found; suppressing further logging
-
-```
-
-and the second file
-
-```
-Too many numeric mod mass results have been found; suppressing further logging
 Invalid Lines:
 ...
-Error adding modifications to sequence at RowIndex '104'
-Error adding modifications to sequence at RowIndex '105'
-Error adding modifications to sequence at RowIndex '106'
-Error adding modifications to sequence at RowIndex '107'
-Error adding modifications to sequence at RowIndex '108'
-Error adding modifications to sequence at RowIndex '109'
+
 Error adding modifications to sequence at RowIndex '110'
 Error adding modifications to sequence at RowIndex '111'
 Error adding modifications to sequence at RowIndex '112'
