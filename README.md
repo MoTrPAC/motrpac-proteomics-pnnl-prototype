@@ -28,8 +28,7 @@ MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.raw
 Two `raw` files used for testing purposes from the pilot project phospho protein abundance dataset:
 
 ```
-MoTrPAC_Pilot_TMT_P_S1_08_24Oct17_Elm_AQ-17-09-02.raw
-MoTrPAC_Pilot_TMT_P_S1_09_24Oct17_Elm_AQ-17-09-02.raw
+MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03.raw MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.raw
 ```
 
 ## Step 00: MASIC
@@ -48,12 +47,24 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 
 Run in container:
 
+- GLOBAL
+  
 ```
-mono /app/MASIC_Console.exe \
+mono /app/masic/MASIC_Console.exe \
 /I:/data/test_global/raw/*.raw \
 /O:/data/test_global/masic_output/ \
 /P:/parameters/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml \
 > /data/test_global/step00_masic.log
+```
+
+- PHOSPHO
+
+```
+mono /app/masic/MASIC_Console.exe \
+/I:/data/test_phospho/raw/*.raw \
+/O:/data/test_phospho/masic_output/ \
+/P:/parameters/TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml \
+> /data/test_phospho/step00_masic.log
 
 ```
 
@@ -122,17 +133,32 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 
 Run in docker:
 
+**test_global**
+
 ```
 mono /app/PPMErrorCharterPython.exe \
--I:/data/test_global/msgfplus_tryptic_output/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid \
+-I:/data/test_global/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid \
 -EValue:1E-10 > /data/test_global/step03b.log
 
 mono /app/PPMErrorCharterPython.exe \
--I:/data/test_global/msgfplus_tryptic_output/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid \
+-I:/data/test_global/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid \
 -EValue:1E-10 >> /data/test_global/step03b.log
 ```
 
-**ISSUE**: `PPMErrorCharterPython.exe` automatically searches for the corresponding `_FIXED.mzML` file in the same directory as the input. Could be the whole path be provided (and if the directory does not exist, to be created)?
+**test_phospho**
+
+```
+mono /app/PPMErrorCharterPython.exe \
+-I:/data/test_phospho/msgfplus_output/MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03.mzid \
+-EValue:1E-10 > /data/test_phospho/step03b.log
+
+mono /app/PPMErrorCharterPython.exe \
+-I:/data/test_phospho/msgfplus_output/MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.mzid \
+-EValue:1E-10 >> /data/test_phospho/step03b.log
+```
+
+
+**ISSUE**: `PPMErrorCharterPython.exe` automatically searches for the corresponding `_FIXED.mzML` file in the same directory as the input. Could the whole path be provided (and if the directory does not exist, to be created)?
  
 
 ## Step 4: Protein Identification and Quantification
@@ -191,10 +217,58 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
 
 
+**ISSUE**
+
+Console output:
+
+```
+...
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 270, ModMass = +79.966
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 273, ModMass = +79.966
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 274, ModMass = +79.966
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 275, ModMass = +79.966
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 276, ModMass = +79.966
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 277, ModMass = +79.966
+Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 278, ModMass = +79.966
+Too many numeric mod mass results have been found; suppressing further logging
+
+```
+
+and the second file
+
+```
+Too many numeric mod mass results have been found; suppressing further logging
+Invalid Lines:
+...
+Error adding modifications to sequence at RowIndex '104'
+Error adding modifications to sequence at RowIndex '105'
+Error adding modifications to sequence at RowIndex '106'
+Error adding modifications to sequence at RowIndex '107'
+Error adding modifications to sequence at RowIndex '108'
+Error adding modifications to sequence at RowIndex '109'
+Error adding modifications to sequence at RowIndex '110'
+Error adding modifications to sequence at RowIndex '111'
+Error adding modifications to sequence at RowIndex '112'
+Error adding modifications to sequence at RowIndex '113'
+
+ProcessFilesWildcard returned Success=False
+```
+
+
 ## Step 7: AScore
 
 AScore_Program_CentOS.zip
 
+```
+mono AScore_Console.exe \
+-T:msgfplus \
+-F:Dataset_W_S2_Fr_04_2May17_msgfplus_syn.txt \
+-D:Dataset_W_S2_Fr_04_2May17.mzML \
+-P:AScore_CID_0.5Da_ETD_0.5Da_HCD_0.05Da.xml \
+-U:Dataset_W_S2_Fr_04_2May17_msgfplus_syn_plus_ascore.txt \
+-L:LogFile.txt
+-Fasta:../H_sapiens_M_musculus_RefSeq_Excerpt.fasta
+```
 
 
 
