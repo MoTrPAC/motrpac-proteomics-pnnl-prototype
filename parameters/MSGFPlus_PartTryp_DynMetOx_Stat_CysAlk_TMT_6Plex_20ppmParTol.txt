@@ -27,8 +27,7 @@ FragmentationMethodID=0
 #  1 means High-res LTQ (Default for HCD; also appropriate for high res CID).  Do not merge spectra (FragMethod=4) when InstrumentID is 1; scores will degrade
 #  2 means TOF
 #  3 means Q-Exactive
-# (note that this is automatically updated by the Analysis Manager for Thermo .Raw files based on the instrument type and MSn scan types present for a given dataset)
-InstrumentID=3
+InstrumentID=1
 
 #Enzyme ID
 #  0 means No enzyme used
