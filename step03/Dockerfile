@@ -9,6 +9,6 @@ RUN apt-get install unzip
 RUN pip install --upgrade pip
 RUN python3.6 -m pip install matplotlib
 RUN python3.6 -m pip install pandas
-RUN wget -P /app/ https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.2.7111/PPMErrorCharterPython_Program.zip
+RUN wget -P /app/ https://github.com/PNNL-Comp-Mass-Spec/PPMErrorCharter/releases/download/v1.2.7128/PPMErrorCharterPython_Program.zip
 RUN cd /app && unzip PPMErrorCharterPython_Program.zip
 RUN ln -s /usr/local/bin/python3 /usr/bin/python3
