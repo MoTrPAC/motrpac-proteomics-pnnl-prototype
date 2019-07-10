@@ -138,10 +138,12 @@ Run in docker:
 ```
 mono /app/PPMErrorCharterPython.exe \
 -I:/data/test_global/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02.mzid \
+-F:/data/test_global/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_01_12Oct17_Elm_AQ-17-09-02_FIXED.mzML \
 -EValue:1E-10 > /data/test_global/step03b.log
 
 mono /app/PPMErrorCharterPython.exe \
 -I:/data/test_global/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02.mzid \
+-F:/data/test_global/msgfplus_output/MoTrPAC_Pilot_TMT_W_S1_02_12Oct17_Elm_AQ-17-09-02_FIXED.mzML \
 -EValue:1E-10 >> /data/test_global/step03b.log
 ```
 
@@ -156,9 +158,6 @@ mono /app/PPMErrorCharterPython.exe \
 -I:/data/test_phospho/msgfplus_output/MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.mzid \
 -EValue:1E-10 >> /data/test_phospho/step03b.log
 ```
-
-
-**ISSUE**: `PPMErrorCharterPython.exe` automatically searches for the corresponding `_FIXED.mzML` file in the same directory as the input. Could the whole path be provided (and if the directory does not exist, to be created)?
  
 
 ## Step 4: Protein Identification and Quantification
@@ -205,6 +204,25 @@ Build Docker image (one time, or after a new version of PeptideHitResultsProcRun
 
 ```
 cd step06/
+docker build -t "biodavidjm:phrp" .
+```
+
+Start container:
+
+```
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:phrp /bin/bash
+```
+
+And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
+
+
+
+## Step 7: AScore
+
+Build:
+
+```
+cd step06/
 docker build -t "biodavidjm:ascore" .
 ```
 
@@ -213,39 +231,6 @@ Start container:
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ascore /bin/bash
 ```
-
-And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
-
-
-**ISSUE**
-
-Console output:
-
-```
-...
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 270, ModMass = +79.966
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 273, ModMass = +79.966
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 274, ModMass = +79.966
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 275, ModMass = +79.966
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 276, ModMass = +79.966
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 277, ModMass = +79.966
-Search result contains a numeric mod mass that could not be associated with a modification symbol; ResultID = 278, ModMass = +79.966
-Too many numeric mod mass results have been found; suppressing further logging
-Invalid Lines:
-...
-
-Error adding modifications to sequence at RowIndex '110'
-Error adding modifications to sequence at RowIndex '111'
-Error adding modifications to sequence at RowIndex '112'
-Error adding modifications to sequence at RowIndex '113'
-
-ProcessFilesWildcard returned Success=False
-```
-
-
-## Step 7: AScore
-
-AScore_Program_CentOS.zip
 
 ```
 mono AScore_Console.exe \
