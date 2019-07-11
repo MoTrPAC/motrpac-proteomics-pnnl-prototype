@@ -8,7 +8,7 @@ mono /app/phrp/PeptideHitResultsProcRunner.exe \
 -SynPvalue:0.2 -SynProb:0.05 \
 -L:/data/test_global/ascore_output/PHRP_LogFile.txt \
 -ProteinMods \
--F:/data/ID_007275_FB1B42E8.revcat.fasta > /data/test_global/step06_phrp.log
+-F:/data/ID_007275_FB1B42E8.revCat.fasta > /data/test_global/step06_phrp.log
 
 
 mono /app/phrp/PeptideHitResultsProcRunner.exe \
@@ -19,4 +19,4 @@ mono /app/phrp/PeptideHitResultsProcRunner.exe \
 -SynPvalue:0.2 -SynProb:0.05 \
 -L:/data/test_global/ascore_output/PHRP_LogFile.txt \
 -ProteinMods \
--F:/data/ID_007275_FB1B42E8.revcat.fasta >> /data/test_global/step06_phrp.log
+-F:/data/ID_007275_FB1B42E8.revCat.fasta >> /data/test_global/step06_phrp.log
