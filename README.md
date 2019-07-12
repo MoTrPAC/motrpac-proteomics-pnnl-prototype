@@ -11,7 +11,6 @@ Initial documents provided by the PNNL with details of the pipeline (converted t
   
 The [scripts](scripts/README.md) directory contains additional files and scripts.
 
-
 # WORKFLOW
 
 ## GLOBAL PROTEOME Test files
@@ -31,7 +30,23 @@ Two `raw` files used for testing purposes from the pilot project phospho protein
 MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03.raw MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.raw
 ```
 
-## Step 00: MASIC
+## OVERVIEW
+
+| Step | Description                                                                                                                       | Software                      | Input                                         | Output                                                         | Shell Script (Global)                                           | Shell Script (Phospho)                                           |
+|------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------|-----------------------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------|
+| 00   | Extract reporter ion peaks from MS2 spectra and create Selected Ion Chromatograms for each MS/MS parent ion                       | MASIC                         | Thermo .Raw file                              | _ReporterIons.txt and _SICStats.txt (plus several other files) | [`step00masic.sh`](step00/step00masic.sh)                       | [`step00masic_phospho.sh`](step00/step00masic_phospho.sh)        |
+| 01   | Convert Thermo .raw files to .mzML files (standard XML file format for MS data)                                                   | MSConvert                     | Thermo .Raw file                              | .mzML file                                                     | [`step01convertRaw.sh`](step01/step01convertRaw.sh)             | [`step01convertRaw_phospho.sh`](step01/step01convertRaw_phospho.sh)             |
+| 02   | Identify peptides using a fully tryptic search (for speed); these are used in Step 03                                             | MS-GF+                        | .mzML file and .fasta file                    | .mzid file                                                     | [`step02msgfplus_tryptic.sh`](step02/step02msgfplus_tryptic.sh) | [`step02msgfplus_tryptic_phospho.sh`](step02/step02msgfplus_tryptic_phospho.sh) |
+| 03a  | Use mass error histograms to in-silico re-calibrate the m/z values in the .mzML file                                              | mzrefiner filter in MSConvert | .mzid file and .mzML file                     | _FIXED.mzML                                                    | [`step03a.sh`](step03/step03a.sh)                               | [`step03a_phospho.sh`](step03/step03a_phospho.sh)                |
+| 03b  | Plot the mass error histograms before and after in-silico recalibration                                                           | PPMErrorCharter               | .mzid file and _FIXED.mzML file               | PNG files                                                      | [`step03b.sh`](step03/step03b.sh)                               | [`step03b_phospho.sh`](step03/step0ba_phospho.sh)                |
+| 04   | Identify peptides using a partially tryptic search                                                                                | MS-GF+                        | _FIXED.mzML file and .fasta file              | .mzid file                                                     | [`step04msgfplus.sh`](step04/step04msgfplus.sh)                 | [`step04msgfplus_phospho.sh`](step04/step04msgfplus_phospho)     |
+| 05   | Create a tab-separated value file listing peptide IDs from step 04                                                                | MzidToTSVConverter            | .mzid file                                    | .tsv file                                                      | [`step05net462.sh`](step05/step05net462.sh)                     | [`step05net462_phospho.sh`](step06/step05net462_phospho.sh)      |
+| 06   | Create tab-delimited files required for step 7; files contain peptide IDs, unique sequence info, and residue modification details | PeptideHitResultsProcessor    | .tsv file                                     | _syn.txt file and several related files                        | [`step06phrp.sh`](step06/step06phrp.sh)                         | [`step06phrp_phospho.sh`](step06/step06phrp_phospho.sh)          |
+| 07   | Localize the position of Phosphorylation on S, T, and Y residues in phosphopeptides                                               | Ascore                        | _syn.txt files, _FIXED.mzML file, .fasta file | _syn_plus_ascore.txt file                                      |     n/a                                                         | [`step07ascore_phospho.sh`](step07/step07ascore_phospho.sh)      |
+
+## DETAILS
+
+### Step 00: MASIC
 
 Build Docker image (one time, or after a new version of MASIC is released):
 
@@ -69,17 +84,17 @@ mono /app/masic/MASIC_Console.exe \
 ```
 
 
-## STEP 01: convert `.raw` to `.mzML` files
+### STEP 01: convert `.raw` to `.mzML` files
 
 - Input directory/files: `/data/test_global/raw/*.raw`
 - Run: [step01/convertRaw.sh](step01/convertRaw.sh)
 - Output directory: `msgfplus_input/*.mzML`
 
-## STEP 02: FULLY TRYPTIC SEARCH
+### STEP 02: FULLY TRYPTIC SEARCH
 
 Run on Docker MS-GF+ using the `.mzML` file from `msconvert` (step 1), get a `.mzid` file
   
-Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in directory [`step02`](step02/Dockerfile).  
+Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in directory [`step02`](step02/Dockerfile).
 
 Build Docker image (one time, or after a new version of MS-GF+ is released):
 
@@ -108,15 +123,15 @@ Run in docker: [step02/step02msgfplus_tryptic.sh](step02/step02msgfplus_tryptic.
 
 **FIX**: Release 2019.06.28 (commit [59a093c](https://github.com/MSGFPlus/msgfplus/commit/59a093c4a0ca999dc24cf289ccbf261e9511610a))
 
-## Step 3:
+### Step 3:
 
-### A) Run `msconvert` with the mzrefiner option to create a new `.mzML` file named `_FIXED.mzML`
+#### A) Run `msconvert` with the mzrefiner option to create a new `.mzML` file named `_FIXED.mzML`
 
 [`step03/step03a.sh`](step03/step03a.sh)
 
 **ISSUE**: msconvert ignores the path to the specified output directory
 
-### B) Run `PPMErrorCharter` using the `.mzid` file from step 2a and the `_FIXED.mzML` file from step 3a
+#### B) Run `PPMErrorCharter` using the `.mzid` file from step 2a and the `_FIXED.mzML` file from step 3a
 
 Build Docker image (only once)
 
@@ -160,7 +175,7 @@ mono /app/PPMErrorCharterPython.exe \
 ```
  
 
-## Step 4: Protein Identification and Quantification
+### Step 4: Protein Identification and Quantification
 
 Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file (called it `Dataset_final.mzid`). 
 
@@ -173,7 +188,7 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 And execute: [step04/step04msgfplus.sh](step04/step04msgfplus.sh)
 
 
-## Step 5: `MzidToTSVConverter`
+### Step 5: `MzidToTSVConverter`
 
 Run MzidToTSVConverter to convert `Dataset_final.mzid` to `Dataset.tsv`
 
@@ -196,7 +211,7 @@ And run in docker: [step05/step05net462.sh](step05/step05net462.sh)
 **ISSUE**: it does not create the output directory: "`Could not find a part of the path`". Can we change that?
 
 
-## Step 6: `PeptideHitResultsProcRunner`
+### Step 6: `PeptideHitResultsProcRunner`
 
 Run PeptideHitResultsProcRunner using the .tsv file from step 5:
 
@@ -216,8 +231,7 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
 
 
-
-## Step 7: AScore
+### Step 7: AScore
 
 Build:
 
@@ -242,7 +256,6 @@ mono AScore_Console.exe \
 -L:LogFile.txt
 -Fasta:../H_sapiens_M_musculus_RefSeq_Excerpt.fasta
 ```
-
 
 
 # Questions
