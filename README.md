@@ -41,7 +41,7 @@ MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.raw
 | 03a  | Use mass error histograms to in-silico re-calibrate the m/z values in the .mzML file                                              | mzrefiner filter in MSConvert | .mzid file and .mzML file                     | _FIXED.mzML                                                    | [`step03a.sh`](step03/step03a.sh)                               | [`step03a_phospho.sh`](step03/step03a_phospho.sh)                |
 | 03b  | Plot the mass error histograms before and after in-silico recalibration                                                           | PPMErrorCharter               | .mzid file and _FIXED.mzML file               | PNG files                                                      | [`step03b.sh`](step03/step03b.sh)                               | [`step03b_phospho.sh`](step03/step03b_phospho.sh)                |
 | 04   | Identify peptides using a partially tryptic search                                                                                | MS-GF+                        | _FIXED.mzML file and .fasta file              | .mzid file                                                     | [`step04msgfplus.sh`](step04/step04msgfplus.sh)                 | [`step04msgfplus_phospho.sh`](step04/step04msgfplus_phospho.sh)  |
-| 05   | Create a tab-separated value file listing peptide IDs from step 04                                                                | MzidToTSVConverter            | .mzid file                                    | .tsv file                                                      | [`step05net462.sh`](step05/step05net462.sh)                     | [`step05net462_phospho.sh`](step06/step05net462_phospho.sh)      |
+| 05   | Create a tab-separated value file listing peptide IDs from step 04                                                                | MzidToTSVConverter            | .mzid file                                    | .tsv file                                                      | [`step05net462.sh`](step05/step05net462.sh)                     | [`step05net462_phospho.sh`](step05/step05net462_phospho.sh)      |
 | 06   | Create tab-delimited files required for step 7; files contain peptide IDs, unique sequence info, and residue modification details | PeptideHitResultsProcessor    | .tsv file                                     | _syn.txt file and several related files                        | [`step06phrp.sh`](step06/step06phrp.sh)                         | [`step06phrp_phospho.sh`](step06/step06phrp_phospho.sh)          |
 | 07   | Localize the position of Phosphorylation on S, T, and Y residues in phosphopeptides                                               | Ascore                        | _syn.txt files, _FIXED.mzML file, .fasta file | _syn_plus_ascore.txt file                                      |     n/a                                                         | [`step07ascore_phospho.sh`](step07/step07ascore_phospho.sh)      |
 
@@ -173,7 +173,7 @@ docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidj
 
 Run in docker: \
 [`step05net462.sh`](step05/step05net462.sh) \
-[`step05net462_phospho.sh`](step06/step05net462_phospho.sh)
+[`step05net462_phospho.sh`](step05/step05net462_phospho.sh)
 
 
 **ISSUE**: it does not create the output directory: "`Could not find a part of the path`". Can we change that?
