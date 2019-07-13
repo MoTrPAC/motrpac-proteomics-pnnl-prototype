@@ -65,14 +65,16 @@ Run in docker: \
 [`step00masic_phospho.sh`](step00/step00masic_phospho.sh)
 
 
+### Step 01: Convert `.raw` to `.mzML` files
 
-### STEP 01: convert `.raw` to `.mzML` files
+[`step01convertRaw.sh`](step01/step01convertRaw.sh) \
+[`step01convertRaw_phospho.sh`](step01/step01convertRaw_phospho.sh)
 
 - Input directory/files: `/data/test_global/raw/*.raw`
-- Run: [step01/convertRaw.sh](step01/convertRaw.sh)
 - Output directory: `msgfplus_input/*.mzML`
 
-### STEP 02: FULLY TRYPTIC SEARCH
+
+### Step 02: Identify peptides using a fully tryptic search
 
 Run on Docker MS-GF+ using the `.mzML` file from `msconvert` (step 1), get a `.mzid` file
   
@@ -84,13 +86,15 @@ Build Docker image (one time, or after a new version of MS-GF+ is released):
 docker build -t "biodavidjm:msgfplus" .
 ```
 
-And start container:
+Start the container:
 
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:msgfplus  /bin/bash
 ```
 
-Run in docker: [step02/step02msgfplus_tryptic.sh](step02/step02msgfplus_tryptic.sh)
+Run in docker: \
+[`step02msgfplus_tryptic.sh`](step02/step02msgfplus_tryptic.sh) \
+[`step02msgfplus_tryptic_phospho.sh`](step02/step02msgfplus_tryptic_phospho.sh)
 
 - Input directory/files: `/data/test_global/msgfplus_input/`
   + `*.mzML`
@@ -105,11 +109,12 @@ Run in docker: [step02/step02msgfplus_tryptic.sh](step02/step02msgfplus_tryptic.
 
 **FIX**: Release 2019.06.28 (commit [59a093c](https://github.com/MSGFPlus/msgfplus/commit/59a093c4a0ca999dc24cf289ccbf261e9511610a))
 
-### Step 3:
+### Step 03: Use mass error histograms to in-silico re-calibrate the m/z values
 
 #### A) Run `msconvert` with the mzrefiner option to create a new `.mzML` file named `_FIXED.mzML`
 
-[`step03/step03a.sh`](step03/step03a.sh)
+[`step03a.sh`](step03/step03a.sh) \
+[`step03a_phospho.sh`](step03/step03a_phospho.sh)
 
 **ISSUE**: msconvert ignores the path to the specified output directory
 
@@ -122,7 +127,7 @@ cd step03/
 docker build -t "biodavidjm:ppmerror" .
 ```
 
-Start container:
+Start the container:
 
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ppmerror /bin/bash
@@ -143,7 +148,9 @@ Run the same docker container as in step02
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:msgfplus  /bin/bash
 ```
 
-And execute: [step04/step04msgfplus.sh](step04/step04msgfplus.sh)
+Run in docker: \
+[`step04msgfplus.sh`](step04/step04msgfplus.sh) \
+[`step04msgfplus_phospho.sh`](step04/step04msgfplus_phospho) 
 
 
 ### Step 5: `MzidToTSVConverter`
@@ -157,13 +164,15 @@ cd step05/
 docker build -t "biodavidjm:mzid2tsv" .
 ```
 
-Start container:
+Start the container:
 
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:mzid2tsv /bin/bash
 ```
 
-And run in docker: [step05/step05net462.sh](step05/step05net462.sh)
+Run in docker: \
+[`step05net462.sh`](step05/step05net462.sh) \
+[`step05net462_phospho.sh`](step06/step05net462_phospho.sh)
 
 
 **ISSUE**: it does not create the output directory: "`Could not find a part of the path`". Can we change that?
@@ -180,13 +189,15 @@ cd step06/
 docker build -t "biodavidjm:phrp" .
 ```
 
-Start container:
+Start the container:
 
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:phrp /bin/bash
 ```
 
-And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
+Run in docker: \
+[`step06phrp.sh`](step06/step06phrp.sh) \
+[`step06phrp_phospho.sh`](step06/step06phrp_phospho.sh) 
 
 
 ### Step 7: AScore
@@ -194,11 +205,11 @@ And run in docker: [`step06/step06phrp.sh`](step06/step06phrp.sh)
 Build:
 
 ```
-cd step06/
+cd step07/
 docker build -t "biodavidjm:ascore" .
 ```
 
-Start container:
+Start the container:
 
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ascore /bin/bash
