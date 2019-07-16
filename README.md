@@ -178,6 +178,7 @@ Run in docker: \
 
 **ISSUE**: it does not create the output directory: "`Could not find a part of the path`". Can we change that?
 
+**FIX**: Release 1.3.3 of MzidToTsvConverter fixes this; see [Issue 2](https://github.com/AshleyLab/motrpac-proteomics-pnnl-prototype/issues/7#issuecomment-511631040)
 
 ### Step 6: `PeptideHitResultsProcRunner`
 
