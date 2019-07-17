@@ -7,8 +7,8 @@ RUN apt-get -y install wget
 RUN apt-get -y install unzip
 RUN wget -P /app/mzid2tsv/ https://github.com/PNNL-Comp-Mass-Spec/Mzid-To-Tsv-Converter/releases/download/v1.3.2/MzidToTsvConverter.zip
 RUN cd /app/mzid2tsv/ && unzip MzidToTsvConverter.zip
-RUN wget -P /app/phrp/ https://github.com/PNNL-Comp-Mass-Spec/PHRP/releases/download/v1.5.7113/PeptideHitResultsProcessor_v1.5.7113.zip
+RUN wget -P /app/phrp/ https://github.com/PNNL-Comp-Mass-Spec/PHRP/releases/download/v1.5.7130/PeptideHitResultsProcessor_Debian.zip
 RUN cd /app/phrp/ && unzip PeptideHitResultsProcessor*.zip
-RUN wget -P /app/ascore/ https://github.com/PNNL-Comp-Mass-Spec/AScore/releases/download/v1.0.7113/AScore_Program_CentOS.zip
-RUN cd /app/ascore/ && unzip AScore_Program_CentOS.zip
+RUN wget -P /app/ascore/ https://github.com/PNNL-Comp-Mass-Spec/AScore/releases/download/v1.0.7134/AScore_Program_Debian.zip
+RUN cd /app/ascore/ && unzip AScore_Program_Debian.zip
 
