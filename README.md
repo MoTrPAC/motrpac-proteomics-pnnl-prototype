@@ -90,7 +90,7 @@ docker build -t "biodavidjm:msgfplus" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it biodavidjm:msgfplus  /bin/bash
 ```
 
 Run in docker: \
@@ -131,7 +131,7 @@ docker build -t "biodavidjm:ppmerror" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ppmerror /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it biodavidjm:ppmerror /bin/bash
 ```
 
 Run in docker: \
@@ -146,7 +146,7 @@ Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file
 Run the same docker container as in step02
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it biodavidjm:msgfplus  /bin/bash
 ```
 
 Run in docker: \
@@ -168,7 +168,7 @@ docker build -t "biodavidjm:mzid2tsv" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:mzid2tsv /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it biodavidjm:mzid2tsv /bin/bash
 ```
 
 Run in docker: \
@@ -179,6 +179,7 @@ Run in docker: \
 **ISSUE**: it does not create the output directory: "`Could not find a part of the path`". Can we change that?
 
 **FIX**: Release 1.3.3 of MzidToTsvConverter fixes this; see [Issue 2](https://github.com/AshleyLab/motrpac-proteomics-pnnl-prototype/issues/7#issuecomment-511631040)
+
 
 ### Step 6: `PeptideHitResultsProcRunner`
 
@@ -194,7 +195,7 @@ docker build -t "biodavidjm:phrp" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:phrp /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it biodavidjm:phrp /bin/bash
 ```
 
 Run in docker: \
@@ -214,11 +215,19 @@ docker build -t "biodavidjm:ascore" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:ascore /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it biodavidjm:ascore /bin/bash
 ```
 
 Run in docker: \
 [`step07ascore_phospho.sh`](step07/step07ascore_phospho.sh)
+
+
+**Errors**:
+
+```
+Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile.txt".
+Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile2.txt"
+```
 
 
 # Questions

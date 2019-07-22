@@ -5,10 +5,13 @@ MAINTAINER DavidJM <biodavidjm@gmail.com>
 RUN apt-get update
 RUN apt-get -y install wget
 RUN apt-get -y install unzip
-RUN wget -P /app/mzid2tsv/ https://github.com/PNNL-Comp-Mass-Spec/Mzid-To-Tsv-Converter/releases/download/v1.3.2/MzidToTsvConverter.zip
-RUN cd /app/mzid2tsv/ && unzip MzidToTsvConverter.zip
-RUN wget -P /app/phrp/ https://github.com/PNNL-Comp-Mass-Spec/PHRP/releases/download/v1.5.7130/PeptideHitResultsProcessor_Debian.zip
-RUN cd /app/phrp/ && unzip PeptideHitResultsProcessor*.zip
 RUN wget -P /app/ascore/ https://github.com/PNNL-Comp-Mass-Spec/AScore/releases/download/v1.0.7134/AScore_Program_Debian.zip
 RUN cd /app/ascore/ && unzip AScore_Program_Debian.zip
-
+RUN apt-get update
+RUN apt-get -y install gcc
+RUN wget -P /app/sqlite/ https://github.com/AshleyLab/motrpac-proteomics-pnnl-prototype/raw/master/step06/sqlite-netFx-full-source-1.0.111.0.zip
+RUN cd /app/sqlite/ && unzip sqlite-netFx-full-source-1.0.111.0.zip
+RUN chmod +x /app/sqlite/Setup/compile-interop-assembly-release.sh
+RUN /app/sqlite/Setup/compile-interop-assembly-release.sh
+RUN cp /app/sqlite/bin/2013/Release/bin/libSQLite.Interop.so /app/ascore/
+RUN chmod -x /app/ascore/libSQLite.Interop.so
