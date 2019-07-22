@@ -3,6 +3,7 @@ Prototype of PNNL pipeline
 
 ___Testing implementation of PNNL pipeline on BIC infrastructure___
 
+![Schema](docs/proteomics_schema.png)
 
 Initial documents provided by the PNNL with details of the pipeline (converted to `md` format by the BIC) :
 
@@ -10,6 +11,10 @@ Initial documents provided by the PNNL with details of the pipeline (converted t
 - [SOFTWARE_SOURCES](docs/SOFTWARE_SOURCES.md)
   
 The [scripts](scripts/README.md) directory contains additional files and scripts.
+
+
+
+
 
 # WORKFLOW
 
@@ -227,6 +232,18 @@ Run in docker: \
 ```
 Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile.txt".
 Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile2.txt"
+```
+
+```
+Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile.txt".
+Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile2.txt".
+root@2d794a5f4508:/# sh step07/step07ascore_phospho.sh
+Error: Could not find the spectra file for dataset "MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED" in /data/test_phospho/phrp_output or one directory up
+Error: Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
+Error: Program failure, possibly incorrect search engine type; Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
+Error: Could not find the spectra file for dataset "MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_FIXED" in /data/test_phospho/phrp_output or one directory up
+Error: Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
+Error: Program failure, possibly incorrect search engine type; Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
 ```
 
 
