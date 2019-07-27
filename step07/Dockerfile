@@ -5,7 +5,7 @@ MAINTAINER DavidJM <biodavidjm@gmail.com>
 RUN apt-get update
 RUN apt-get -y install wget
 RUN apt-get -y install unzip
-RUN wget -P /app/ascore/ https://github.com/PNNL-Comp-Mass-Spec/AScore/releases/download/v1.0.7134/AScore_Program_Debian.zip
+RUN wget -P /app/ascore/ https://github.com/PNNL-Comp-Mass-Spec/AScore/releases/download/v1.0.7146/AScore_Program_Debian.zip
 RUN cd /app/ascore/ && unzip AScore_Program_Debian.zip
 RUN apt-get update
 RUN apt-get -y install gcc
