@@ -63,7 +63,7 @@ docker build -t "biodavidjm:masic" .
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -it biodavidjm:masic /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it biodavidjm:masic /bin/bash
 ```
 
 Run in docker: \
@@ -249,7 +249,6 @@ Error: Program failure, possibly incorrect search engine type; Could not find sp
 
 # Questions
 
-- ~~Why is the MSGF+ version so old (v2017.08.23) (23 August 2017)? (which fails)~~: Matt: Use the latest version.
 - How to resolve: `1000_collect_data.R` used to create `msgfData_original.RData`  (only works inside PNNL due to dependency on internal resources)
 
 
