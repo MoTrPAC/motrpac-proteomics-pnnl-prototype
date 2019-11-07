@@ -57,13 +57,13 @@ MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.raw
 Build Docker image (one time, or after a new version of MASIC is released):
 
 ```
-docker build -t "biodavidjm:masic" .
+docker build -t "motrpac:masic" .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it biodavidjm:masic /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it motrpac:masic /bin/bash
 ```
 
 Run in docker: \
@@ -89,13 +89,13 @@ Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in dire
 Build Docker image (one time, or after a new version of MS-GF+ is released):
 
 ```
-docker build -t "biodavidjm:msgfplus" .
+docker build -t "motrpac:msgfplus" .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it biodavidjm:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac:msgfplus  /bin/bash
 ```
 
 Run in docker: \
@@ -130,13 +130,13 @@ Build Docker image (only once)
 
 ```
 cd step03/
-docker build -t "biodavidjm:ppmerror" .
+docker build -t "motrpac:ppmerror" .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it biodavidjm:ppmerror /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac:ppmerror /bin/bash
 ```
 
 Run in docker: \
@@ -151,7 +151,7 @@ Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file
 Run the same docker container as in step02
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it biodavidjm:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac:msgfplus  /bin/bash
 ```
 
 Run in docker: \
@@ -167,13 +167,13 @@ Build Docker image (one time, or after a new version of MzidToTsvConverter is re
 
 ```
 cd step05/
-docker build -t "biodavidjm:mzid2tsv" .
+docker build -t "motrpac:mzid2tsv" .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it biodavidjm:mzid2tsv /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac:mzid2tsv /bin/bash
 ```
 
 Run in docker: \
@@ -194,13 +194,13 @@ Build Docker image (one time, or after a new version of PeptideHitResultsProcRun
 
 ```
 cd step06/
-docker build -t "biodavidjm:phrp" .
+docker build -t "motrpac:phrp" .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it biodavidjm:phrp /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac:phrp /bin/bash
 ```
 
 Run in docker: \
@@ -214,37 +214,18 @@ Build:
 
 ```
 cd step07/
-docker build -t "biodavidjm:ascore" .
+docker build -t "motrpac:ascore" .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it biodavidjm:ascore /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac:ascore /bin/bash
 ```
 
 Run in docker: \
 [`step07ascore_phospho.sh`](step07/step07ascore_phospho.sh)
 
-
-**Errors**:
-
-```
-Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile.txt".
-Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile2.txt"
-```
-
-```
-Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile.txt".
-Error: Program failure, possibly incorrect search engine type; Could not find a part of the path "/data/test_phospho/ascore_output/AScore_LogFile2.txt".
-root@2d794a5f4508:/# sh step07/step07ascore_phospho.sh
-Error: Could not find the spectra file for dataset "MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED" in /data/test_phospho/phrp_output or one directory up
-Error: Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
-Error: Program failure, possibly incorrect search engine type; Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
-Error: Could not find the spectra file for dataset "MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_FIXED" in /data/test_phospho/phrp_output or one directory up
-Error: Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
-Error: Program failure, possibly incorrect search engine type; Could not find spectra file for dataset "MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_FIXED" in path "/data/test_phospho/phrp_output"
-```
 
 
 # Questions
@@ -254,13 +235,8 @@ Error: Program failure, possibly incorrect search engine type; Could not find sp
 
 # Notes
 
-`Mono` is used to run `MASIC` on Linux:
 
-```
-mono MASIC.exe /I:MoTrPAC_Pilot_TMT_x.raw /P:TMT10_LTQ-FT_10ppm_ReporterTol0.003Da_2014-08-06.xml
-```
- 
-For `MSConvert.exe`, the Linux version is available [here](http://proteowizard.sourceforge.net/download.html). Example command line they have using docker:
+`MSConvert.exe`: Linux version is available [here](http://proteowizard.sourceforge.net/download.html). Example command line they have using docker:
 
 ```
 docker run -it --rm -e WINEDEBUG=-all -v /your/data:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /data/file.raw
