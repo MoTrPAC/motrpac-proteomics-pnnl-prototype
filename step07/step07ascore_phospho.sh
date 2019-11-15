@@ -8,7 +8,7 @@ mono /app/ascore/AScore_Console.exe \
 -U:MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_syn_plus_ascore.txt \
 -O:/data/test_phospho/ascore_output/ \
 -L:/data/test_phospho/ascore_output/AScore_LogFile.txt \
--Fasta:/data/ID_007275_FB1B42E8.fasta > /data/test_phospho/step07_ascore.log
+-Fasta:/data/ID_007275_FB1B42E8.fasta | tee /data/test_phospho/step07_ascore.log
 
 mono /app/ascore/AScore_Console.exe \
 -T:msgfplus \
@@ -18,4 +18,4 @@ mono /app/ascore/AScore_Console.exe \
 -U:MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03_syn_plus_ascore.txt \
 -O:/data/test_phospho/ascore_output/ \
 -L:/data/test_phospho/ascore_output/AScore_LogFile.txt \
--Fasta:/data/ID_007275_FB1B42E8.fasta >> /data/test_phospho/step07_ascore.log
+-Fasta:/data/ID_007275_FB1B42E8.fasta | tee -a /data/test_phospho/step07_ascore.log
