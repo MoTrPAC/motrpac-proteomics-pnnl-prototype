@@ -2,7 +2,7 @@
 
 # STEP 3a
 
-docker run -it --rm \
+docker run --rm \
 -e WINEDEBUG=-all \
 -v $PWD/data:/data:rw \
 chambm/pwiz-skyline-i-agree-to-the-vendor-licenses \
@@ -13,7 +13,7 @@ wine msconvert /data/test_global/msgfplus_input/MoTrPAC_Pilot_TMT_W_S1_01_12Oct1
 --32 --mzML | tee data/test_global/step03a.log
 
 
-docker run -it --rm \
+docker run --rm \
 -e WINEDEBUG=-all \
 -v $PWD/data:/data:rw \
 chambm/pwiz-skyline-i-agree-to-the-vendor-licenses \
