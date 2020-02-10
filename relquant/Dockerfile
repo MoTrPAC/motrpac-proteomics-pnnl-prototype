@@ -1,0 +1,13 @@
+FROM rocker/tidyverse:3.6.1
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+ unixodbc \
+ unixodbc-dev \
+ freetds-dev \
+ freetds-bin \
+ tdsodbc \
+ libcurl4-openssl-dev \
+ libxml2-dev \
+ libnetcdf-dev \
+ libssl-dev
+RUN R -e 'remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)'
