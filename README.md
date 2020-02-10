@@ -52,23 +52,28 @@ MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.raw
 
 ## DETAILS
 
+### Notes on containers
+
+[Check this file](build_containers.sh) for details about containers (build locally, tag, push to container registry, etc). All the steps described below are based on "interactive" mode. To directly run the scripts in the containers follow the steps on [this file](pipeline_driver.sh). 
+
 ### Step 00: MASIC
 
 Build Docker image (one time, or after a new version of MASIC is released):
 
-```
-docker build -t "motrpac:masic" .
-```
 
-Start the container:
+Start the container (interactive mode)
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it motrpac:masic /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it motrpac-prot-masic:v1.0_20200115 /bin/bash
 ```
 
 Run in docker: \
 [`step00masic.sh`](step00/step00masic.sh) \
 [`step00masic_phospho.sh`](step00/step00masic_phospho.sh)
+
+```
+docker exec motrpac-prot-masic step00/step00masic.sh
+```
 
 
 ### Step 01: Convert `.raw` to `.mzML` files
@@ -86,16 +91,10 @@ Run on Docker MS-GF+ using the `.mzML` file from `msconvert` (step 1), get a `.m
   
 Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in directory [`step02`](step02/Dockerfile).
 
-Build Docker image (one time, or after a new version of MS-GF+ is released):
+Start the container (interactive mode)
 
 ```
-docker build -t "motrpac:msgfplus" .
-```
-
-Start the container:
-
-```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac-prot-msgfplus  /bin/bash
 ```
 
 Run in docker: \
@@ -108,12 +107,6 @@ Run in docker: \
   +  `MSGFPlus_Mods.txt` config file
 - Output directory/file: `/data/test_global/msgfplus_output/*.mzid`
 
-
-**ISSUE**: [Error] Cannot create folder `/data/msgfplus_output/filename.mzid`
-
-**SUGGESTION**: Let MSGF+ create the output directory/file name by default
-
-**FIX**: Release 2019.06.28 (commit [59a093c](https://github.com/MSGFPlus/msgfplus/commit/59a093c4a0ca999dc24cf289ccbf261e9511610a))
 
 ### Step 03: Use mass error histograms to in-silico re-calibrate the m/z values
 
@@ -129,14 +122,13 @@ Run in docker: \
 Build Docker image (only once)
 
 ```
-cd step03/
-docker build -t "motrpac:ppmerror" .
+docker build -t "motrpac-prot-ppmerror" -f step03/Dockerfile .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac:ppmerror /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac-prot-ppmerror /bin/bash
 ```
 
 Run in docker: \
@@ -151,7 +143,7 @@ Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file
 Run the same docker container as in step02
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac:msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac-prot-msgfplus  /bin/bash
 ```
 
 Run in docker: \
@@ -166,24 +158,18 @@ Run MzidToTSVConverter to convert `Dataset_final.mzid` to `Dataset.tsv`
 Build Docker image (one time, or after a new version of MzidToTsvConverter is released):
 
 ```
-cd step05/
-docker build -t "motrpac:mzid2tsv" .
+docker build -t "motrpac-prot-mzid2tsv" -f step05/Dockerfile .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac:mzid2tsv /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac-prot-mzid2tsv /bin/bash
 ```
 
 Run in docker: \
 [`step05net462.sh`](step05/step05net462.sh) \
 [`step05net462_phospho.sh`](step05/step05net462_phospho.sh)
-
-
-**ISSUE**: it does not create the output directory: "`Could not find a part of the path`". Can we change that?
-
-**FIX**: Release 1.3.3 of MzidToTsvConverter fixes this; see [Issue 2](https://github.com/AshleyLab/motrpac-proteomics-pnnl-prototype/issues/7#issuecomment-511631040)
 
 
 ### Step 6: `PeptideHitResultsProcRunner`
@@ -193,44 +179,52 @@ Run PeptideHitResultsProcRunner using the .tsv file from step 5:
 Build Docker image (one time, or after a new version of PeptideHitResultsProcRunner is released):
 
 ```
-cd step06/
-docker build -t "motrpac:phrp" .
+docker build -t "motrpac-prot-phrp" -f step06/Dockerfile .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac:phrp /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac-prot-phrp /bin/bash
 ```
 
 Run in docker: \
-[`step06phrp.sh`](step06/step06phrp.sh) \
-[`step06phrp_phospho.sh`](step06/step06phrp_phospho.sh) 
-
+`sh` [`step06phrp.sh`](step06/step06phrp.sh) \
+`sh` [`step06phrp_phospho.sh`](step06/step06phrp_phospho.sh) 
 
 ### Step 7: AScore
 
 Build:
 
 ```
-cd step07/
-docker build -t "motrpac:ascore" .
+docker build -t "motrpac-prot-ascore" -f step07/Dockerfile .
 ```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac:ascore /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac-prot-ascore /bin/bash
 ```
 
 Run in docker: \
 [`step07ascore_phospho.sh`](step07/step07ascore_phospho.sh)
 
 
+## Relative Quantification: PlexedPiper
 
-# Questions
+[PlexedPiper repo](https://github.com/vladpetyuk/PlexedPiper)
 
-- How to resolve: `1000_collect_data.R` used to create `msgfData_original.RData`  (only works inside PNNL due to dependency on internal resources)
+
+```
+docker build -t "motrpac-prot-relquant" -f relquant/Dockerfile .
+```
+
+Start container:
+
+```
+docker run -v $PWD/data:/data:rw -v $PWD/relquant:/relquant:rw -it motrpac-prot-relquant /bin/bash
+```
+
 
 
 # Notes
