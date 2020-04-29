@@ -14,8 +14,6 @@ The [scripts](scripts/README.md) directory contains additional files and scripts
 
 
 
-
-
 # WORKFLOW
 
 ## GLOBAL PROTEOME Test files
@@ -50,11 +48,12 @@ MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03.raw
 | 06   | Create tab-delimited files required for step 7; files contain peptide IDs, unique sequence info, and residue modification details | PeptideHitResultsProcessor    | .tsv file                                     | _syn.txt file and several related files                        | [`step06phrp.sh`](step06/step06phrp.sh)                         | [`step06phrp_phospho.sh`](step06/step06phrp_phospho.sh)          |
 | 07   | Localize the position of Phosphorylation on S, T, and Y residues in phosphopeptides                                               | Ascore                        | _syn.txt files, _FIXED.mzML file, .fasta file | _syn_plus_ascore.txt file                                      |     n/a                                                         | [`step07ascore_phospho.sh`](step07/step07ascore_phospho.sh)      |
 
+
 ## DETAILS
 
 ### Notes on containers
 
-[Check this file](build_containers.sh) for details about containers (build locally, tag, push to container registry, etc). All the steps described below are based on "interactive" mode. To directly run the scripts in the containers follow the steps on [this file](pipeline_driver.sh). 
+[Check this file](build_containers.sh) for details about containers (build, tag, and push to container registry). All the steps described below are based on "interactive" mode. To directly run the scripts in the containers follow the steps on [this file](pipeline_driver.sh). 
 
 ### Step 00: MASIC
 
@@ -94,7 +93,7 @@ Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in dire
 Start the container (interactive mode)
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac-prot-msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac-prot-msgfplus:v1.1_20200314  /bin/bash
 ```
 
 Run in docker: \
@@ -119,16 +118,11 @@ Run in docker: \
 
 #### B) Run `PPMErrorCharter` using the `.mzid` file from step 2a and the `_FIXED.mzML` file from step 3a
 
-Build Docker image (only once)
-
-```
-docker build -t "motrpac-prot-ppmerror" -f step03/Dockerfile .
-```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac-prot-ppmerror /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac-prot-ppmerror:v1.0_20200115 /bin/bash
 ```
 
 Run in docker: \
@@ -143,7 +137,7 @@ Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file
 Run the same docker container as in step02
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac-prot-msgfplus  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac-prot-msgfplus:v1.1_20200314  /bin/bash
 ```
 
 Run in docker: \
@@ -155,16 +149,10 @@ Run in docker: \
 
 Run MzidToTSVConverter to convert `Dataset_final.mzid` to `Dataset.tsv`
 
-Build Docker image (one time, or after a new version of MzidToTsvConverter is released):
-
-```
-docker build -t "motrpac-prot-mzid2tsv" -f step05/Dockerfile .
-```
-
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac-prot-mzid2tsv /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac-prot-mzid2tsv:v1.0_20200115 /bin/bash
 ```
 
 Run in docker: \
@@ -176,16 +164,10 @@ Run in docker: \
 
 Run PeptideHitResultsProcRunner using the .tsv file from step 5:
 
-Build Docker image (one time, or after a new version of PeptideHitResultsProcRunner is released):
-
-```
-docker build -t "motrpac-prot-phrp" -f step06/Dockerfile .
-```
-
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac-prot-phrp /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac-prot-phrp:v1.0_20200115 /bin/bash
 ```
 
 Run in docker: \
@@ -194,16 +176,11 @@ Run in docker: \
 
 ### Step 7: AScore
 
-Build:
-
-```
-docker build -t "motrpac-prot-ascore" -f step07/Dockerfile .
-```
 
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac-prot-ascore /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac-prot-ascore:v1.0_20200115 /bin/bash
 ```
 
 Run in docker: \
@@ -214,10 +191,6 @@ Run in docker: \
 
 [PlexedPiper repo](https://github.com/vladpetyuk/PlexedPiper)
 
-
-```
-docker build -t "motrpac-prot-relquant" -f relquant/Dockerfile .
-```
 
 Start container:
 
