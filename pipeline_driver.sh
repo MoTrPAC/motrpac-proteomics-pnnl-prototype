@@ -8,6 +8,7 @@
 [ ! -z $(docker images -q motrpac-prot-ppmerror) ] || echo "docker container < motrpac-prot-ppmerror > does not exist"
 [ ! -z $(docker images -q motrpac-prot-mzid2tsv) ] || echo "docker container < motrpac-prot-mzid2tsv > does not exist"
 [ ! -z $(docker images -q motrpac-prot-phrp) ] || echo "docker container < motrpac-prot-phrp > does not exist"
+[ ! -z $(docker images -q motrpac-relquant) ] || echo "docker container < motrpac-relquant > does not exist"
 
 # Step 00
 docker run -v $PWD/data:/data:rw \
@@ -62,6 +63,11 @@ docker run -v $PWD/data:/data:rw \
 -v $PWD/parameters:/parameters:rw \
 -v $PWD/step06:/step06:rw \
 motrpac-prot-ascore:v1.0_20200115 bash step07/step07ascore_phospho.sh
+
+# Relative quantification step
+docker run -v $PWD/data:/data:rw \
+-v $PWD/relquant:/relquant:rw \
+motrpac-relquant:v1.0_20200731 bash relquant/relquant.sh
 
 
 

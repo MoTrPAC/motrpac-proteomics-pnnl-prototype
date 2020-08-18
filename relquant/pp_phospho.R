@@ -8,9 +8,10 @@
 # -o /relquant
 
 install.packages("optparse")
-# install.packages("~/github/vladpetyuk/PlexedPiper/", 
-#                  repos = NULL, 
-#                  type = "source")
+if(!require("remotes", quietly = T)) install.packages("remotes")
+remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = F)
+
+BiocManager::install("Biostrings")
 
 # Load libraries
 library(MSnID)
@@ -35,49 +36,53 @@ option_list <- list(
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
 
+opt = list()
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-path_to_MSGF_results <- opt$msgf_output_folder
+msnid <- read_msgf_data(opt$msgf_output_folder, "_syn_plus_ascore.txt")
 
-msnid <- MSnID(".")
-x <- PlexedPiper:::collate_files(path_to_MSGF_results, "_syn.txt") %>% 
-  mutate(accession = Protein,
-         calculatedMassToCharge = (MH + (Charge - 1) * MSnID:::.PROTON_MASS)/Charge,
-         chargeState = Charge, 
-         experimentalMassToCharge = PrecursorMZ,
-         isDecoy = grepl("^XXX", Protein),
-         peptide = Peptide,
-         spectrumFile = Dataset, 
-         spectrumID = Scan) %>%
-  mutate(pepSeq = MSnID:::.get_clean_peptide_sequence(peptide))
-psms(msnid) <- x
+msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
 
-message("- Correct for isotope selection error")
-msnid <- correct_peak_selection(msnid)
-
-message("- MS/MS ID filter and peptide level")
 msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
 
-message("- Switching annotation from RefSeq to gene symbols")
-msnid <- remap_accessions_refseq_to_gene(msnid, 
-                                         organism_name="Rattus norvegicus")
+msnid <- infer_parsimonious_accessions(msnid)
 
-message("   + Loading fasta file")
-path_to_FASTA <- opt$fasta_file
+msnid <- remap_accessions_refseq_to_gene(msnid, organism_name="Rattus norvegicus")
 
-path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(
-  path_to_FASTA, organism_name="Rattus norvegicus")
+path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(opt$fasta_file, organism_name="Rattus norvegicus")
 
-message("- MS/MS ID filter at protein level")
 msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA_gene)
+
 msnid <- filter_msgf_data_protein_level(msnid, 0.01)
 
-message("- Inference of parsimonious protein set")
-msnid <- infer_parsimonious_accessions(msnid, unique_only=TRUE)
-
-message("- Remove decoy accessions")
 msnid <- apply_filter(msnid, "!isDecoy")
+
+fst <- Biostrings::readAAStringSet(path_to_FASTA_gene, format="fasta", 
+                       nrec=-1L, skip=0L, use.names=TRUE)
+ids <- psms(msnid) %>%
+  distinct(accession, peptide)
+ids_with_sites <- map_mod_sites(ids, fst, "accession", "peptide", "*")
+
+ids_with_sites <- ids_with_sites %>%
+  mutate(idx = map(PepLoc, length) %>% unlist) %>%
+  filter(idx != 0) %>%
+  dplyr::select(-idx)
+
+ids_with_sites_simplified <- ids_with_sites %>%
+  dplyr::select(accession, peptide, SiteCollapsedFirst) %>%
+  mutate(site = unlist(SiteCollapsedFirst) %>%
+           gsub(",","_",.) %>%
+           paste(accession, ., sep="-")) %>%
+  dplyr::select(-SiteCollapsedFirst)
+
+psms(msnid) <- inner_join(psms(msnid), ids_with_sites_simplified)
+
+psms(msnid) <- psms(msnid) %>%
+  inner_join(ids_with_sites_simplified)
+
+
+
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
@@ -125,5 +130,72 @@ write.table(quant_cross_tab,
             quote=F, sep="\t", eol="\r\n",)
 
 unlink(".Rcache", recursive=TRUE)
+
+
+
+
+
+
+# remap to site notation
+# needed: 1) accession, 
+#         2) fasta with accession, 
+#         3) peptide sequence with asterisc location
+# Let's borrow vp.misc remapping. !!! Ultimately it should be moved to MSnID
+fst <- readAAStringSet(path_to_FASTA_gene, format="fasta", 
+                       nrec=-1L, skip=0L, use.names=TRUE)
+ids <- psms(msnid) %>%
+  distinct(accession, peptide)
+ids_with_sites <- map_PTM_sites(ids, fst, "accession", "peptide", "*")
+
+ids_with_sites <- ids_with_sites %>%
+  mutate(idx = map(PepLoc, length) %>% unlist) %>%
+  filter(idx != 0) %>%
+  dplyr::select(-idx)
+
+ids_with_sites_simplified <- ids_with_sites %>%
+  dplyr::select(accession, peptide, SiteCollapsedFirst) %>%
+  mutate(site = unlist(SiteCollapsedFirst) %>%
+           gsub(",","_",.) %>%
+           paste(accession, ., sep="-")) %>%
+  dplyr::select(-SiteCollapsedFirst)
+
+psms(msnid) <- inner_join(psms(msnid), ids_with_sites_simplified)
+
+psms(msnid) <- psms(msnid) %>%
+  inner_join(ids_with_sites_simplified)
+
+
+
+
+
+
+masic_data <- read_masic_data_from_DMS(3432, interference_score = T)
+masic_data <- filter_masic_data(masic_data, 0.5, 0)
+
+library(dplyr)
+fractions <- masic_data %>%
+  distinct(Dataset) %>%
+  mutate(PlexID = sub("SHSY5Y_IIS_3x3_P_(B\\d).*","\\1",Dataset))
+head(fractions)
+
+library(readr)
+samples <- read_tsv("../../3432/samples.txt")
+head(samples,10)
+
+ref <- "(`10min_control1`*`10min_control2`*`10min_Insulin`*`10min_IGF1`*`10min_IGF2`*`60min_control1`*`60min_control2`*`60min_Insulin`*`60min_IGF1`*`60min_IGF2`)^(1/10)"
+references <- samples %>%
+  distinct(PlexID, QuantBlock) %>%
+  mutate(Reference = ref)
+
+
+aggregation_level <- c("site")
+quant_cross_tab <- create_crosstab(msnid, 
+                                   masic_data, 
+                                   aggregation_level, 
+                                   fractions, samples, references)
+dim(quant_cross_tab)
+head(quant_cross_tab)
+```
+
 
 
