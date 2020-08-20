@@ -9,7 +9,7 @@ docker run -it \
 chambm/pwiz-skyline-i-agree-to-the-vendor-licenses \
 wine msconvert /data/test_phospho/msgfplus_input/MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03.mzML \
 -o /data/test_phospho/msgfplus_output/ \
---outfile /data/test_phospho/msgfplus_output/MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03_FIXED.mzML \
+--outfile /data/test_phospho/msgfplus_output/MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03.mzML \
 --filter "mzRefiner /data/test_phospho/msgfplus_output/MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03.mzid thresholdValue=-1e-10 thresholdStep=10 maxSteps=2" \
 --32 --mzML | tee data/test_phospho/step03.log
 
