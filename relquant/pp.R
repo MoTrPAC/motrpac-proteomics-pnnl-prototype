@@ -38,20 +38,8 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-path_to_MSGF_results <- opt$msgf_output_folder
 
-msnid <- MSnID(".")
-x <- PlexedPiper:::collate_files(path_to_MSGF_results, "_syn.txt") %>% 
-  mutate(accession = Protein,
-         calculatedMassToCharge = (MH + (Charge - 1) * MSnID:::.PROTON_MASS)/Charge,
-         chargeState = Charge, 
-         experimentalMassToCharge = PrecursorMZ,
-         isDecoy = grepl("^XXX", Protein),
-         peptide = Peptide,
-         spectrumFile = Dataset, 
-         spectrumID = Scan) %>%
-  mutate(pepSeq = MSnID:::.get_clean_peptide_sequence(peptide))
-psms(msnid) <- x
+msnid <- read_msgf_data(opt$msgf_output_folder, suffix = "_syn.txt")
 
 message("- Correct for isotope selection error")
 msnid <- correct_peak_selection(msnid)
@@ -64,10 +52,8 @@ msnid <- remap_accessions_refseq_to_gene(msnid,
                                          organism_name="Rattus norvegicus")
 
 message("   + Loading fasta file")
-path_to_FASTA <- opt$fasta_file
-
 path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(
-  path_to_FASTA, organism_name="Rattus norvegicus")
+  opt$fasta_file organism_name="Rattus norvegicus")
 
 message("- MS/MS ID filter at protein level")
 msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA_gene)
@@ -87,31 +73,15 @@ masic_data <- read_masic_data(path_to_MASIC_results, interference_score=TRUE)
 message("- Filtering MASIC data")
 masic_data <- filter_masic_data(masic_data, 0.5, 0)
 
-#fractions <- read_tsv(system.file("extdata/study_design/fractions.txt", package = "PlexedPiperTestData"))
-#fractions <- fractions[1:2,]
-#write.table(fractions,
-#            file=paste(study_design_folder,"fractions.txt",sep="/"),
-#            quote=F, sep="\t", eol="\r\n",)
 
 message("- Read fractions.txt")
 fractions <- read.table(paste(opt$study_design_folder,"fractions.txt",sep="/"))
 
 message("- Read samples.txt")
-#samples <- read_tsv(system.file("extdata/study_design/samples.txt", package = "PlexedPiperTestData"))
-#samples <- samples[1:10,]
-#write.table(samples,
-#            file=paste(study_design_folder,"samples.txt",sep="/"),
-#            quote=F, sep="\t", eol="\r\n",)
-samples <- read.table(paste(study_design_folder,"samples.txt",sep="/"))
+samples <- read.table(paste(opt$study_design_folder,"samples.txt",sep="/"))
 
 message("- Read reference.txt")
-#references <- filter(samples, ReporterAlias == "ref")
-#names(references)[names(references) == "ReporterAlias"] <- "Reference"
-#references <- references[c('PlexID', 'QuantBlock', 'Reference')]
-#write.table(references,
-#            file=paste(study_design_folder,"references.txt",sep="/"),
-#            quote=F, sep="\t", eol="\r\n",)
-references <- read.table(paste(study_design_folder,"references.txt",sep="/"))
+references <- read.table(paste(opt$study_design_folder,"references.txt",sep="/"))
 
 message("- Creating quantitative cross-tab")
 aggregation_level <- c("accession")
@@ -121,7 +91,7 @@ quant_cross_tab <- create_crosstab(msnid,
                                    fractions, samples, references)
 
 write.table(quant_cross_tab,
-            file=paste(opt$plexedpiper_output_folder,"quant_cross_tab.txt",sep="/"),
+            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
             quote=F, sep="\t", eol="\r\n",)
 
 unlink(".Rcache", recursive=TRUE)
