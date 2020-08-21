@@ -29,35 +29,31 @@ option_list <- list(
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
 
+opt = list()
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
 message("- Prepare MS/MS IDs")
-message("   + Read the MS-GF+ output")
-msnid <- read_msgf_data(opt$msgf_output_folder, suffix = "_syn.txt")
+message("   + Read the MS-GF+ output + Ascore")
+msnid <- read_msgf_data(opt$ascore_output_folder, "_syn_plus_ascore.txt")
+msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
 
-message("   + Correct for isotope selection error")
-msnid <- correct_peak_selection(msnid)
-
-message("   + MS/MS ID filter and peptide level")
+message("   + FDR filter")
 msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
 
-message("   + Switching annotation from RefSeq to gene symbols")
-msnid <- remap_accessions_refseq_to_gene(msnid, 
-                                         organism_name="Rattus norvegicus")
+message("   + Inference of parsimonius set")
+msnid <- infer_parsimonious_accessions(msnid)
 
-message("   + Loading fasta file")
-path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(
-  opt$fasta_file organism_name="Rattus norvegicus")
+message("   + Mapping sites to protein sequence")
+fst <- Biostrings::readAAStringSet(opt$fasta_file)
+names(fst) <- sub("^([A-Z]P_\\d+\\.\\d+)\\s.*", "\\1", names(fst))
+msnid <- map_mod_sites(msnid, fst, 
+                       accession_col = "accession", 
+                       peptide_mod_col = "Peptide", 
+                       mod_char = "*",
+                       site_delimiter = "lower")
 
-message("   + MS/MS ID filter at protein level")
-msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA_gene)
-msnid <- filter_msgf_data_protein_level(msnid, 0.01)
-
-message("   + Inference of parsimonious protein set")
-msnid <- infer_parsimonious_accessions(msnid, unique_only=TRUE)
-
-message("   + Remove decoy accessions")
+message("   + Remove decoy sequences")
 msnid <- apply_filter(msnid, "!isDecoy")
 
 message("- Prepare reporter ion intensities")
@@ -76,11 +72,11 @@ fractions <- read.table(paste(opt$study_design_folder,"fractions.txt",sep="/"))
 message("   + Read samples.txt")
 samples <- read.table(paste(opt$study_design_folder,"samples.txt",sep="/"))
 
-message("   + Read reference.txt")
+message("   + Read references.txt")
 references <- read.table(paste(opt$study_design_folder,"references.txt",sep="/"))
 
 message("- Create quantitative crosstab")
-aggregation_level <- c("accession")
+aggregation_level <- c("SiteID")
 quant_cross_tab <- create_crosstab(msnid, 
                                    masic_data, 
                                    aggregation_level, 
@@ -88,9 +84,7 @@ quant_cross_tab <- create_crosstab(msnid,
 
 message("- Save crosstab to file")
 write.table(quant_cross_tab,
-            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
+            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_phospho.txt",sep="/"),
             quote=F, sep="\t", eol="\r\n",)
 
 unlink(".Rcache", recursive=TRUE)
-
-
