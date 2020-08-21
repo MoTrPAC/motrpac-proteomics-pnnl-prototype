@@ -11,17 +11,10 @@ install.packages("optparse")
 if(!require("remotes", quietly = T)) install.packages("remotes")
 remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = F)
 
-BiocManager::install("Biostrings")
-
-# Load libraries
-library(MSnID)
 library(PlexedPiper)
-library(data.table)
-library(dplyr)
+library("optparse")
 
 # https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
-
-library("optparse")
 
 option_list <- list(
   make_option(c("-i", "--msgf_output_folder"), type="character", default=NULL, 
@@ -82,17 +75,16 @@ samples <- read.table(paste(opt$study_design_folder,"samples.txt",sep="/"))
 message("   + Read references.txt")
 references <- read.table(paste(opt$study_design_folder,"references.txt",sep="/"))
 
-message("- Create cross-tab")
+message("- Create quantitative crosstab")
 aggregation_level <- c("SiteID")
 quant_cross_tab <- create_crosstab(msnid, 
                                    masic_data, 
                                    aggregation_level, 
                                    fractions, samples, references)
-dim(quant_cross_tab)
-head(quant_cross_tab)
 
+message("- Save crosstab to file")
 write.table(quant_cross_tab,
-            file=paste(opt$plexedpiper_output_folder,"quant_cross_tab.txt",sep="/"),
+            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_phospho.txt",sep="/"),
             quote=F, sep="\t", eol="\r\n",)
 
 unlink(".Rcache", recursive=TRUE)
