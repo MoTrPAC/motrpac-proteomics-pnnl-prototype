@@ -91,6 +91,10 @@ quant_cross_tab <- create_crosstab(msnid,
                                    aggregation_level, 
                                    fractions, samples, references)
 
+quant_cross_tab <- signif(quant_cross_tab, 3)
+quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
+row.names(quant_cross_tab) <- NULL
+
 message("- Save crosstab to file")
 write.table(quant_cross_tab,
             file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
@@ -111,6 +115,8 @@ quant_cross_tab_rii <- create_crosstab(msnid,
                                        fractions, samples_rii, references_rii)
 
 quant_cross_tab_rii <- 2**quant_cross_tab_rii
+quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
+row.names(quant_cross_tab) <- NULL
 
 message("- Save RII to file")
 write.table(quant_cross_tab_rii,
