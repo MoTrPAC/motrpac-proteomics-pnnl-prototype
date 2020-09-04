@@ -8,10 +8,11 @@
 # -o /relquant
 
 install.packages("optparse")
-if(!require("remotes", quietly = T)) install.packages("remotes")
-remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = F)
+# if(!require("remotes", quietly = T)) install.packages("remotes")
+# remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = F)
 
 library(PlexedPiper)
+library(dplyr)
 library("optparse")
 
 # https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
@@ -85,6 +86,27 @@ quant_cross_tab <- create_crosstab(msnid,
 message("- Save crosstab to file")
 write.table(quant_cross_tab,
             file=paste(opt$plexedpiper_output_folder,"quant_crosstab_phospho.txt",sep="/"),
-            quote=F, sep="\t", eol="\r\n",)
+            quote=F, sep="\t")
+
+message("- Create RII")
+samples_rii <- samples %>%
+  mutate(MeasurementName = case_when(is.na(MeasurementName) ~ "ref",
+                                     TRUE ~ MeasurementName)) %>%
+  mutate(MeasurementName = paste0(MeasurementName,"",PlexID))
+
+references_rii <- references %>%
+  mutate(Reference = 1)
+
+quant_cross_tab_rii <- create_crosstab(msnid, 
+                                       masic_data, 
+                                       aggregation_level, 
+                                       fractions, samples_rii, references_rii)
+
+quant_cross_tab_rii <- 2**quant_cross_tab_rii
+
+message("- Save RII to file")
+write.table(quant_cross_tab_rii,
+            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_phospho_rii.txt",sep="/"),
+            quote=F, sep="\t")
 
 unlink(".Rcache", recursive=TRUE)
