@@ -84,7 +84,7 @@ quant_cross_tab <- create_crosstab(msnid,
                                    fractions, samples, references)
 
 quant_cross_tab <- signif(quant_cross_tab, 3)
-quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
+quant_cross_tab <- data.frame(Site = row.names(quant_cross_tab), quant_cross_tab)
 row.names(quant_cross_tab) <- NULL
 
 message("- Save crosstab to file")
@@ -107,7 +107,7 @@ quant_cross_tab_rii <- create_crosstab(msnid,
                                        fractions, samples_rii, references_rii)
 
 quant_cross_tab_rii <- 2**quant_cross_tab_rii
-quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
+quant_cross_tab <- data.frame(Site = row.names(quant_cross_tab), quant_cross_tab)
 row.names(quant_cross_tab) <- NULL
 
 message("- Save RII to file")
