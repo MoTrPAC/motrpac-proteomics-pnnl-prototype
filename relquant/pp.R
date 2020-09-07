@@ -7,13 +7,15 @@
 # -s /relquant/study_design \
 # -o /relquant
 
-install.packages("optparse")
-# if(!require("remotes", quietly = T)) install.packages("remotes")
-# remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = F, force=T)
+# Assumed that PlexedPiper is already installed. Otherwise...
+if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
+if(!require("optparse", quietly = TRUE)) install.packages("optparse")
+if(!require("remotes", quietly = TRUE)) install.packages("remotes")
+if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
 
-library(PlexedPiper)
+suppressWarnings(library(PlexedPiper))
+library(optparse)
 library(dplyr)
-library("optparse")
 
 # https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
 
@@ -33,10 +35,19 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
+if (is.null(opt$msgf_output_folder) | 
+    is.null(opt$masic_output_folder) | 
+    is.null(opt$fasta_file) |
+    is.null(opt$study_design_folder) |
+    is.null(opt$plexedpiper_output_folder)
+    ){
+  print_help(opt_parser)
+  stop("5 arguments are required", call.=FALSE)
+}
 
 message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
-msnid0 <- read_msgf_data(opt$msgf_output_folder, suffix = "_syn.txt")
+msnid <- read_msgf_data(opt$msgf_output_folder, suffix = "_syn.txt")
 
 message("   + Correct for isotope selection error")
 msnid <- correct_peak_selection(msnid)
@@ -49,8 +60,9 @@ msnid <- remap_accessions_refseq_to_gene(msnid,
                                          organism_name="Rattus norvegicus")
 
 message("   + Loading fasta file")
-path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(
-  opt$fasta_file, organism_name="Rattus norvegicus")
+
+path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(path_to_FASTA = opt$fasta_file ,
+                                                            organism_name = "Rattus norvegicus")
 
 message("   + MS/MS ID filter at protein level")
 msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA_gene)
@@ -96,9 +108,16 @@ quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_
 row.names(quant_cross_tab) <- NULL
 
 message("- Save crosstab to file")
+
+if(!dir.exists(file.path(opt$plexedpiper_output_folder))){
+  dir.create(file.path(opt$plexedpiper_output_folder), recursive = TRUE)
+}
+  
 write.table(quant_cross_tab,
             file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
-            quote=F, sep="\t")
+            quote = FALSE, 
+            sep="\t",
+            row.names = FALSE)
 
 message("- Create RII")
 samples_rii <- samples %>%
@@ -119,9 +138,12 @@ quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_
 row.names(quant_cross_tab) <- NULL
 
 message("- Save RII to file")
+
 write.table(quant_cross_tab_rii,
-            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global_rii.txt",sep="/"),
-            quote=F, sep="\t")
+            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global_rii.txt", sep="/"),
+            quote=FALSE, 
+            sep="\t",
+            row.names = FALSE)
 
 unlink(".Rcache", recursive=TRUE)
 
