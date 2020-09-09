@@ -63,7 +63,7 @@ Build Docker image (one time, or after a new version of MASIC is released):
 Start the container (interactive mode)
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it motrpac-prot-masic:v1.0_20200115 /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step00:/step00:rw -it motrpac-prot-masic:v1.2_20200901 /bin/bash
 ```
 
 Run in docker: \
@@ -93,7 +93,7 @@ Run MS-GF+ on Docker container (openjdk). Created a Dockerfile available in dire
 Start the container (interactive mode)
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac-prot-msgfplus:v1.1_20200314  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step02:/step02:rw -it motrpac-prot-msgfplus:v1.2_20200901  /bin/bash
 ```
 
 Run in docker: \
@@ -122,7 +122,7 @@ Run in docker: \
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac-prot-ppmerror:v1.0_20200115 /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac-prot-ppmerror:v1.2_20200901 /bin/bash
 ```
 
 Run in docker: \
@@ -137,7 +137,7 @@ Run MS-GF+ using the `_FIXED.mzml` file from Step 3: That creates a `.mzID` file
 Run the same docker container as in step02
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac-prot-msgfplus:v1.1_20200314  /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step04:/step04:rw -it motrpac-prot-msgfplus:v1.2_20200901  /bin/bash
 ```
 
 Run in docker: \
@@ -152,7 +152,7 @@ Run MzidToTSVConverter to convert `Dataset_final.mzid` to `Dataset.tsv`
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac-prot-mzid2tsv:v1.0_20200115 /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step05:/step05:rw -it motrpac-prot-mzid2tsv:v1.2_20200901 /bin/bash
 ```
 
 Run in docker: \
@@ -167,7 +167,7 @@ Run PeptideHitResultsProcRunner using the .tsv file from step 5:
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac-prot-phrp:v1.0_20200115 /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step06:/step06:rw -it motrpac-prot-phrp:v1.2_20200901 /bin/bash
 ```
 
 Run in docker: \
@@ -180,7 +180,7 @@ Run in docker: \
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac-prot-ascore:v1.0_20200115 /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step07:/step07:rw -it motrpac-prot-ascore:v1.2_20200901 /bin/bash
 ```
 
 Run in docker: \
@@ -195,8 +195,15 @@ Run in docker: \
 Start container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/relquant:/relquant:rw -it motrpac-prot-relquant /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/relquant:/relquant:rw  -it motrpac-prot-plexedpiper:v1.2_20200901 /bin/bash
 ```
+
+Run in docker: \
+
+`sh` [`relquant.sh`](relquant/relquant.sh) \
+`sh` [`relquant_phospho.sh`](relquant/relquant_phospho.sh)
+
+
 
 
 

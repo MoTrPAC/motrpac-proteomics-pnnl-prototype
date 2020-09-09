@@ -11,3 +11,4 @@ RUN apt-get update \
  libnetcdf-dev \
  libssl-dev
 RUN R -e 'remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)'
+RUN R -e 'install.packages("optparse")'
