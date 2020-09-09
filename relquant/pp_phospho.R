@@ -7,13 +7,18 @@
 # -s /relquant/study_design \
 # -o /relquant
 
-install.packages("optparse")
-# if(!require("remotes", quietly = T)) install.packages("remotes")
-# remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = F)
+# Assumed that PlexedPiper is already installed. Otherwise...
+if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
+if(!require("optparse", quietly = TRUE)) install.packages("optparse")
+if(!require("remotes", quietly = TRUE)) install.packages("remotes")
+if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
 
-library(PlexedPiper)
+
+message("\n- Load required libraries")
+
+library(optparse)
 library(dplyr)
-library("optparse")
+suppressWarnings(library(PlexedPiper))
 
 # https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
 
@@ -30,13 +35,22 @@ option_list <- list(
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
 
-opt = list()
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-message("- Prepare MS/MS IDs")
+if (is.null(opt$msgf_output_folder) | 
+    is.null(opt$masic_output_folder) | 
+    is.null(opt$fasta_file) |
+    is.null(opt$study_design_folder) |
+    is.null(opt$plexedpiper_output_folder)
+){
+  print_help(opt_parser)
+  stop("5 arguments are required", call.=FALSE)
+}
+
+message("\n- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output + Ascore")
-msnid <- read_msgf_data(opt$ascore_output_folder, "_syn_plus_ascore.txt")
+msnid <- read_msgf_data(opt$msgf_output_folder, "_syn_plus_ascore.txt")
 msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
 
 message("   + FDR filter")
@@ -88,6 +102,12 @@ quant_cross_tab <- data.frame(Site = row.names(quant_cross_tab), quant_cross_tab
 row.names(quant_cross_tab) <- NULL
 
 message("- Save crosstab to file")
+
+if(!dir.exists(file.path(opt$plexedpiper_output_folder))){
+  dir.create(file.path(opt$plexedpiper_output_folder), recursive = TRUE)
+}
+
+
 write.table(quant_cross_tab,
             file=paste(opt$plexedpiper_output_folder,"quant_crosstab_phospho.txt",sep="/"),
             quote=F, sep="\t")
@@ -113,6 +133,6 @@ row.names(quant_cross_tab) <- NULL
 message("- Save RII to file")
 write.table(quant_cross_tab_rii,
             file=paste(opt$plexedpiper_output_folder,"quant_crosstab_phospho_rii.txt",sep="/"),
-            quote=F, sep="\t")
+            quote=FALSE, sep="\t")
 
 unlink(".Rcache", recursive=TRUE)
