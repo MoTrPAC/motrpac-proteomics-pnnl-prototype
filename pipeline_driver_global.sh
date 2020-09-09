@@ -67,7 +67,7 @@ motrpac-prot-ascore:v1.2_20200901 bash step07/step07ascore_phospho.sh
 # Relative quantification step
 docker run -v $PWD/data:/data:rw \
 -v $PWD/relquant:/relquant:rw \
-motrpac-relquant:v1.0_20200731 bash relquant/relquant.sh
+motrpac-prot-plexedpiper:v1.2_20200901 bash relquant/relquant.sh
 
 
 
