@@ -53,7 +53,7 @@ TDA=1
 
 #Number of Threads (by default, uses all available cores)
 #In DMS, a settings file entry for MSGFDBThreads will override this value
-NumThreads=7        # NumThreads=All
+NumThreads=12        # NumThreads=All
 
 #Minimum peptide length to consider
 MinPepLength=6
