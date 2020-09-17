@@ -82,10 +82,12 @@ NumMatchesPerSpec=1
 Protocol=1
 
 #Amino Acid Modification Examples
-# Specific static modifications using one or more StaticMod= entries
-# Specific dynamic modifications using one or more DynamicMod= entries
+# Specify static modifications using one or more StaticMod= entries
+# Specify dynamic modifications using one or more DynamicMod= entries
 # Modification format is:
-# Mass or CompositionStr, Residues, ModType, Position, Name (all the five fields are required).
+# Mass or CompositionString, Residues, ModType, Position, Name (all the five fields are required).
+# CompositionString can only contain a limited set of elements, primarily C H N O S or P
+#
 # Examples:
 #   C2H3N1O1,  C,  fix, any,         Carbamidomethyl    # Fixed Carbamidomethyl C (alkylation)
 #   O1,        M,  opt, any,         Oxidation          # Oxidation M
