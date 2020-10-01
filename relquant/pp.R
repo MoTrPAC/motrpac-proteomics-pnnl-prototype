@@ -17,6 +17,7 @@ suppressWarnings(library(PlexedPiper))
 library(optparse)
 library(dplyr)
 
+
 # https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
 
 option_list <- list(
@@ -45,9 +46,23 @@ if (is.null(opt$msgf_output_folder) |
   stop("5 arguments are required", call.=FALSE)
 }
 
+msgf_output_folder <- opt$msgf_output_folder 
+masic_output_folder <- opt$masic_output_folder 
+fasta_file<- opt$fasta_file
+study_design_folder<- opt$study_design_folder
+plexedpiper_output_folder<- opt$plexedpiper_output_folder
+          
+# To DEBUG ---------------------------------------------------------------------
+# msgf_output_folder = "data/test_global/phrp_output"
+# masic_output_folder = "data/test_global/masic_output"
+# fasta_file = "data/ID_007275_FB1B42E8.fasta"
+# study_design_folder = "data/test_global/study_design"
+# plexedpiper_output_folder = "data/test_global/plexedpiper_output"
+# To DEBUG ---------------------------------------------------------------------
+
 message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
-msnid <- read_msgf_data(opt$msgf_output_folder, suffix = "_syn.txt")
+msnid <- read_msgf_data(path_to_MSGF_results = msgf_output_folder)
 
 message("   + Correct for isotope selection error")
 msnid <- correct_peak_selection(msnid)
@@ -61,7 +76,7 @@ msnid <- remap_accessions_refseq_to_gene(msnid,
 
 message("   + Loading fasta file")
 
-path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(path_to_FASTA = opt$fasta_file ,
+path_to_FASTA_gene <- remap_accessions_refseq_to_gene_fasta(path_to_FASTA = fasta_file ,
                                                             organism_name = "Rattus norvegicus")
 
 message("   + MS/MS ID filter at protein level")
@@ -69,14 +84,14 @@ msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA_gene)
 msnid <- filter_msgf_data_protein_level(msnid, 0.01)
 
 message("   + Inference of parsimonious protein set")
-msnid <- infer_parsimonious_accessions(msnid, unique_only=TRUE)
+msnid <- infer_parsimonious_accessions(msnid)
 
 message("   + Remove decoy accessions")
 msnid <- apply_filter(msnid, "!isDecoy")
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
-path_to_MASIC_results <- opt$masic_output_folder
+path_to_MASIC_results <- masic_output_folder
 masic_data <- read_masic_data(path_to_MASIC_results, interference_score=TRUE)
 
 message("   + Filtering MASIC data")
@@ -85,15 +100,15 @@ masic_data <- filter_masic_data(masic_data, 0.5, 0)
 
 message("- Fetch study design tables")
 message("   + Read fractions.txt")
-fractions <- read.table(paste(opt$study_design_folder,"fractions.txt",sep="/"),
+fractions <- read.delim(paste(study_design_folder,"fractions.txt",sep="/"),
                         stringsAsFactors = FALSE)
 
 message("   + Read samples.txt")
-samples <- read.table(paste(opt$study_design_folder,"samples.txt",sep="/"),
+samples <- read.delim(paste(study_design_folder,"samples.txt",sep="/"),
                       stringsAsFactors = FALSE)
 
 message("   + Read reference.txt")
-references <- read.table(paste(opt$study_design_folder,"references.txt",sep="/"),
+references <- read.delim(paste(study_design_folder,"references.txt",sep="/"),
                          stringsAsFactors = FALSE)
 
 message("- Create quantitative crosstab")
@@ -101,7 +116,9 @@ aggregation_level <- c("accession")
 quant_cross_tab <- create_crosstab(msnid, 
                                    masic_data, 
                                    aggregation_level, 
-                                   fractions, samples, references)
+                                   fractions, 
+                                   samples, 
+                                   references)
 
 quant_cross_tab <- signif(quant_cross_tab, 3)
 quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
@@ -109,15 +126,33 @@ row.names(quant_cross_tab) <- NULL
 
 message("- Save crosstab to file")
 
-if(!dir.exists(file.path(opt$plexedpiper_output_folder))){
-  dir.create(file.path(opt$plexedpiper_output_folder), recursive = TRUE)
+if(!dir.exists(file.path(plexedpiper_output_folder))){
+  dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
 }
   
 write.table(quant_cross_tab,
-            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
+            file=paste(plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
             quote = FALSE, 
             sep="\t",
             row.names = FALSE)
+
+# NEW----------------------------------------------------------------------
+results_ratio <- make_results_ratio_gl(msnid, 
+                                       masic_data, 
+                                       fractions, 
+                                       samples,
+                                       references, 
+                                       org_name = "Rattus norvegicus")
+
+
+
+rii_peptide <- make_rii_peptide_gl(msnid, 
+                                   masic_data, 
+                                   fractions, 
+                                   samples,
+                                   references, 
+                                   org_name = "Rattus norvegicus")
+# NEW----------------------------------------------------------------------
 
 message("- Create RII")
 samples_rii <- samples %>%
@@ -140,7 +175,7 @@ row.names(quant_cross_tab) <- NULL
 message("- Save RII to file")
 
 write.table(quant_cross_tab_rii,
-            file=paste(opt$plexedpiper_output_folder,"quant_crosstab_global_rii.txt", sep="/"),
+            file=paste(plexedpiper_output_folder,"quant_crosstab_global_rii.txt", sep="/"),
             quote=FALSE, 
             sep="\t",
             row.names = FALSE)
