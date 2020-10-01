@@ -1,3 +1,0 @@
-Dataset	PlexID
-1	MoTrPAC_Pilot_TMT_P_S1_01_DIL_28Oct17_Elm_AQ-17-10-03	S1
-2	MoTrPAC_Pilot_TMT_P_S2_01_3Nov17_Elm_AQ-17-10-03	S2
