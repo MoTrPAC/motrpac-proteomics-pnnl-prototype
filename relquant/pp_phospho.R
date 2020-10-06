@@ -2,6 +2,7 @@
 
 # Example command
 # Rscript /relquant/pp.R -i /data/test_phospho/phrp_output \
+# -a /data/test_phospho/ascore_output \
 # -j /data/test_phospho/masic_output \
 # -f /data/ID_007275_FB1B42E8.fasta \
 # -s /relquant/study_design \
@@ -25,6 +26,8 @@ suppressWarnings(library(PlexedPiper))
 option_list <- list(
   make_option(c("-i", "--msgf_output_folder"), type="character", default=NULL, 
               help="MSGF output folder", metavar="character"),
+  make_option(c("-a", "--ascore_output_folder"), type="character", default=NULL, 
+              help="AScore output folder", metavar="character"),
   make_option(c("-j", "--masic_output_folder"), type="character", default=NULL, 
               help="MASIC output folder", metavar="character"),
   make_option(c("-f", "--fasta_file"), type="character", default=NULL, 
@@ -39,6 +42,7 @@ opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
 if (is.null(opt$msgf_output_folder) | 
+    is.null(opt$ascore_output_folder) | 
     is.null(opt$masic_output_folder) | 
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
@@ -49,22 +53,30 @@ if (is.null(opt$msgf_output_folder) |
 }
 
 msgf_output_folder <- opt$msgf_output_folder 
+ascore_output_folder <- opt$ascore_output_folder 
 masic_output_folder <- opt$masic_output_folder 
 fasta_file<- opt$fasta_file
 study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
 
 # To DEBUG ---------------------------------------------------------------------
-# msgf_output_folder = "data/test_phospho/ascore_output/"
-# masic_output_folder = "data/test_phospho/masic_output"
-# fasta_file = "data/ID_007275_FB1B42E8.fasta"
-# study_design_folder = "data/test_phospho/study_design"
-# plexedpiper_output_folder = "data/test_phospho/plexedpiper_output"
+# msgf_output_folder = "/data/test_phospho/phrp_output/"
+# ascore_output_folder = "/data/test_phospho/ascore_output/"
+# masic_output_folder = "/data/test_phospho/masic_output"
+# fasta_file = "/data/ID_007275_FB1B42E8.fasta"
+# study_design_folder = "/data/test_phospho/study_design"
+# plexedpiper_output_folder = "/data/test_phospho/plexedpiper_output"
 # To DEBUG ---------------------------------------------------------------------
 
 message("\n- Prepare MS/MS IDs")
-message("   + Read the MS-GF+ output + Ascore")
-msnid <- read_msgf_data(msgf_output_folder, "_syn_plus_ascore.txt")
+message("   + Read the MS-GF+ output")
+msnid <- read_msgf_data(msgf_output_folder, "_syn.txt")
+
+message("   + Read Ascore output")
+ascore <- PlexedPiper:::collate_files(ascore_output_folder, "_syn_ascore.txt")
+
+msnid <- best_PTM_location_by_ascore(msnid, ascore)
+
 msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
 
 message("   + FDR filter")
