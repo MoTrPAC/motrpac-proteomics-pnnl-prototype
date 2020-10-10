@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mono /app/phrp/PeptideHitResultsProcRunner.exe \
--I:/data/test_ubiq/msgfplus_output/P_MoTrPAC_1A_RM_Plex001_G_f06_01May19_Arwen_REP-19-04-r02.tsv \
+-I:/data/test_ubiq/msgfplus_output/MS2_KggTMT_LenMM1S_MethodComparison_1mg_01.tsv \
 -O:/data/test_ubiq/phrp_output/ \
 -M:/parameters/MSGFPlus_PartTryp_MetOx_TMT_6Plex_Ubiq_20ppmParTol_ModDefs.txt \
 -T:/parameters/Mass_Correction_Tags.txt \
