@@ -1,12 +1,14 @@
 #!/usr/bin/env Rscript
 
 # Example command
-# Rscript /relquant/pp.R -i /data/test_phospho/phrp_output \
-# -a /data/test_phospho/ascore_output \
-# -j /data/test_phospho/masic_output \
-# -f /data/ID_007275_FB1B42E8.fasta \
-# -s /relquant/study_design \
-# -o /relquant
+# Rscript relquant/pp_ptm.R \
+# -p ph \
+# -i data/test_phospho/phrp_output/ \
+# -a data/test_phospho/ascore_output/ \
+# -j data/test_phospho/masic_output/ \
+# -f data/ID_007275_FB1B42E8.fasta \
+# -s data/test_phospho/study_design/ \
+# -o data/test_phospho/plexedpiper_output/
 
 # Assumed that PlexedPiper is already installed. Otherwise...
 if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
@@ -17,13 +19,14 @@ if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/
 
 message("\n- Load required libraries")
 
-library(optparse)
-library(dplyr)
-suppressWarnings(library(PlexedPiper))
+suppressMessages(suppressWarnings(library(optparse)))
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(PlexedPiper)))
 
-# https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
 
 option_list <- list(
+  make_option(c("-p", "--proteomics"), type="character", default=NULL, 
+              help="Proteomics experiment: pr/ph/ub/ac", metavar="character"),
   make_option(c("-i", "--msgf_output_folder"), type="character", default=NULL, 
               help="MSGF output folder", metavar="character"),
   make_option(c("-a", "--ascore_output_folder"), type="character", default=NULL, 
@@ -41,7 +44,8 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-if (is.null(opt$msgf_output_folder) | 
+if (is.null(opt$proteomics) | 
+    is.null(opt$msgf_output_folder) | 
     is.null(opt$ascore_output_folder) | 
     is.null(opt$masic_output_folder) | 
     is.null(opt$fasta_file) |
@@ -49,9 +53,11 @@ if (is.null(opt$msgf_output_folder) |
     is.null(opt$plexedpiper_output_folder)
 ){
   print_help(opt_parser)
-  stop("5 arguments are required", call.=FALSE)
+  stop("7 arguments are required", call.=FALSE)
 }
 
+
+proteomics <- tolower(opt$proteomics)
 msgf_output_folder <- opt$msgf_output_folder 
 ascore_output_folder <- opt$ascore_output_folder 
 masic_output_folder <- opt$masic_output_folder 
@@ -60,15 +66,30 @@ study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
 
 # To DEBUG ---------------------------------------------------------------------
-# msgf_output_folder = "/data/test_phospho/phrp_output/"
-# ascore_output_folder = "/data/test_phospho/ascore_output/"
-# masic_output_folder = "/data/test_phospho/masic_output"
-# fasta_file = "/data/ID_007275_FB1B42E8.fasta"
-# study_design_folder = "/data/test_phospho/study_design"
-# plexedpiper_output_folder = "/data/test_phospho/plexedpiper_output"
+# proteomics = "ph"
+# msgf_output_folder = "data/test_phospho/phrp_output/"
+# ascore_output_folder = "data/test_phospho/ascore_output/"
+# masic_output_folder = "data/test_phospho/masic_output"
+# fasta_file = "data/ID_007275_FB1B42E8.fasta"
+# study_design_folder = "data/test_phospho/study_design"
+# plexedpiper_output_folder = "data/test_phospho/plexedpiper_output"
+
+# proteomics = "ac"
+# msgf_output_folder = "data/test_acetyl/phrp_output/"
+# ascore_output_folder = "data/test_acetyl//ascore_output/"
+# masic_output_folder = "data/test_acetyl/masic_output"
+# fasta_file = "data/ID_007275_FB1B42E8.fasta"
+# study_design_folder = "data/test_acetyl/study_design"
+# plexedpiper_output_folder = "data/test_acetyl/plexedpiper_output"
 # To DEBUG ---------------------------------------------------------------------
 
-message("\n- Prepare MS/MS IDs")
+if(!( proteomics %in% c('pr', 'ph', 'ac', 'ub'))){
+  stop("The < proteomics > variable is not correct. Accepted values: ph, pr, ac, ub")
+}else{
+  message("- Proteomics experiment: ", proteomics)
+}
+
+message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
 msnid <- read_msgf_data(msgf_output_folder, "_syn.txt")
 
@@ -77,7 +98,13 @@ ascore <- PlexedPiper:::collate_files(ascore_output_folder, "_syn_ascore.txt")
 
 msnid <- best_PTM_location_by_ascore(msnid, ascore)
 
-msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
+if(proteomics == "ph"){
+  msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
+}else if(proteins %in% c('ac', 'ub')){
+  msnid <- apply_filter(msnid, "grepl(\"\\\\#\", peptide)")
+}else{
+  stop("proteomics variable not supported")
+}
 
 message("   + FDR filter")
 msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
@@ -86,14 +113,29 @@ message("   + Inference of parsimonius set")
 msnid <- infer_parsimonious_accessions(msnid)
 
 message("   + Mapping sites to protein sequence")
-fst <- Biostrings::readAAStringSet(fasta_file)
+suppressMessages(
+  fst <- Biostrings::readAAStringSet(fasta_file)
+  )
 names(fst) <- sub("^([A-Z]P_\\d+\\.\\d+)\\s.*", "\\1", names(fst))
-msnid <- map_mod_sites(msnid, 
-                       fst, 
-                       accession_col = "accession", 
-                       peptide_mod_col = "Peptide", 
-                       mod_char = "*",
-                       site_delimiter = "lower")
+
+if(proteomics == "ph"){
+  msnid <- map_mod_sites(msnid, 
+                         fst, 
+                         accession_col = "accession", 
+                         peptide_mod_col = "Peptide", 
+                         mod_char = "*",
+                         site_delimiter = "lower")
+}else if(proteins %in% c('ac', 'ub')){
+  msnid <- map_mod_sites(msnid, 
+                         fst, 
+                         accession_col = "accession", 
+                         peptide_mod_col = "Peptide", 
+                         mod_char = "#",
+                         site_delimiter = "lower")
+}else{
+  stop("proteomics variable not supported")
+}
+
 
 message("   + Remove decoy sequences")
 msnid <- apply_filter(msnid, "!isDecoy")
@@ -139,55 +181,25 @@ rii_peptide <- make_rii_peptide_ph(msnid,
                                    org_name = "Rattus norvegicus")
 # NEW----------------------------------------------------------------------
 
+message("- Save results")
 
+if(!dir.exists(file.path(plexedpiper_output_folder))){
+  dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
+}
 
-# BEFORE-------------------------------------------------------------------
+write.table(rii_peptide,
+            file = paste(plexedpiper_output_folder, "results_RII-peptide.txt", sep="/"),
+            sep="\t",
+            row.names = FALSE,
+            quote = FALSE)
 
-# message("- Create quantitative crosstab")
-# aggregation_level <- c("SiteID")
-# quant_cross_tab <- create_crosstab(msnid, 
-#                                    masic_data, 
-#                                    aggregation_level, 
-#                                    fractions, 
-#                                    samples, 
-#                                    references)
-# 
-# quant_cross_tab <- signif(quant_cross_tab, 3)
-# quant_cross_tab <- data.frame(Site = row.names(quant_cross_tab), quant_cross_tab)
-# row.names(quant_cross_tab) <- NULL
-# 
-# message("- Save crosstab to file")
-# 
-# if(!dir.exists(file.path(plexedpiper_output_folder))){
-#   dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
-# }
-# 
-# 
-# write.table(quant_cross_tab,
-#             file=paste(plexedpiper_output_folder,"quant_crosstab_phospho.txt",sep="/"),
-#             quote=F, sep="\t")
+write.table(results_ratio,
+            file = paste(plexedpiper_output_folder, "results_ratio.txt", sep="/"),
+            sep="\t",
+            row.names = FALSE,
+            quote = FALSE)
 
-# message("- Create RII")
-# samples_rii <- samples %>%
-#   mutate(MeasurementName = case_when(is.na(MeasurementName) ~ "ref",
-#                                      TRUE ~ MeasurementName)) %>%
-#   mutate(MeasurementName = paste0(MeasurementName,"",PlexID))
-# 
-# references_rii <- references %>%
-#   mutate(Reference = 1)
-# 
-# quant_cross_tab_rii <- create_crosstab(msnid, 
-#                                        masic_data, 
-#                                        aggregation_level, 
-#                                        fractions, samples_rii, references_rii)
-# 
-# quant_cross_tab_rii <- 2**quant_cross_tab_rii
-# quant_cross_tab <- data.frame(Site = row.names(quant_cross_tab), quant_cross_tab)
-# row.names(quant_cross_tab) <- NULL
-# 
-# message("- Save RII to file")
-# write.table(quant_cross_tab_rii,
-#             file=paste(plexedpiper_output_folder, "quant_crosstab_phospho_rii.txt", sep="/"),
-#             quote=FALSE, sep="\t")
+message("- Done!")
+
 
 unlink(".Rcache", recursive=TRUE)
