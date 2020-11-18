@@ -27,7 +27,7 @@ FragmentationMethodID=0
 #  1 means High-res LTQ (Default for HCD; also appropriate for high res CID).  Do not merge spectra (FragMethod=4) when InstrumentID is 1; scores will degrade
 #  2 means TOF
 #  3 means Q-Exactive
-InstrumentID=1
+InstrumentID=3
 
 #Enzyme ID
 #  0 means No enzyme used
@@ -64,10 +64,10 @@ MinPepLength=6
 MaxPepLength=50
 
 #Minimum precursor charge to consider (if not specified in the spectrum)
-# MinCharge=1
+MinCharge=2
 
 #Maximum precursor charge to consider (if not specified in the spectrum)
-# MaxCharge=6
+MaxCharge=5
 
 #Number of matches per spectrum to be reported
 #If this value is greater than 1 then the FDR values computed by MS-GF+ will be skewed by high-scoring 2nd and 3rd hits
@@ -92,3 +92,7 @@ NumMatchesPerSpec=1
 #   H-2O-1,    E,  opt, N-term,      Glu->pyro-Glu      # Pyro-glu from E
 #   H-3N-1,    Q,  opt, N-term,      Gln->pyro-Glu      # Pyro-glu from Q
 #   C2H2O,     *,  opt, Prot-N-term, Acetyl             # Acetylation Protein N-term
+
+MinNumPeaksPerSpectrum=5
+
+AddFeatures=1
