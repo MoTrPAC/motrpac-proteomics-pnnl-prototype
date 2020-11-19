@@ -25,7 +25,7 @@ FragmentationMethodID=0
 #  1 means High-res LTQ (Default for HCD; also appropriate for high res CID).  Do not merge spectra (FragMethod=4) when InstrumentID is 1; scores will degrade
 #  2 means TOF
 #  3 means Q-Exactive
-InstrumentID=1
+InstrumentID=3
 
 #Enzyme ID
 #  0 means No enzyme used
@@ -53,7 +53,7 @@ TDA=1
 
 #Number of Threads (by default, uses all available cores)
 #In DMS, a settings file entry for MSGFDBThreads will override this value
-NumThreads=12        # NumThreads=All
+NumThreads=All        # NumThreads=All
 
 #Minimum peptide length to consider
 MinPepLength=6
