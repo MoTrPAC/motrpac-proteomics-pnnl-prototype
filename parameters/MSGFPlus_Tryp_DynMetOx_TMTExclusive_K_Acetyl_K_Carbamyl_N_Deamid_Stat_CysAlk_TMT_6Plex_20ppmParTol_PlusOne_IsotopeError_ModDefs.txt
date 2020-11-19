@@ -1,0 +1,7 @@
+-	57.021465	C	S	IodoAcet
+-	229.162933	K	S	TMT6Tag 
+-	229.162933	<	T	TMT6Tag 
+*	15.994915	M	D	Plus1Oxy
+#	-187.15234	K	D	AcNoTMT 
+@	-186.157086	K	D	CbNoTMT 
+$	0.984016	N	D	Deamide 
