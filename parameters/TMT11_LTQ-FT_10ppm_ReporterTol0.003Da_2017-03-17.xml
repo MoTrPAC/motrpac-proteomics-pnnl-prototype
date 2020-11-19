@@ -27,7 +27,7 @@
     <item key="WriteMRMIntensityCrosstab" value="True" />
     <item key="FastExistingXMLFileTest" value="False" />
     <item key="ReporterIonStatsEnabled" value="True" />
-    <item key="ReporterIonMassMode" value="10" />
+    <item key="ReporterIonMassMode" value="16" />
     <item key="ReporterIonToleranceDa" value="0.003" />
     <item key="ReporterIonApplyAbundanceCorrection" value="True" />
     <item key="ReporterIonITraq4PlexCorrectionFactorType" value="0" />
