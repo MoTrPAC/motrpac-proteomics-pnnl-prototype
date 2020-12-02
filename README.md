@@ -122,7 +122,7 @@ Run in docker: \
 Start the container:
 
 ```
-docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it motrpac-prot-ppmerror:v1.2_20200901 /bin/bash
+docker run -v $PWD/data:/data:rw -v $PWD/parameters:/parameters:rw -v $PWD/step03:/step03:rw -it prot-ppmerror:v1.2.7632c /bin/bash
 ```
 
 Run in docker: \
@@ -196,6 +196,8 @@ Start container:
 
 ```
 docker run -v $PWD/data:/data:rw -v $PWD/relquant:/relquant:rw  -it motrpac-prot-plexedpiper:v1.2_20200901 /bin/bash
+docker run -v $PWD/relquant:/relquant:rw  prot-plexedpiper:v0.1.20201104 /bin/bash
+docker run -it gcr.io/motrpac-portal/prot-plexedpiper:v0.1.20201104 /bin/bash
 ```
 
 Run in docker: \
