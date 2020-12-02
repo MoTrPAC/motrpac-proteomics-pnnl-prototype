@@ -13,12 +13,9 @@ if(!require("optparse", quietly = TRUE)) install.packages("optparse")
 if(!require("remotes", quietly = TRUE)) install.packages("remotes")
 if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
 
+suppressWarnings(library(optparse))
+suppressWarnings(library(dplyr))
 suppressWarnings(library(PlexedPiper))
-library(optparse)
-library(dplyr)
-
-
- # https://www.r-bloggers.com/passing-arguments-to-an-r-script-from-command-lines/
 
 option_list <- list(
   make_option(c("-i", "--msgf_output_folder"), type="character", default=NULL, 
@@ -46,21 +43,38 @@ if (is.null(opt$msgf_output_folder) |
   stop("5 arguments are required", call.=FALSE)
 }
 
+
+# To DEBUG ---------------------------------------------------------------------
+# # Global
+# msgf_output_folder = "data/test_global/phrp_output"
+# masic_output_folder = "data/test_global/masic_output"
+# fasta_file = "data/ID_007275_FB1B42E8.fasta"
+# study_design_folder = "data/test_global/study_design"
+# plexedpiper_output_folder = "data/test_global/plexedpiper_output300"
+# To DEBUG ---------------------------------------------------------------------
+
 msgf_output_folder <- opt$msgf_output_folder 
 masic_output_folder <- opt$masic_output_folder 
 fasta_file<- opt$fasta_file
 study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
-          
-# To DEBUG ---------------------------------------------------------------------
-# Global
-# msgf_output_folder = "data/test_global/phrp_output"
-# masic_output_folder = "data/test_global/masic_output"
-# fasta_file = "data/ID_007275_FB1B42E8.fasta"
-# study_design_folder = "data/test_global/study_design"
-# plexedpiper_output_folder = "data/test_global/plexedpiper_output"
 
-# To DEBUG ---------------------------------------------------------------------
+message("- Fetch study design tables")
+message("   + Read fractions.txt")
+fractions <- read.delim(paste(study_design_folder, "fractions.txt", sep="/"),
+                        stringsAsFactors = FALSE, 
+                        colClasses = "character")
+
+message("   + Read samples.txt")
+samples <- read.delim(paste(study_design_folder, "samples.txt", sep="/"),
+                      stringsAsFactors = FALSE, 
+                      colClasses = "character")
+
+message("   + Read reference.txt")
+references <- read.delim(paste(study_design_folder, "references.txt", sep="/"),
+                         stringsAsFactors = FALSE, 
+                         colClasses = "character")
+
 
 message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
@@ -87,40 +101,27 @@ msnid <- apply_filter(msnid, "!isDecoy")
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
-path_to_MASIC_results <- masic_output_folder
-masic_data <- read_masic_data(path_to_MASIC_results, 
+masic_data <- read_masic_data(path_to_MASIC_results = masic_output_folder, 
                               interference_score = TRUE)
 
 message("   + Filtering MASIC data")
 masic_data <- filter_masic_data(masic_data, 0.5, 0)
 
-message("- Fetch study design tables")
-message("   + Read fractions.txt")
-fractions <- read.delim(paste(study_design_folder,"fractions.txt",sep="/"),
-                        stringsAsFactors = FALSE)
 
-message("   + Read samples.txt")
-samples <- read.delim(paste(study_design_folder,"samples.txt",sep="/"),
-                      stringsAsFactors = FALSE)
-
-message("   + Read reference.txt")
-references <- read.delim(paste(study_design_folder,"references.txt",sep="/"),
-                         stringsAsFactors = FALSE)
-
-message("- Create RII")
-rii_peptide <- make_rii_peptide_gl(msnid, 
-                                   masic_data, 
-                                   fractions, 
-                                   samples,
-                                   references, 
+message("- Create Reporter Ion Intensity Results")
+rii_peptide <- make_rii_peptide_gl(msnid = msnid, 
+                                   masic_data = masic_data, 
+                                   fractions = fractions, 
+                                   samples = samples, 
+                                   references = references, 
                                    org_name = "Rattus norvegicus")
 
-message("- Create Ratio results")
-ratio_results <- make_results_ratio_gl(msnid, 
-                                       masic_data, 
-                                       fractions, 
-                                       samples,
-                                       references, 
+message("- Create Ratio Results")
+ratio_results <- make_results_ratio_gl(msnid =  msnid, 
+                                       masic_data = masic_data, 
+                                       fractions = fractions, 
+                                       samples = samples, 
+                                       references = references, 
                                        org_name = "Rattus norvegicus")
 
 message("- Save results")
@@ -142,60 +143,6 @@ write.table(ratio_results,
             quote = FALSE)
 
 message("- Done!")
-
-
-# BEFORE-------------------------------------------------------------------
-
-# message("- Create quantitative crosstab")
-# aggregation_level <- c("accession")
-# quant_cross_tab <- create_crosstab(msnid, 
-#                                    masic_data, 
-#                                    aggregation_level, 
-#                                    fractions, 
-#                                    samples, 
-#                                    references)
-# 
-# quant_cross_tab <- signif(quant_cross_tab, 3)
-# quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
-# row.names(quant_cross_tab) <- NULL
-# 
-# message("- Save crosstab to file")
-# 
-# if(!dir.exists(file.path(plexedpiper_output_folder))){
-#   dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
-# }
-#   
-# write.table(quant_cross_tab,
-#             file=paste(plexedpiper_output_folder,"quant_crosstab_global.txt",sep="/"),
-#             quote = FALSE, 
-#             sep="\t",
-#             row.names = FALSE)
-
-# message("- Create RII")
-# samples_rii <- samples %>%
-#   mutate(MeasurementName = case_when(is.na(MeasurementName) ~ "ref",
-#                                     TRUE ~ MeasurementName)) %>%
-#   mutate(MeasurementName = paste0(MeasurementName,"",PlexID))
-# 
-# references_rii <- references %>%
-#   mutate(Reference = 1)
-#   
-# quant_cross_tab_rii <- create_crosstab(msnid, 
-#                                        masic_data, 
-#                                        aggregation_level, 
-#                                        fractions, samples_rii, references_rii)
-# 
-# quant_cross_tab_rii <- 2**quant_cross_tab_rii
-# quant_cross_tab <- data.frame(Protein = row.names(quant_cross_tab), quant_cross_tab)
-# row.names(quant_cross_tab) <- NULL
-# 
-# message("- Save RII to file")
-# 
-# write.table(quant_cross_tab_rii,
-#             file=paste(plexedpiper_output_folder,"quant_crosstab_global_rii.txt", sep="/"),
-#             quote=FALSE, 
-#             sep="\t",
-#             row.names = FALSE)
 
 unlink(".Rcache", recursive=TRUE)
 

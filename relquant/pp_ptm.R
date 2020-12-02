@@ -56,7 +56,6 @@ if (is.null(opt$proteomics) |
   stop("7 arguments are required", call.=FALSE)
 }
 
-
 proteomics <- tolower(opt$proteomics)
 msgf_output_folder <- opt$msgf_output_folder 
 ascore_output_folder <- opt$ascore_output_folder 
@@ -66,13 +65,14 @@ study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
 
 # To DEBUG ---------------------------------------------------------------------
+
 # proteomics = "ph"
-# msgf_output_folder = "data/test_phospho/phrp_output/"
-# ascore_output_folder = "data/test_phospho/ascore_output/"
-# masic_output_folder = "data/test_phospho/masic_output"
-# fasta_file = "data/ID_007275_FB1B42E8.fasta"
-# study_design_folder = "data/test_phospho/study_design"
-# plexedpiper_output_folder = "data/test_phospho/plexedpiper_output"
+# msgf_output_folder = "out_phpr/"
+# ascore_output_folder = "out_ascore/"
+# masic_output_folder = "out_masic/"
+# fasta_file = "ID_007275_FB1B42E8.fasta"
+# study_design_folder = "study_design"
+# plexedpiper_output_folder = "pp_output"
 
 # proteomics = "ac"
 # msgf_output_folder = "data/test_acetyl/phrp_output/"
@@ -81,6 +81,7 @@ plexedpiper_output_folder<- opt$plexedpiper_output_folder
 # fasta_file = "data/ID_007275_FB1B42E8.fasta"
 # study_design_folder = "data/test_acetyl/study_design"
 # plexedpiper_output_folder = "data/test_acetyl/plexedpiper_output"
+
 # To DEBUG ---------------------------------------------------------------------
 
 if(!( proteomics %in% c('pr', 'ph', 'ac', 'ub'))){
@@ -88,6 +89,22 @@ if(!( proteomics %in% c('pr', 'ph', 'ac', 'ub'))){
 }else{
   message("- Proteomics experiment: ", proteomics)
 }
+
+message("- Fetch study design tables")
+message("   + Read fractions.txt")
+fractions <- read.delim(paste(study_design_folder,"fractions.txt",sep="/"), 
+                        stringsAsFactors = FALSE,
+                        colClasses = "character")
+
+message("   + Read samples.txt")
+samples <- read.delim(paste(study_design_folder,"samples.txt",sep="/"), 
+                      stringsAsFactors = FALSE,
+                      colClasses = "character")
+
+message("   + Read references.txt")
+references <- read.delim(paste(study_design_folder,"references.txt",sep="/"), 
+                         stringsAsFactors = FALSE,
+                         colClasses = "character")
 
 message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
@@ -100,7 +117,7 @@ msnid <- best_PTM_location_by_ascore(msnid, ascore)
 
 if(proteomics == "ph"){
   msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
-}else if(proteins %in% c('ac', 'ub')){
+}else if(proteomics %in% c('ac', 'ub')){
   msnid <- apply_filter(msnid, "grepl(\"\\\\#\", peptide)")
 }else{
   stop("proteomics variable not supported")
@@ -147,21 +164,6 @@ masic_data <- read_masic_data(path_to_MASIC_results, interference_score=TRUE)
 
 message("   + Filtering MASIC data")
 masic_data <- filter_masic_data(masic_data, 0.5, 0)
-
-
-message("- Fetch study design tables")
-message("   + Read fractions.txt")
-fractions <- read.delim(paste(study_design_folder,"fractions.txt",sep="/"), 
-                        stringsAsFactors = FALSE)
-
-message("   + Read samples.txt")
-samples <- read.delim(paste(study_design_folder,"samples.txt",sep="/"), 
-                      stringsAsFactors = FALSE)
-
-message("   + Read references.txt")
-references <- read.delim(paste(study_design_folder,"references.txt",sep="/"), 
-                         stringsAsFactors = FALSE)
-
 
 
 # NEW----------------------------------------------------------------------
