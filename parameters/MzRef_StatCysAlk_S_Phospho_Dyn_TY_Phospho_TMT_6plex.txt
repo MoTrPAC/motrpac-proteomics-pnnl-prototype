@@ -64,11 +64,11 @@ MinPepLength=6
 # Maximum peptide length to consider
 MaxPepLength=50
 
-#Minimum precursor charge to consider (if not specified in the spectrum)
-# MinCharge=1
+# Minimum precursor charge to consider (if not specified in the spectrum)
+MinCharge=2
 
-#Maximum precursor charge to consider (if not specified in the spectrum)
-# MaxCharge=6
+# Maximum precursor charge to consider (if not specified in the spectrum)
+MaxCharge=5
 
 # Number of matches per spectrum to be reported
 # If this value is greater than 1, the FDR values computed by MS-GF+ will be skewed by high-scoring 2nd and 3rd hits
