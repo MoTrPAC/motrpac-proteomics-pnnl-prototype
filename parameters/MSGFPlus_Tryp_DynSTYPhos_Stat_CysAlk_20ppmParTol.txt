@@ -70,6 +70,11 @@ MaxCharge=5
 # If this value is greater than 1, the FDR values computed by MS-GF+ will be skewed by high-scoring 2nd and 3rd hits
 NumMatchesPerSpec=2
 
+# Minimum number of ions a spectrum must have to be examined
+MinNumPeaksPerSpectrum=5
+
+# Include additional features in the output (enable this to post-process results with Percolator)
+AddFeatures=1
 
 # Amino Acid Modification Examples
 # Specify static modifications using one or more StaticMod= entries
@@ -79,9 +84,6 @@ NumMatchesPerSpec=2
 # CompositionString can only contain a limited set of elements, primarily C H N O S or P
 #
 # Examples:
-MinNumPeaksPerSpectrum=5
-
-AddFeatures=1
 #   C2H3N1O1,  C,  fix, any,         Carbamidomethyl    # Fixed Carbamidomethyl C (alkylation)
 #   O1,        M,  opt, any,         Oxidation          # Oxidation M
 #   15.994915, M,  opt, any,         Oxidation          # Oxidation M (mass is used instead of CompositionString)

@@ -70,6 +70,11 @@ MaxCharge=5
 # If this value is greater than 1, the FDR values computed by MS-GF+ will be skewed by high-scoring 2nd and 3rd hits
 NumMatchesPerSpec=1
 
+# Minimum number of ions a spectrum must have to be examined
+MinNumPeaksPerSpectrum=5
+
+# Include additional features in the output (enable this to post-process results with Percolator)
+AddFeatures=1
 
 # Amino Acid Modification Examples
 # Specify static modifications using one or more StaticMod= entries
@@ -90,7 +95,3 @@ NumMatchesPerSpec=1
 #   H-2O-1,    E,  opt, N-term,      Glu->pyro-Glu      # Pyro-glu from E
 #   H-3N-1,    Q,  opt, N-term,      Gln->pyro-Glu      # Pyro-glu from Q
 #   C2H2O,     *,  opt, Prot-N-term, Acetyl             # Acetylation Protein N-term
-
-MinNumPeaksPerSpectrum=5
-
-AddFeatures=1
