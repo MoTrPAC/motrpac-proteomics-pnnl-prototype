@@ -84,47 +84,49 @@ plexedpiper_output_folder<- opt$plexedpiper_output_folder
 
 # To DEBUG ---------------------------------------------------------------------
 
-if(!( proteomics %in% c('pr', 'ph', 'ac', 'ub'))){
+if(!( proteomics %in% c("pr", "ph", "ac", "ub"))){
   stop("The < proteomics > variable is not correct. Accepted values: ph, pr, ac, ub")
 }else{
   message("- Proteomics experiment: ", proteomics)
 }
 
 message("- Fetch study design tables")
-message("   + Read fractions.txt")
-fractions <- read.delim(paste(study_design_folder,"fractions.txt",sep="/"), 
-                        stringsAsFactors = FALSE,
-                        colClasses = "character")
+study_design <- read_study_design(study_design_folder)
 
-message("   + Read samples.txt")
-samples <- read.delim(paste(study_design_folder,"samples.txt",sep="/"), 
-                      stringsAsFactors = FALSE,
-                      colClasses = "character")
+fractions <- study_design$fractions
 
-message("   + Read references.txt")
-references <- read.delim(paste(study_design_folder,"references.txt",sep="/"), 
-                         stringsAsFactors = FALSE,
-                         colClasses = "character")
+samples <- study_design$samples
+
+references <- study_design$references
 
 message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
-msnid <- read_msgf_data(msgf_output_folder, "_syn.txt")
+msnid <- read_msgf_data(msgf_output_folder)
+
+if (!setequal(fractions$Dataset, msnid$Dataset)) {
+  stop("Datasets in MS-GF+ output and 'fractions.txt' do not match!")
+}
 
 message("   + Read Ascore output")
 ascore <- PlexedPiper:::collate_files(ascore_output_folder, "_syn_ascore.txt")
 
+
 msnid <- best_PTM_location_by_ascore(msnid, ascore)
 
-if(proteomics == "ph"){
+if (proteomics == "ph") {
   msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
-}else if(proteomics %in% c('ac', 'ub')){
+} else if(proteomics %in% c("ac", "ub")) {
   msnid <- apply_filter(msnid, "grepl(\"\\\\#\", peptide)")
-}else{
+} else {
   stop("proteomics variable not supported")
 }
 
 message("   + FDR filter")
 msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
+
+
+message("   + Concatenating redundant RefSeq matches")
+msnid <- assess_redundant_protein_matches(msnid)
 
 message("   + Inference of parsimonius set")
 msnid <- infer_parsimonious_accessions(msnid)
@@ -135,32 +137,43 @@ suppressMessages(
   )
 names(fst) <- sub("^([A-Z]P_\\d+\\.\\d+)\\s.*", "\\1", names(fst))
 
-if(proteomics == "ph"){
+if(proteomics == "ph") {
   msnid <- map_mod_sites(msnid, 
                          fst, 
                          accession_col = "accession", 
                          peptide_mod_col = "Peptide", 
                          mod_char = "*",
                          site_delimiter = "lower")
-}else if(proteins %in% c('ac', 'ub')){
+} else if (proteomics %in% c("ac", "ub")) {
   msnid <- map_mod_sites(msnid, 
                          fst, 
                          accession_col = "accession", 
                          peptide_mod_col = "Peptide", 
                          mod_char = "#",
                          site_delimiter = "lower")
-}else{
+} else {
   stop("proteomics variable not supported")
 }
 
 
 message("   + Remove decoy sequences")
+msnid <- map_flanking_sequence(msnid, fst)
+
+message("   + Remove decoy sequences")
 msnid <- apply_filter(msnid, "!isDecoy")
+
+message("   + Remove contaminants")
+msnid$isContaminant <- grepl("Contaminant", msnid$Protein)
+msnid <- apply_filter(msnid, "!isContaminant")
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
 path_to_MASIC_results <- masic_output_folder
 masic_data <- read_masic_data(path_to_MASIC_results, interference_score=TRUE)
+
+if (!setequal(fractions$Dataset, masic_data$Dataset)) {
+  stop("Datasets in MASIC output and 'fractions.txt' do not match!")
+}
 
 message("   + Filtering MASIC data")
 masic_data <- filter_masic_data(masic_data, 0.5, 0)
