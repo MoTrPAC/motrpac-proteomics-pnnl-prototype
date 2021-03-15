@@ -60,26 +60,20 @@ study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
 
 message("- Fetch study design tables")
-message("   + Read fractions.txt")
-fractions <- read.delim(paste(study_design_folder, "fractions.txt", sep="/"),
-                        stringsAsFactors = FALSE, 
-                        colClasses = "character")
+study_design <- read_study_design(study_design_folder)
 
-message("   + Read samples.txt")
-samples <- read.delim(paste(study_design_folder, "samples.txt", sep="/"),
-                      stringsAsFactors = FALSE, 
-                      colClasses = "character")
-
-message("   + Read reference.txt")
-references <- read.delim(paste(study_design_folder, "references.txt", sep="/"),
-                         stringsAsFactors = FALSE, 
-                         colClasses = "character")
+fractions  <- study_design$fractions
+samples    <- study_design$samples
+references <- study_design$references
 
 
 message("- Prepare MS/MS IDs")
 message("   + Read the MS-GF+ output")
-msnid <- read_msgf_data(path_to_MSGF_results = msgf_output_folder, 
-                        suffix = "_syn.txt")
+msnid <- read_msgf_data(path_to_MSGF_results = msgf_output_folder)
+
+if (!setequal(fractions$Dataset, msnid$Dataset)) {
+  stop("Datasets in MS-GF+ output and 'fractions.txt' do not match!")
+}
 
 message("   + Correct for isotope selection error")
 msnid <- correct_peak_selection(msnid)
@@ -93,16 +87,33 @@ msnid <- compute_num_peptides_per_1000aa(msnid,
 
 msnid <- filter_msgf_data_protein_level(msnid, 0.01)
 
+message("   + Concatenating redundant RefSeq matches")
+msnid <- assess_redundant_protein_matches(msnid)
+
+message("   + Assessing non-inferable proteins")
+msnid <- assess_noninferable_proteins(msnid)
+
 message("   + Inference of parsimonious protein set")
 msnid <- infer_parsimonious_accessions(msnid)
 
 message("   + Remove decoy accessions")
 msnid <- apply_filter(msnid, "!isDecoy")
 
+message("   + Remove contaminants")
+msnid$isContaminant <- grepl("Contaminant", msnid$Protein)
+msnid <- apply_filter(msnid, "!isContaminant")
+
+message("   + Compute protein coverage")
+msnid <- compute_protein_coverage(msnid, path_to_FASTA = fasta_file)
+
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
 masic_data <- read_masic_data(path_to_MASIC_results = masic_output_folder, 
                               interference_score = TRUE)
+
+if (!setequal(fractions$Dataset, masic_data$Dataset)) {
+  stop("Datasets in MASIC output and 'fractions.txt' do not match!")
+}
 
 message("   + Filtering MASIC data")
 masic_data <- filter_masic_data(masic_data, 0.5, 0)
