@@ -162,10 +162,6 @@ msnid <- map_flanking_sequence(msnid, fst)
 message("   + Remove decoy sequences")
 msnid <- apply_filter(msnid, "!isDecoy")
 
-message("   + Remove contaminants")
-msnid$isContaminant <- grepl("Contaminant", msnid$Protein)
-msnid <- apply_filter(msnid, "!isContaminant")
-
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
 path_to_MASIC_results <- masic_output_folder

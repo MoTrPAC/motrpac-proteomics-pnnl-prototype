@@ -99,10 +99,6 @@ msnid <- infer_parsimonious_accessions(msnid)
 message("   + Remove decoy accessions")
 msnid <- apply_filter(msnid, "!isDecoy")
 
-message("   + Remove contaminants")
-msnid$isContaminant <- grepl("Contaminant", msnid$Protein)
-msnid <- apply_filter(msnid, "!isContaminant")
-
 message("   + Compute protein coverage")
 msnid <- compute_protein_coverage(msnid, path_to_FASTA = fasta_file)
 
