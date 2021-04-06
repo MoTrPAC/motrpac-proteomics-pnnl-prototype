@@ -87,6 +87,9 @@ msnid <- compute_num_peptides_per_1000aa(msnid,
 
 msnid <- filter_msgf_data_protein_level(msnid, 0.01)
 
+message("   + Remove decoy accessions")
+msnid <- apply_filter(msnid, "!isDecoy")
+
 message("   + Concatenating redundant RefSeq matches")
 msnid <- assess_redundant_protein_matches(msnid)
 
@@ -95,13 +98,6 @@ msnid <- assess_noninferable_proteins(msnid)
 
 message("   + Inference of parsimonious protein set")
 msnid <- infer_parsimonious_accessions(msnid)
-
-message("   + Remove decoy accessions")
-msnid <- apply_filter(msnid, "!isDecoy")
-
-message("   + Remove contaminants")
-msnid$isContaminant <- grepl("Contaminant", msnid$Protein)
-msnid <- apply_filter(msnid, "!isContaminant")
 
 message("   + Compute protein coverage")
 msnid <- compute_protein_coverage(msnid, path_to_FASTA = fasta_file)
