@@ -124,9 +124,14 @@ if (proteomics == "ph") {
 message("   + FDR filter")
 msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
 
+message("   + Remove decoy sequences")
+msnid <- apply_filter(msnid, "!isDecoy")
 
 message("   + Concatenating redundant RefSeq matches")
 msnid <- assess_redundant_protein_matches(msnid)
+
+message("   + Assessing non-inferable proteins")
+msnid <- assess_noninferable_proteins(msnid)
 
 message("   + Inference of parsimonius set")
 msnid <- infer_parsimonious_accessions(msnid)
@@ -158,9 +163,6 @@ if(proteomics == "ph") {
 
 message("   + Remove decoy sequences")
 msnid <- map_flanking_sequence(msnid, fst)
-
-message("   + Remove decoy sequences")
-msnid <- apply_filter(msnid, "!isDecoy")
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
