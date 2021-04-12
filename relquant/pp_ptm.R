@@ -6,6 +6,7 @@
 # -i data/test_phospho/phrp_output/ \
 # -a data/test_phospho/ascore_output/ \
 # -j data/test_phospho/masic_output/ \
+# -g /path/to/global/results_ratio.txt \
 # -f data/ID_007275_FB1B42E8.fasta \
 # -s data/test_phospho/study_design/ \
 # -o data/test_phospho/plexedpiper_output/
@@ -33,6 +34,8 @@ option_list <- list(
               help="AScore output folder", metavar="character"),
   make_option(c("-j", "--masic_output_folder"), type="character", default=NULL, 
               help="MASIC output folder", metavar="character"),
+  make_option(c("-g", "--global_results_ratio"), type="character", default=NULL, 
+              help="Global results ratio", metavar="character"),
   make_option(c("-f", "--fasta_file"), type="character", default=NULL, 
               help="FASTA file (RefSeq format)", metavar="character"),
   make_option(c("-s", "--study_design_folder"), type="character", default=NULL, 
@@ -48,6 +51,7 @@ if (is.null(opt$proteomics) |
     is.null(opt$msgf_output_folder) | 
     is.null(opt$ascore_output_folder) | 
     is.null(opt$masic_output_folder) | 
+    is.null(opt$global_results_ratio) | 
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
     is.null(opt$plexedpiper_output_folder)
@@ -60,6 +64,7 @@ proteomics <- tolower(opt$proteomics)
 msgf_output_folder <- opt$msgf_output_folder 
 ascore_output_folder <- opt$ascore_output_folder 
 masic_output_folder <- opt$masic_output_folder 
+global_results_ratio <- opt$global_results_ratio
 fasta_file<- opt$fasta_file
 study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
@@ -108,9 +113,9 @@ if (!setequal(fractions$Dataset, msnid$Dataset)) {
 }
 
 message("   + Read Ascore output")
-ascore <- PlexedPiper:::collate_files(ascore_output_folder, "_syn_ascore.txt")
+ascore <- read_AScore_results(ascore_output_folder)
 
-
+message("   + Select best PTM location by AScore")
 msnid <- best_PTM_location_by_ascore(msnid, ascore)
 
 if (proteomics == "ph") {
@@ -134,13 +139,18 @@ message("   + Assessing non-inferable proteins")
 msnid <- assess_noninferable_proteins(msnid)
 
 message("   + Inference of parsimonius set")
-msnid <- infer_parsimonious_accessions(msnid)
+results_ratio <- read.table(global_results_ratio,
+                            header=T, sep="\t")
+global_proteins <- unique(results_ratio$protein_id)
+
+msnid <- infer_parsimonious_accessions(msnid,
+                                       prior=global_proteins)
 
 message("   + Mapping sites to protein sequence")
 suppressMessages(
   fst <- Biostrings::readAAStringSet(fasta_file)
   )
-names(fst) <- sub("^([A-Z]P_\\d+\\.\\d+)\\s.*", "\\1", names(fst))
+names(fst) <- sub("^(\\S*)\\s.*", "\\1", names(fst))
 
 if(proteomics == "ph") {
   msnid <- map_mod_sites(msnid, 
@@ -161,8 +171,8 @@ if(proteomics == "ph") {
 }
 
 
-message("   + Remove decoy sequences")
-msnid <- map_flanking_sequence(msnid, fst)
+message("   + Map flanking sequences")
+msnid <- map_flanking_sequences(msnid, fst)
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
