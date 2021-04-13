@@ -156,14 +156,14 @@ if(proteomics == "ph") {
   msnid <- map_mod_sites(msnid, 
                          fst, 
                          accession_col = "accession", 
-                         peptide_mod_col = "Peptide", 
+                         peptide_mod_col = "peptide", 
                          mod_char = "*",
                          site_delimiter = "lower")
 } else if (proteomics %in% c("ac", "ub")) {
   msnid <- map_mod_sites(msnid, 
                          fst, 
                          accession_col = "accession", 
-                         peptide_mod_col = "Peptide", 
+                         peptide_mod_col = "peptide", 
                          mod_char = "#",
                          site_delimiter = "lower")
 } else {
@@ -172,7 +172,7 @@ if(proteomics == "ph") {
 
 
 message("   + Map flanking sequences")
-msnid <- map_flanking_sequences(msnid, fst)
+msnid <- extract_sequence_window(msnid, fst)
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
