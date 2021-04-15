@@ -6,7 +6,7 @@
 # -i data/test_phospho/phrp_output/ \
 # -a data/test_phospho/ascore_output/ \
 # -j data/test_phospho/masic_output/ \
-# -g data/test_global/plexedpiper_output/ \
+# -g data/test_global/plexedpiper_output/results_ratio.txt \
 # -f data/ID_007275_FB1B42E8.fasta \
 # -s data/test_phospho/study_design/ \
 # -o data/test_phospho/plexedpiper_output/
@@ -34,8 +34,8 @@ option_list <- list(
               help="AScore output folder", metavar="character"),
   make_option(c("-j", "--masic_output_folder"), type="character", default=NULL, 
               help="MASIC output folder", metavar="character"),
-  make_option(c("-g", "--plexedpiper_global_output_folder"), type="character", default=NULL, 
-              help="PlexedPiper global output folder", metavar="character"),
+  make_option(c("-g", "--plexedpiper_global_results_ratio"), type="character", default=NULL, 
+              help="PlexedPiper global results ratio table", metavar="character"),
   make_option(c("-f", "--fasta_file"), type="character", default=NULL, 
               help="FASTA file (RefSeq format)", metavar="character"),
   make_option(c("-s", "--study_design_folder"), type="character", default=NULL, 
@@ -51,7 +51,7 @@ if (is.null(opt$proteomics) |
     is.null(opt$msgf_output_folder) | 
     is.null(opt$ascore_output_folder) | 
     is.null(opt$masic_output_folder) | 
-    is.null(opt$plexedpiper_global_output_folder) | 
+    # is.null(opt$plexedpiper_global_results_ratio) | 
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
     is.null(opt$plexedpiper_output_folder)
@@ -64,7 +64,7 @@ proteomics <- tolower(opt$proteomics)
 msgf_output_folder <- opt$msgf_output_folder 
 ascore_output_folder <- opt$ascore_output_folder 
 masic_output_folder <- opt$masic_output_folder 
-plexedpiper_global_output_folder <- opt$plexedpiper_global_output_folder
+plexedpiper_global_results_ratio <- opt$plexedpiper_global_results_ratio
 fasta_file<- opt$fasta_file
 study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
@@ -139,12 +139,14 @@ message("   + Assessing non-inferable proteins")
 msnid <- assess_noninferable_proteins(msnid)
 
 message("   + Inference of parsimonius set")
-global_results_ratio <- read.table(file = paste(plexedpiper_global_output_folder, "results_ratio.txt", sep="/"),
-                            header=T, sep="\t")
-global_proteins <- unique(global_results_ratio$protein_id)
 
-msnid <- infer_parsimonious_accessions(msnid,
-                                       prior=global_proteins)
+if (is.null(plexedpiper_global_results_ratio)) {
+  msnid <- infer_parsimonious_accessions(msnid)
+} else {
+  global_results_ratio <- read.table(plexedpiper_global_results_ratio, header=T, sep="\t")
+  global_protein_ids <- unique(global_results_ratio$protein_id)
+  msnid <- infer_parsimonious_accessions(msnid, prior=global_protein_ids)
+}
 
 message("   + Mapping sites to protein sequence")
 suppressMessages(
