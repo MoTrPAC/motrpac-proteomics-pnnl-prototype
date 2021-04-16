@@ -32,9 +32,10 @@ if (is.null(opt$file_vial_metadata) |
 }
 
 # DEBUG --------------------------------------------------------------------
-# file_vial_metadata = 
-# raw_folder <- 
-# output_folder = 
+# file_vial_metadata = "RESULTS_20210224/MOTRPAC_PASS1B-06_T59_PR_PN_20210224_vial_metadata.txt"
+# raw_folder = "RAW_20210224/"
+# output_folder = "pipeline_PASS1B-06_T59_PR_PN_DF202104"
+# cas = "broad"
 # DEGUB --------------------------------------------------------------------
 
 file_vial_metadata <- opt$file_vial_metadata
@@ -121,12 +122,12 @@ if(cas == "pnnl"){
   tmt <- tmt[grepl(".*\\.raw", tmt$file_name),]
   tmt <- as.data.frame(apply(tmt, 2, function(x) basename(x)))
   tmt$PlexID <- NA
-  tmt$PlexID <- ifelse(grepl("01MoTrPAC", tmt$file_name, ignore.case = TRUE), "S1", tmt$PlexID)
-  tmt$PlexID <- ifelse(grepl("02MoTrPAC", tmt$file_name, ignore.case = TRUE), "S2", tmt$PlexID)
-  tmt$PlexID <- ifelse(grepl("03MoTrPAC", tmt$file_name, ignore.case = TRUE), "S3", tmt$PlexID)
-  tmt$PlexID <- ifelse(grepl("04MoTrPAC", tmt$file_name, ignore.case = TRUE), "S4", tmt$PlexID)
-  tmt$PlexID <- ifelse(grepl("05MoTrPAC", tmt$file_name, ignore.case = TRUE), "S5", tmt$PlexID)
-  tmt$PlexID <- ifelse(grepl("06MoTrPAC", tmt$file_name, ignore.case = TRUE), "S6", tmt$PlexID)
+  tmt$PlexID <- ifelse(grepl("01M", tmt$file_name, ignore.case = TRUE), "S1", tmt$PlexID)
+  tmt$PlexID <- ifelse(grepl("02M", tmt$file_name, ignore.case = TRUE), "S2", tmt$PlexID)
+  tmt$PlexID <- ifelse(grepl("03M", tmt$file_name, ignore.case = TRUE), "S3", tmt$PlexID)
+  tmt$PlexID <- ifelse(grepl("04M", tmt$file_name, ignore.case = TRUE), "S4", tmt$PlexID)
+  tmt$PlexID <- ifelse(grepl("05M", tmt$file_name, ignore.case = TRUE), "S5", tmt$PlexID)
+  tmt$PlexID <- ifelse(grepl("06M", tmt$file_name, ignore.case = TRUE), "S6", tmt$PlexID)
   
   tmt <- rename(tmt, Dataset=file_name)
   
