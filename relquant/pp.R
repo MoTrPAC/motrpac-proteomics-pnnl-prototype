@@ -100,7 +100,11 @@ message("   + Inference of parsimonious protein set")
 msnid <- infer_parsimonious_accessions(msnid)
 
 message("   + Compute protein coverage")
-msnid <- compute_protein_coverage(msnid, path_to_FASTA = fasta_file)
+suppressMessages(
+  fst <- Biostrings::readAAStringSet(fasta_file)
+)
+names(fst) <- sub("^(\\S*)\\s.*", "\\1", names(fst))
+msnid <- compute_accession_coverage(msnid, fst)
 
 message("- Prepare reporter ion intensities")
 message("   + Read MASIC ouput")
@@ -124,7 +128,7 @@ rii_peptide <- make_rii_peptide_gl(msnid = msnid,
                                    org_name = "Rattus norvegicus")
 
 message("- Create Ratio Results")
-ratio_results <- make_results_ratio_gl(msnid =  msnid, 
+results_ratio <- make_results_ratio_gl(msnid =  msnid, 
                                        masic_data = masic_data, 
                                        fractions = fractions, 
                                        samples = samples, 
@@ -143,7 +147,7 @@ write.table(rii_peptide,
             row.names = FALSE,
             quote = FALSE)
 
-write.table(ratio_results,
+write.table(results_ratio,
             file = paste(plexedpiper_output_folder, "results_ratio.txt", sep="/"),
             sep="\t",
             row.names = FALSE,
