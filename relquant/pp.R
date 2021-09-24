@@ -1,21 +1,14 @@
 #!/usr/bin/env Rscript
 
-# Example command
-# Rscript /relquant/pp.R -i /data/test_global/phrp_output \
-# -j /data/test_global/masic_output \
-# -f /data/ID_007275_FB1B42E8.fasta \
-# -s /relquant/study_design \
-# -o /relquant
-
 # Assumed that PlexedPiper is already installed. Otherwise...
-if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
-if(!require("optparse", quietly = TRUE)) install.packages("optparse")
-if(!require("remotes", quietly = TRUE)) install.packages("remotes")
-if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
+# if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
+# if(!require("optparse", quietly = TRUE)) install.packages("optparse")
+# if(!require("remotes", quietly = TRUE)) install.packages("remotes")
+# if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
 
-suppressWarnings(library(optparse))
-suppressWarnings(library(dplyr))
-suppressWarnings(library(PlexedPiper))
+suppressPackageStartupMessages(suppressWarnings(library(optparse)))
+suppressPackageStartupMessages(suppressWarnings(library(dplyr)))
+suppressPackageStartupMessages(suppressWarnings(library(PlexedPiper)))
 
 option_list <- list(
   make_option(c("-i", "--msgf_output_folder"), type="character", default=NULL, 
@@ -27,8 +20,19 @@ option_list <- list(
   make_option(c("-s", "--study_design_folder"), type="character", default=NULL, 
               help="Study design folder", metavar="character"),
   make_option(c("-o", "--plexedpiper_output_folder"), type="character", default=NULL, 
+              help="PlexedPiper output folder (Crosstabs)", metavar="character"),
+  make_option(c("-n", "--plexedpiper_output_name_prefix"), type="character", default=NULL,
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
+
+get_date <- function(){
+  # GET QC_DATE----
+  date2print <- Sys.time()
+  date2print <- gsub("-", "", date2print)
+  date2print <- gsub(" ", "_", date2print)
+  date2print <- gsub(":", "", date2print)
+  return(date2print)
+}
 
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
@@ -58,6 +62,14 @@ masic_output_folder <- opt$masic_output_folder
 fasta_file<- opt$fasta_file
 study_design_folder<- opt$study_design_folder
 plexedpiper_output_folder<- opt$plexedpiper_output_folder
+
+date2print <- get_date()
+if(is.null(opt$plexedpiper_output_name_prefix)){
+  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_PR_", toupper(proteomics),"_", date2print)
+}else{
+  plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
+  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "_", date2print)
+}
 
 message("- Fetch study design tables")
 study_design <- read_study_design(study_design_folder)
@@ -141,14 +153,16 @@ if(!dir.exists(file.path(plexedpiper_output_folder))){
   dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
 }
 
+file_rii <- paste0(plexedpiper_output_name_prefix, "_results_RII-peptide.txt")
+file_ratio <- paste0(plexedpiper_output_name_prefix, "_results_ratio.txt")
 write.table(rii_peptide,
-            file = paste(plexedpiper_output_folder, "results_RII-peptide.txt", sep="/"),
+            file = paste(plexedpiper_output_folder, file_rii, sep="/"),
             sep="\t",
             row.names = FALSE,
             quote = FALSE)
 
 write.table(results_ratio,
-            file = paste(plexedpiper_output_folder, "results_ratio.txt", sep="/"),
+            file = paste(plexedpiper_output_folder, file_ratio, sep="/"),
             sep="\t",
             row.names = FALSE,
             quote = FALSE)

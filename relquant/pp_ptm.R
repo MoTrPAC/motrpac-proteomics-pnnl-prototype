@@ -1,33 +1,10 @@
 #!/usr/bin/env Rscript
 
-# Example command
-# Rscript relquant/pp_ptm.R \
-# -p ph \
-# -i data/test_phospho/phrp_output/ \
-# -a data/test_phospho/ascore_output/ \
-# -j data/test_phospho/masic_output/ \
-# -g data/test_global/plexedpiper_output/results_ratio.txt \
-# -f data/ID_007275_FB1B42E8.fasta \
-# -s data/test_phospho/study_design/ \
-# -o data/test_phospho/plexedpiper_output/
-
-# Assumed that PlexedPiper is already installed. Otherwise...
-if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
-if(!require("optparse", quietly = TRUE)) install.packages("optparse")
-if(!require("remotes", quietly = TRUE)) install.packages("remotes")
-if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
-
-
-message("\n- Load required libraries")
-
 suppressMessages(suppressWarnings(library(optparse)))
-suppressMessages(suppressWarnings(library(dplyr)))
-suppressMessages(suppressWarnings(library(PlexedPiper)))
-
 
 option_list <- list(
   make_option(c("-p", "--proteomics"), type="character", default=NULL, 
-              help="Proteomics experiment: pr/ph/ub/ac", metavar="character"),
+              help="Proteomics experiment: ph/ub/ac", metavar="character"),
   make_option(c("-i", "--msgf_output_folder"), type="character", default=NULL, 
               help="MSGF output folder", metavar="character"),
   make_option(c("-a", "--ascore_output_folder"), type="character", default=NULL, 
@@ -41,8 +18,19 @@ option_list <- list(
   make_option(c("-s", "--study_design_folder"), type="character", default=NULL, 
               help="Study design folder", metavar="character"),
   make_option(c("-o", "--plexedpiper_output_folder"), type="character", default=NULL, 
+              help="PlexedPiper output folder (Crosstabs)", metavar="character"),
+  make_option(c("-n", "--plexedpiper_output_name_prefix"), type="character", default=NULL,
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
+
+get_date <- function(){
+  # GET QC_DATE----
+  date2print <- Sys.time()
+  date2print <- gsub("-", "", date2print)
+  date2print <- gsub(" ", "_", date2print)
+  date2print <- gsub(":", "", date2print)
+  return(date2print)
+}
 
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
@@ -51,23 +39,34 @@ if (is.null(opt$proteomics) |
     is.null(opt$msgf_output_folder) | 
     is.null(opt$ascore_output_folder) | 
     is.null(opt$masic_output_folder) | 
-    # is.null(opt$plexedpiper_global_results_ratio) | 
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
     is.null(opt$plexedpiper_output_folder)
 ){
   print_help(opt_parser)
-  stop("7 arguments are required", call.=FALSE)
+  stop("The following arguments are required", call.=FALSE)
 }
+
+message("\n- Load required libraries")
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(PlexedPiper)))
 
 proteomics <- tolower(opt$proteomics)
 msgf_output_folder <- opt$msgf_output_folder 
 ascore_output_folder <- opt$ascore_output_folder 
 masic_output_folder <- opt$masic_output_folder 
 plexedpiper_global_results_ratio <- opt$plexedpiper_global_results_ratio
-fasta_file<- opt$fasta_file
-study_design_folder<- opt$study_design_folder
-plexedpiper_output_folder<- opt$plexedpiper_output_folder
+fasta_file <- opt$fasta_file
+study_design_folder <- opt$study_design_folder
+plexedpiper_output_folder <- opt$plexedpiper_output_folder
+
+date2print <- get_date()
+if(is.null(opt$plexedpiper_output_name_prefix)){
+  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_", toupper(proteomics),"_", date2print)
+}else{
+  plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
+  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "_", date2print)
+}
 
 # To DEBUG ---------------------------------------------------------------------
 
@@ -89,8 +88,9 @@ plexedpiper_output_folder<- opt$plexedpiper_output_folder
 
 # To DEBUG ---------------------------------------------------------------------
 
-if(!( proteomics %in% c("pr", "ph", "ac", "ub"))){
-  stop("The < proteomics > variable is not correct. Accepted values: ph, pr, ac, ub")
+ptms <- c("ph", "ac", "ub")
+if(!( proteomics %in% ptms)){
+  stop("The < proteomics > variable is not correct. Accepted values: ", paste(ptms, collapse = ", "))
 }else{
   message("- Proteomics experiment: ", proteomics)
 }
@@ -118,6 +118,7 @@ ascore <- read_AScore_results(ascore_output_folder)
 message("   + Select best PTM location by AScore")
 msnid <- best_PTM_location_by_ascore(msnid, ascore)
 
+message("   + Apply PTM filter")
 if (proteomics == "ph") {
   msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
 } else if(proteomics %in% c("ac", "ub")) {
@@ -141,8 +142,10 @@ msnid <- assess_noninferable_proteins(msnid)
 message("   + Inference of parsimonius set")
 
 if (is.null(plexedpiper_global_results_ratio)) {
+  message("     > Reference global proteomics dataset NOT provided")
   msnid <- infer_parsimonious_accessions(msnid)
 } else {
+  message("     > Global proteomics results provided: PROTEIN IDS will be used to infer parsimonious as prior")
   global_results_ratio <- read.table(plexedpiper_global_results_ratio, header=T, sep="\t")
   global_protein_ids <- unique(global_results_ratio$protein_id)
   msnid <- infer_parsimonious_accessions(msnid, prior=global_protein_ids)
@@ -204,7 +207,6 @@ rii_peptide <- make_rii_peptide_ph(msnid,
                                    samples,
                                    references, 
                                    org_name = "Rattus norvegicus")
-# NEW----------------------------------------------------------------------
 
 message("- Save results")
 
@@ -212,14 +214,16 @@ if(!dir.exists(file.path(plexedpiper_output_folder))){
   dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
 }
 
+file_rii <- paste0(plexedpiper_output_name_prefix, "_results_RII-peptide.txt")
+file_ratio <- paste0(plexedpiper_output_name_prefix, "_results_ratio.txt")
 write.table(rii_peptide,
-            file = paste(plexedpiper_output_folder, "results_RII-peptide.txt", sep="/"),
+            file = paste(plexedpiper_output_folder, file_rii, sep="/"),
             sep="\t",
             row.names = FALSE,
             quote = FALSE)
 
 write.table(results_ratio,
-            file = paste(plexedpiper_output_folder, "results_ratio.txt", sep="/"),
+            file = paste(plexedpiper_output_folder, file_ratio, sep="/"),
             sep="\t",
             row.names = FALSE,
             quote = FALSE)
