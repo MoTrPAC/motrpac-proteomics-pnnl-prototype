@@ -20,7 +20,9 @@ option_list <- list(
   make_option(c("-o", "--plexedpiper_output_folder"), type="character", default=NULL, 
               help="PlexedPiper output folder (Crosstabs)", metavar="character"),
   make_option(c("-n", "--plexedpiper_output_name_prefix"), type="character", default=NULL,
-              help="PlexedPiper output folder (Crosstabs)", metavar="character")
+              help="PlexedPiper output folder (Crosstabs)", metavar="character"),
+  make_option(c("-c", "--species"), type="character", default=NULL,
+              help="Full scientific name for the species (e.g. -c \"Homo sapiens\")", metavar="character")
 )
 
 get_date <- function(){
@@ -41,32 +43,16 @@ if (is.null(opt$proteomics) |
     is.null(opt$masic_output_folder) | 
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
-    is.null(opt$plexedpiper_output_folder)
+    is.null(opt$plexedpiper_output_folder) |
+    is.null(opt$species)
 ){
   print_help(opt_parser)
-  stop("The following arguments are required", call.=FALSE)
+  stop("Required arguments are missed", call.=FALSE)
 }
 
 message("\n- Load required libraries")
 suppressMessages(suppressWarnings(library(dplyr)))
 suppressMessages(suppressWarnings(library(PlexedPiper)))
-
-proteomics <- tolower(opt$proteomics)
-msgf_output_folder <- opt$msgf_output_folder 
-ascore_output_folder <- opt$ascore_output_folder 
-masic_output_folder <- opt$masic_output_folder 
-plexedpiper_global_results_ratio <- opt$plexedpiper_global_results_ratio
-fasta_file <- opt$fasta_file
-study_design_folder <- opt$study_design_folder
-plexedpiper_output_folder <- opt$plexedpiper_output_folder
-
-date2print <- get_date()
-if(is.null(opt$plexedpiper_output_name_prefix)){
-  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_", toupper(proteomics),"_", date2print)
-}else{
-  plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
-  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "_", date2print)
-}
 
 # To DEBUG ---------------------------------------------------------------------
 
@@ -77,6 +63,7 @@ if(is.null(opt$plexedpiper_output_name_prefix)){
 # fasta_file = "ID_007275_FB1B42E8.fasta"
 # study_design_folder = "study_design"
 # plexedpiper_output_folder = "pp_output"
+# species = "Rattus novergicus"
 
 # proteomics = "ac"
 # msgf_output_folder = "data/test_acetyl/phrp_output/"
@@ -87,6 +74,24 @@ if(is.null(opt$plexedpiper_output_name_prefix)){
 # plexedpiper_output_folder = "data/test_acetyl/plexedpiper_output"
 
 # To DEBUG ---------------------------------------------------------------------
+
+proteomics <- tolower(opt$proteomics)
+msgf_output_folder <- opt$msgf_output_folder 
+ascore_output_folder <- opt$ascore_output_folder 
+masic_output_folder <- opt$masic_output_folder 
+plexedpiper_global_results_ratio <- opt$plexedpiper_global_results_ratio
+fasta_file <- opt$fasta_file
+study_design_folder <- opt$study_design_folder
+plexedpiper_output_folder <- opt$plexedpiper_output_folder
+species <- opt$species
+
+date2print <- get_date()
+if(is.null(opt$plexedpiper_output_name_prefix)){
+  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_", toupper(proteomics),"_", date2print)
+}else{
+  plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
+  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "_", date2print)
+}
 
 ptms <- c("ph", "ac", "ub")
 if(!( proteomics %in% ptms)){
@@ -193,20 +198,35 @@ masic_data <- filter_masic_data(masic_data, 0.5, 0)
 
 
 # NEW----------------------------------------------------------------------
-results_ratio <- make_results_ratio_ph(msnid, 
-                                       masic_data, 
-                                       fractions, 
-                                       samples,
-                                       references, 
-                                       org_name = "Rattus norvegicus")
+message("   + Generate results ratio.", appendLF = FALSE)
+results_ratio <- suppressMessages(
+  suppressPackageStartupMessages(
+    suppressWarnings(
+      make_results_ratio_ph(msnid, 
+                            masic_data, 
+                            fractions, 
+                            samples,
+                            references, 
+                            org_name = species)
+    )
+  )
+)
 
+message("Total number of unique ptm_ids: ", length(unique(results_ratio$ptm_id)))
+                                                                                                        
+message("   + Generate RII peptide. ", appendLF = FALSE)
+rii_peptide <- suppressMessages(
+  suppressPackageStartupMessages(
+    suppressWarnings(
+      make_rii_peptide_ph(msnid, 
+                          masic_data, 
+                          fractions, 
+                          samples,
+                          references, 
+                          org_name = species)
+    )))
 
-rii_peptide <- make_rii_peptide_ph(msnid, 
-                                   masic_data, 
-                                   fractions, 
-                                   samples,
-                                   references, 
-                                   org_name = "Rattus norvegicus")
+message("Total number of unique ptm_ids: ", length(unique(rii_peptide$ptm_id)))
 
 message("- Save results")
 

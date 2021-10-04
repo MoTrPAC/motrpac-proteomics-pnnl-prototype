@@ -22,7 +22,9 @@ option_list <- list(
   make_option(c("-o", "--plexedpiper_output_folder"), type="character", default=NULL, 
               help="PlexedPiper output folder (Crosstabs)", metavar="character"),
   make_option(c("-n", "--plexedpiper_output_name_prefix"), type="character", default=NULL,
-              help="PlexedPiper output folder (Crosstabs)", metavar="character")
+              help="PlexedPiper output folder (Crosstabs)", metavar="character"),
+  make_option(c("-c", "--species"), type="character", default=NULL,
+              help="Full scientific name for the species (e.g. -c \"Homo sapiens\")", metavar="character")
 )
 
 get_date <- function(){
@@ -41,10 +43,11 @@ if (is.null(opt$msgf_output_folder) |
     is.null(opt$masic_output_folder) | 
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
-    is.null(opt$plexedpiper_output_folder)
+    is.null(opt$plexedpiper_output_folder) | 
+    is.null(opt$species)
     ){
   print_help(opt_parser)
-  stop("5 arguments are required", call.=FALSE)
+  stop("Required arguments are missed", call.=FALSE)
 }
 
 
@@ -59,9 +62,10 @@ if (is.null(opt$msgf_output_folder) |
 
 msgf_output_folder <- opt$msgf_output_folder 
 masic_output_folder <- opt$masic_output_folder 
-fasta_file<- opt$fasta_file
-study_design_folder<- opt$study_design_folder
-plexedpiper_output_folder<- opt$plexedpiper_output_folder
+fasta_file <- opt$fasta_file
+study_design_folder <- opt$study_design_folder
+plexedpiper_output_folder <- opt$plexedpiper_output_folder
+species <- opt$species
 
 date2print <- get_date()
 if(is.null(opt$plexedpiper_output_name_prefix)){
@@ -131,21 +135,35 @@ message("   + Filtering MASIC data")
 masic_data <- filter_masic_data(masic_data, 0.5, 0)
 
 
-message("- Create Reporter Ion Intensity Results")
-rii_peptide <- make_rii_peptide_gl(msnid = msnid, 
-                                   masic_data = masic_data, 
-                                   fractions = fractions, 
-                                   samples = samples, 
-                                   references = references, 
-                                   org_name = "Rattus norvegicus")
+message("   + Generate RII peptide. ", appendLF = FALSE)
+rii_peptide <- suppressMessages(
+  suppressPackageStartupMessages(
+    suppressWarnings(
+      make_rii_peptide_gl(msnid = msnid, 
+                          masic_data = masic_data, 
+                          fractions = fractions, 
+                          samples = samples, 
+                          references = references, 
+                          org_name = species)
+    )
+  )
+)
+message("Total number of unique protein_id: ", length(unique(rii_peptide$protein_id)))
 
-message("- Create Ratio Results")
-results_ratio <- make_results_ratio_gl(msnid =  msnid, 
-                                       masic_data = masic_data, 
-                                       fractions = fractions, 
-                                       samples = samples, 
-                                       references = references, 
-                                       org_name = "Rattus norvegicus")
+message("   + Make results ratio.", appendLF = FALSE)
+results_ratio <- suppressMessages(
+  suppressPackageStartupMessages(
+    suppressWarnings(
+      make_results_ratio_gl(msnid =  msnid, 
+                            masic_data = masic_data, 
+                            fractions = fractions, 
+                            samples = samples, 
+                            references = references, 
+                            org_name = species)
+    )
+  )
+)
+message("Total number of unique protein_id: ", length(unique(results_ratio$protein_id)))
 
 message("- Save results")
 
