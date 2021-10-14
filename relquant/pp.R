@@ -24,7 +24,9 @@ option_list <- list(
   make_option(c("-n", "--plexedpiper_output_name_prefix"), type="character", default=NULL,
               help="PlexedPiper output folder (Crosstabs)", metavar="character"),
   make_option(c("-c", "--species"), type="character", default=NULL,
-              help="Full scientific name for the species (e.g. -c \"Homo sapiens\")", metavar="character")
+              help="Full scientific name for the species (e.g. -c \"Homo sapiens\")", metavar="character"),
+  make_option(c("-a", "--annotation"), type="character", default=NULL,
+              help="Protein annotation database used (for now, either 'UniProt' or 'RefSeq')", metavar="character")
 )
 
 get_date <- function(){
@@ -44,7 +46,8 @@ if (is.null(opt$msgf_output_folder) |
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
     is.null(opt$plexedpiper_output_folder) | 
-    is.null(opt$species)
+    is.null(opt$species) |
+    is.null(opt$annotation)
     ){
   print_help(opt_parser)
   stop("Required arguments are missed", call.=FALSE)
@@ -66,6 +69,7 @@ fasta_file <- opt$fasta_file
 study_design_folder <- opt$study_design_folder
 plexedpiper_output_folder <- opt$plexedpiper_output_folder
 species <- opt$species
+annotation <- opt$annotation
 
 date2print <- get_date()
 if(is.null(opt$plexedpiper_output_name_prefix)){
@@ -110,10 +114,10 @@ message("   + Concatenating redundant RefSeq matches")
 msnid <- assess_redundant_protein_matches(msnid)
 
 message("   + Assessing non-inferable proteins")
-msnid <- assess_noninferable_proteins(msnid)
+msnid <- assess_noninferable_proteins(msnid, collapse = ",")
 
 message("   + Inference of parsimonious protein set")
-msnid <- infer_parsimonious_accessions(msnid)
+msnid <- infer_parsimonious_accessions(msnid, collapse = ",")
 
 message("   + Compute protein coverage")
 suppressMessages(
@@ -144,6 +148,7 @@ rii_peptide <- suppressMessages(
                           fractions = fractions, 
                           samples = samples, 
                           references = references, 
+                          annotation = annotation,
                           org_name = species)
     )
   )
@@ -159,6 +164,7 @@ results_ratio <- suppressMessages(
                             fractions = fractions, 
                             samples = samples, 
                             references = references, 
+                            annotation = annotation,
                             org_name = species)
     )
   )
