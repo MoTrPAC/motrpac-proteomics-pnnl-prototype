@@ -11,7 +11,7 @@
 if(!require("dplyr", quietly = TRUE)) install.packages("dplyr")
 if(!require("optparse", quietly = TRUE)) install.packages("optparse")
 if(!require("remotes", quietly = TRUE)) install.packages("remotes")
-if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("vladpetyuk/PlexedPiper", build_vignettes = FALSE)
+if(!require("PlexedPiper", quietly = TRUE)) remotes::install_github("PNNL-Comp-Mass-Spec/PlexedPiper", build_vignettes = FALSE)
 
 suppressWarnings(library(optparse))
 suppressWarnings(library(dplyr))
@@ -38,7 +38,7 @@ if (is.null(opt$msgf_output_folder) |
     is.null(opt$fasta_file) |
     is.null(opt$study_design_folder) |
     is.null(opt$plexedpiper_output_folder)
-    ){
+    )  {
   print_help(opt_parser)
   stop("5 arguments are required", call.=FALSE)
 }
@@ -46,111 +46,44 @@ if (is.null(opt$msgf_output_folder) |
 
 # To DEBUG ---------------------------------------------------------------------
 # # Global
-# msgf_output_folder = "data/test_global/phrp_output"
-# masic_output_folder = "data/test_global/masic_output"
-# fasta_file = "data/ID_007275_FB1B42E8.fasta"
-# study_design_folder = "data/test_global/study_design"
+# msgf_output_folder        = "data/test_global/phrp_output"
+# masic_output_folder       = "data/test_global/masic_output"
+# fasta_file                = "data/ID_007275_FB1B42E8.fasta"
+# study_design_folder       = "data/test_global/study_design"
 # plexedpiper_output_folder = "data/test_global/plexedpiper_output300"
 # To DEBUG ---------------------------------------------------------------------
 
-msgf_output_folder <- opt$msgf_output_folder 
-masic_output_folder <- opt$masic_output_folder 
-fasta_file<- opt$fasta_file
-study_design_folder<- opt$study_design_folder
-plexedpiper_output_folder<- opt$plexedpiper_output_folder
+msgf_output_folder        <- opt$msgf_output_folder 
+masic_output_folder       <- opt$masic_output_folder 
+fasta_file                <- opt$fasta_file
+study_design_folder       <- opt$study_design_folder
+plexedpiper_output_folder <- opt$plexedpiper_output_folder
 
-message("- Fetch study design tables")
-study_design <- read_study_design(study_design_folder)
+source("R/motrpac_pipelines.R")
+source("R/msgf_postprocessing.R")
+source("R/data_utils.R")
 
-fractions  <- study_design$fractions
-samples    <- study_design$samples
-references <- study_design$references
-
-
-message("- Prepare MS/MS IDs")
+message("- Load PlexedPiper inptu data")
 message("   + Read the MS-GF+ output")
 msnid <- read_msgf_data(path_to_MSGF_results = msgf_output_folder)
 
-if (!setequal(fractions$Dataset, msnid$Dataset)) {
-  stop("Datasets in MS-GF+ output and 'fractions.txt' do not match!")
-}
-
-message("   + Correct for isotope selection error")
-msnid <- correct_peak_selection(msnid)
-
-message("   + MS/MS ID filter and peptide level")
-msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
-
-message("   + MS/MS ID filter at protein level")
-msnid <- compute_num_peptides_per_1000aa(msnid, 
-                                         path_to_FASTA = fasta_file)
-
-msnid <- filter_msgf_data_protein_level(msnid, 0.01)
-
-message("   + Remove decoy accessions")
-msnid <- apply_filter(msnid, "!isDecoy")
-
-message("   + Concatenating redundant RefSeq matches")
-msnid <- assess_redundant_protein_matches(msnid)
-
-message("   + Assessing non-inferable proteins")
-msnid <- assess_noninferable_proteins(msnid)
-
-message("   + Inference of parsimonious protein set")
-msnid <- infer_parsimonious_accessions(msnid)
-
-message("   + Compute protein coverage")
-msnid <- compute_protein_coverage(msnid, path_to_FASTA = fasta_file)
-
-message("- Prepare reporter ion intensities")
-message("   + Read MASIC ouput")
+message("   + Read the MASIC output")
 masic_data <- read_masic_data(path_to_MASIC_results = masic_output_folder, 
                               interference_score = TRUE)
 
-if (!setequal(fractions$Dataset, masic_data$Dataset)) {
-  stop("Datasets in MASIC output and 'fractions.txt' do not match!")
-}
-
-message("   + Filtering MASIC data")
-masic_data <- filter_masic_data(masic_data, 0.5, 0)
-
-
-message("- Create Reporter Ion Intensity Results")
-rii_peptide <- make_rii_peptide_gl(msnid = msnid, 
-                                   masic_data = masic_data, 
-                                   fractions = fractions, 
-                                   samples = samples, 
-                                   references = references, 
-                                   org_name = "Rattus norvegicus")
-
-message("- Create Ratio Results")
-ratio_results <- make_results_ratio_gl(msnid =  msnid, 
-                                       masic_data = masic_data, 
-                                       fractions = fractions, 
-                                       samples = samples, 
-                                       references = references, 
-                                       org_name = "Rattus norvegicus")
+message("- Main pipeline call")
+out <- motrpac_pnnl_global_pipeline(msnid               = msnid,
+                                    path_to_FASTA       = fasta_file,
+                                    masic_data          = masic_data,
+                                    study_design_folder = study_design_folder,
+                                    species             = "Rattus norvegicus",
+                                    annotation          = "RefSeq",
+                                    verbose             = TRUE)
 
 message("- Save results")
-
-if(!dir.exists(file.path(plexedpiper_output_folder))){
-  dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
-}
-
-write.table(rii_peptide,
-            file = paste(plexedpiper_output_folder, "results_RII-peptide.txt", sep="/"),
-            sep="\t",
-            row.names = FALSE,
-            quote = FALSE)
-
-write.table(ratio_results,
-            file = paste(plexedpiper_output_folder, "results_ratio.txt", sep="/"),
-            sep="\t",
-            row.names = FALSE,
-            quote = FALSE)
+save_pnnl_pipeline_results(out, plexedpiper_output_folder)
 
 message("- Done!")
-
 unlink(".Rcache", recursive=TRUE)
 
 

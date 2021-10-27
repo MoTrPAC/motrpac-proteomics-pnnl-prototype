@@ -90,129 +90,31 @@ if(!( proteomics %in% c("pr", "ph", "ac", "ub"))){
   message("- Proteomics experiment: ", proteomics)
 }
 
-message("- Fetch study design tables")
-study_design <- read_study_design(study_design_folder)
+source("R/motrpac_pipelines.R")
+source("R/msgf_postprocessing.R")
+source("R/data_utils.R")
 
-fractions <- study_design$fractions
-
-samples <- study_design$samples
-
-references <- study_design$references
-
-message("- Prepare MS/MS IDs")
+message("- Load PlexedPiper inptu data")
 message("   + Read the MS-GF+ output")
 msnid <- read_msgf_data(msgf_output_folder)
 
-if (!setequal(fractions$Dataset, msnid$Dataset)) {
-  stop("Datasets in MS-GF+ output and 'fractions.txt' do not match!")
-}
-
-message("   + Read Ascore output")
+message("   + Read the AScore output")
 ascore <- PlexedPiper:::collate_files(ascore_output_folder, "_syn_ascore.txt")
 
+message("   + Read the MASIC output")
+masic_data <- read_masic_data(masic_output_folder, interference_score=TRUE)
 
-msnid <- best_PTM_location_by_ascore(msnid, ascore)
-
-if (proteomics == "ph") {
-  msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
-} else if(proteomics %in% c("ac", "ub")) {
-  msnid <- apply_filter(msnid, "grepl(\"\\\\#\", peptide)")
-} else {
-  stop("proteomics variable not supported")
-}
-
-message("   + FDR filter")
-msnid <- filter_msgf_data_peptide_level(msnid, 0.01)
-
-message("   + Remove decoy sequences")
-msnid <- apply_filter(msnid, "!isDecoy")
-
-message("   + Concatenating redundant RefSeq matches")
-msnid <- assess_redundant_protein_matches(msnid)
-
-message("   + Assessing non-inferable proteins")
-msnid <- assess_noninferable_proteins(msnid)
-
-message("   + Inference of parsimonius set")
-msnid <- infer_parsimonious_accessions(msnid)
-
-message("   + Mapping sites to protein sequence")
-suppressMessages(
-  fst <- Biostrings::readAAStringSet(fasta_file)
-  )
-names(fst) <- sub("^([A-Z]P_\\d+\\.\\d+)\\s.*", "\\1", names(fst))
-
-if(proteomics == "ph") {
-  msnid <- map_mod_sites(msnid, 
-                         fst, 
-                         accession_col = "accession", 
-                         peptide_mod_col = "Peptide", 
-                         mod_char = "*",
-                         site_delimiter = "lower")
-} else if (proteomics %in% c("ac", "ub")) {
-  msnid <- map_mod_sites(msnid, 
-                         fst, 
-                         accession_col = "accession", 
-                         peptide_mod_col = "Peptide", 
-                         mod_char = "#",
-                         site_delimiter = "lower")
-} else {
-  stop("proteomics variable not supported")
-}
-
-
-message("   + Remove decoy sequences")
-msnid <- map_flanking_sequence(msnid, fst)
-
-message("- Prepare reporter ion intensities")
-message("   + Read MASIC ouput")
-path_to_MASIC_results <- masic_output_folder
-masic_data <- read_masic_data(path_to_MASIC_results, interference_score=TRUE)
-
-if (!setequal(fractions$Dataset, masic_data$Dataset)) {
-  stop("Datasets in MASIC output and 'fractions.txt' do not match!")
-}
-
-message("   + Filtering MASIC data")
-masic_data <- filter_masic_data(masic_data, 0.5, 0)
-
-
-# NEW----------------------------------------------------------------------
-results_ratio <- make_results_ratio_ph(msnid, 
-                                       masic_data, 
-                                       fractions, 
-                                       samples,
-                                       references, 
-                                       org_name = "Rattus norvegicus")
-
-
-rii_peptide <- make_rii_peptide_ph(msnid, 
-                                   masic_data, 
-                                   fractions, 
-                                   samples,
-                                   references, 
-                                   org_name = "Rattus norvegicus")
-# NEW----------------------------------------------------------------------
-
+message("- Main pipeline call")
+out <- motrpac_pnnl_ptm_pipeline(msnid, fasta_file,
+                                 masic_data, ascore,
+                                 proteomics,
+                                 study_design_folder,
+                                 species, annotation,
+                                 global_results = NULL,
+                                 verbose = TRUE)
+  
 message("- Save results")
-
-if(!dir.exists(file.path(plexedpiper_output_folder))){
-  dir.create(file.path(plexedpiper_output_folder), recursive = TRUE)
-}
-
-write.table(rii_peptide,
-            file = paste(plexedpiper_output_folder, "results_RII-peptide.txt", sep="/"),
-            sep="\t",
-            row.names = FALSE,
-            quote = FALSE)
-
-write.table(results_ratio,
-            file = paste(plexedpiper_output_folder, "results_ratio.txt", sep="/"),
-            sep="\t",
-            row.names = FALSE,
-            quote = FALSE)
+save_pnnl_pipeline_results(out, plexedpiper_output_folder)
 
 message("- Done!")
-
-
 unlink(".Rcache", recursive=TRUE)
