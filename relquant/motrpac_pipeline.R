@@ -1,6 +1,6 @@
 
 #' @param msnid (MSnID)
-#' @param path_to_FASTA (character)
+#' @param path_to_fasta (character)
 #' @param masic_data (data.frame)
 #' @param ascore (data.frame)
 #' @param proteomics (character)
@@ -19,14 +19,14 @@
 #' make_results_ratio_ph
 #' 
 #' @examples
-#' out <- motrpac_pnnl_pipeline(msnid, path_to_FASTA, masic_data, ascore=NULL,
+#' out <- motrpac_pnnl_pipeline(msnid, path_to_fasta, masic_data, ascore=NULL,
 #'                              proteomics = "pr",
 #'                              study_design,
 #'                              species = "Rattus norvegicus",
 #'                              annotation = "RefSeq")
 #' save_pnnl_pipeline_results(out, output_folder = "./global/output/")
 #' 
-#' out <- motrpac_pnnl_pipeline(msnid, path_to_FASTA, masic_data, ascore,
+#' out <- motrpac_pnnl_pipeline(msnid, path_to_fasta, masic_data, ascore,
 #'                              proteomics = "ph",
 #'                              study_design,
 #'                              species = "Rattus norvegicus",
@@ -34,7 +34,7 @@
 #' save_pnnl_pipeline_results(out, output_folder = "./phospho/output/")
 
 #' @export
-motrpac_pnnl_pipeline <- function(msnid, path_to_FASTA, masic_data,
+motrpac_pnnl_pipeline <- function(msnid, path_to_fasta, masic_data,
                                   ascore = NULL, proteomics,
                                   study_design, species, annotation,
                                   global_results = NULL, output_folder = ".",
@@ -46,7 +46,7 @@ motrpac_pnnl_pipeline <- function(msnid, path_to_FASTA, masic_data,
     message("Annotation: \"", annotation, "\".")
   }
   
-  fst <- Biostrings::readAAStringSet(path_to_FASTA)
+  fst <- Biostrings::readAAStringSet(path_to_fasta)
   names(fst) <- sub("^(\\S*)\\s.*", "\\1", names(fst))
   
   if (verbose) message("Filtering MS-GF+ results.")
@@ -76,7 +76,7 @@ motrpac_pnnl_pipeline <- function(msnid, path_to_FASTA, masic_data,
   
   if (proteomics == "pr") {
     if (verbose) message("   + Protein-level FDR filter")
-    msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA = fasta_file)
+    msnid <- compute_num_peptides_per_1000aa(msnid, path_to_FASTA = path_to_fasta)
     
     msnid <- filter_msgf_data(msnid, level = "accession", fdr.max = 0.01)
   }
@@ -102,7 +102,7 @@ motrpac_pnnl_pipeline <- function(msnid, path_to_FASTA, masic_data,
   }
   msnid <- infer_parsimonious_accessions(msnid, prior = prior)
   
-  fst <- readAAStringSet(path_to_FASTA)
+  fst <- readAAStringSet(path_to_fasta)
   names(fst) <- sub("^(\\S*)\\s.*", "\\1", names(fst))
   
   if (proteomics == "pr") {
