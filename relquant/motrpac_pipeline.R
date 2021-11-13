@@ -42,7 +42,6 @@ motrpac_pnnl_pipeline <- function(msnid, path_to_FASTA, masic_data,
   if (verbose) {
     message("Running MoTrPAC PNNL pipeline with the following parameters:")
     message("proteomics: \"pr\".")
-    message("Study design folder: ", study_design_folder, "\".")
     message("Species: \"", species, "\".")
     message("Annotation: \"", annotation, "\".")
   }
