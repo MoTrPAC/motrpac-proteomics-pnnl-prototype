@@ -123,11 +123,16 @@ ascore <- read_AScore_results(ascore_output_folder)
 message("   + Select best PTM location by AScore")
 msnid <- best_PTM_location_by_ascore(msnid, ascore)
 
-message("   + Apply PTM filter")
+message("   + Apply PTM filter for ", appendLF = FALSE)
 if (proteomics == "ph") {
+  message("ph")
   msnid <- apply_filter(msnid, "grepl(\"\\\\*\", peptide)")
-} else if(proteomics %in% c("ac", "ub")) {
+} else if(proteomics %in% c("ac")) {
+  message("ac")
   msnid <- apply_filter(msnid, "grepl(\"\\\\#\", peptide)")
+} else if(proteomics %in% c("ub")) {
+  message("ub")
+  msnid <- apply_filter(msnid, "grepl(\"(\\\\#|\\\\@)\", peptide)")
 } else {
   stop("proteomics variable not supported")
 }
