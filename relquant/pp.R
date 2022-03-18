@@ -22,9 +22,9 @@ option_list <- list(
   make_option(c("-s", "--study_design_folder"), type="character", default=NULL, 
               help="Study design folder", metavar="character"),
   make_option(c("-c", "--species"), type="character", default=NULL,
-              help="Full scientific name for the species (e.g. -c \"Homo sapiens\")", metavar="character")
+              help="Full scientific name for the species (e.g. -c \"Homo sapiens\")", metavar="character"),
   make_option(c("-d", "--annotation"), type="character", default=NULL,
-              help="Name of Protein database (either RefSeq or UniProt)", metavar="character")
+              help="Name of Protein database (either RefSeq or UniProt)", metavar="character"),
   make_option(c("-a", "--ascore_output_folder"), type="character", default=NULL, 
               help="AScore output folder", metavar="character"),
   make_option(c("-g", "--plexedpiper_global_results_ratio"), type="character", default=NULL, 
@@ -32,8 +32,6 @@ option_list <- list(
   make_option(c("-o", "--plexedpiper_output_folder"), type="character", default=NULL, 
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
-
-
 
 get_date <- function(){
   # GET QC_DATE----
@@ -60,52 +58,54 @@ if (is.null(opt$proteomics) |
   stop("Required arguments are missed", call.=FALSE)
 }
 
-
-# To DEBUG ---------------------------------------------------------------------
-# # Global
-# msgf_output_folder = "data/test_global/phrp_output"
-# masic_output_folder = "data/test_global/masic_output"
-# fasta_file = "data/ID_007275_FB1B42E8.fasta"
-# study_design_folder = "data/test_global/study_design"
-# plexedpiper_output_folder = "data/test_global/plexedpiper_output300"
-# To DEBUG ---------------------------------------------------------------------
-
-
+# Let's make easy debugging
+study_design_folder <- opt$study_design_folder
+plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
+study_design_folder <- opt$study_design_folder
+msgf_output_folder <- opt$msgf_output_folder
+ascore_output_folder <- opt$ascore_output_folder
+masic_output_folder <- opt$masic_output_folder
+species <- opt$species
+annotation <- opt$annotation
+plexedpiper_global_results_ratio <- opt$plexedpiper_global_results_ratio
+plexedpiper_output_folder <- opt$plexedpiper_output_folder
+fasta_file <- opt$fasta_file
 
 date2print <- get_date()
-if(is.null(opt$plexedpiper_output_name_prefix)){
-  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_PR_", toupper(proteomics),"_", date2print)
+if(is.null(plexedpiper_output_name_prefix)){
+  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_", toupper(proteomics),"-", date2print)  
 }else{
-  plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
-  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "_", date2print)
+  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "-", date2print)
+}
+
+if(!is.null(plexedpiper_global_results_ratio)){
+  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix,"-ip")
 }
 
 # Data loading
 message("- Fetch study design tables")
-study_design <- read_study_design(opt$study_design_folder)
-
-msnid <- read_msgf_data(opt$msgf_output_folder)
-
-ascore <- read_AScore_results(opt$ascore_output_folder)
-
-masic_data <- read_masic_data(opt$masic_output_folder, 
+study_design <- read_study_design(study_design_folder)
+msnid <- read_msgf_data(msgf_output_folder)
+if(!is.null(ascore_output_folder)) ascore <- read_AScore_results(ascore_output_folder)
+masic_data <- read_masic_data(masic_output_folder, 
                               interference_score = TRUE)
 
 # Pipeline call
-source("motrpac_pipeline.R")
-out <- motrpac_pnnl_pipeline(msnid          = msnid,
-                             path_to_FASTA  = opt$fasta_file,
+source("~/github/MoTrPAC/motrpac-proteomics-pnnl-prototype/relquant/motrpac_pipeline.R")
+motrpac_pnnl_pipeline(msnid          = msnid,
+                             path_to_fasta  = fasta_file,
                              masic_data     = masic_data,
                              ascore         = ascore,
-                             proteomics     = tolower(opt$proteomics),
+                             proteomics     = tolower(proteomics),
                              study_design   = study_design,
-                             species        = opt$species,
-                             annotation     = opt$annotation,
-                             global_results = opt$plexedpiper_global_results_ratio,
-                             output_folder  = opt$plexedpiper_output_folder,
+                             species        = species,
+                             annotation     = annotation,
+                             global_results = plexedpiper_global_results_ratio,
+                             output_folder  = plexedpiper_output_folder,
                              file_prefix    = plexedpiper_output_name_prefix,
                              save_env       = FALSE,
-                             verbose        = TRUE)
+                             return_results = FALSE,
+                             verbose        = FALSE)
 
 unlink(".Rcache", recursive=TRUE)
 
