@@ -33,15 +33,6 @@ option_list <- list(
               help="PlexedPiper output folder (Crosstabs)", metavar="character")
 )
 
-get_date <- function(){
-  # GET QC_DATE----
-  date2print <- Sys.time()
-  date2print <- gsub("-", "", date2print)
-  date2print <- gsub(" ", "_", date2print)
-  date2print <- gsub(":", "", date2print)
-  return(date2print)
-}
-
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
@@ -60,7 +51,7 @@ if (is.null(opt$proteomics) |
 
 # Let's make easy debugging
 study_design_folder <- opt$study_design_folder
-plexedpiper_output_name_prefix <- opt$plexedpiper_output_name_prefix
+pp_output_name_prefix <- opt$pp_output_name_prefix
 study_design_folder <- opt$study_design_folder
 msgf_output_folder <- opt$msgf_output_folder
 ascore_output_folder <- opt$ascore_output_folder
@@ -71,42 +62,42 @@ plexedpiper_global_results_ratio <- opt$plexedpiper_global_results_ratio
 plexedpiper_output_folder <- opt$plexedpiper_output_folder
 fasta_file <- opt$fasta_file
 
+get_date <- function(){
+  date2print <- Sys.time()
+  date2print <- gsub("-", "", date2print)
+  date2print <- gsub(" ", "_", date2print)
+  date2print <- gsub(":", "", date2print)
+  return(date2print)
+}
+
 date2print <- get_date()
-if(is.null(plexedpiper_output_name_prefix)){
-  plexedpiper_output_name_prefix <- paste0("MSGFPLUS_", toupper(proteomics),"-", date2print)  
+if(is.null(pp_output_name_prefix)){
+  pp_output_name_prefix <- paste0("MSGFPLUS_", toupper(proteomics),"-", date2print)  
 }else{
-  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix, "-", date2print)
+  pp_output_name_prefix <- paste0(pp_output_name_prefix, "-", date2print)
 }
 
 if(!is.null(plexedpiper_global_results_ratio)){
-  plexedpiper_output_name_prefix <- paste0(plexedpiper_output_name_prefix,"-ip")
+  pp_output_name_prefix <- paste0(pp_output_name_prefix,"-ip")
 }
-
-# Data loading
-message("- Fetch study design tables")
-study_design <- read_study_design(study_design_folder)
-msnid <- read_msgf_data(msgf_output_folder)
-if(!is.null(ascore_output_folder)) ascore <- read_AScore_results(ascore_output_folder)
-masic_data <- read_masic_data(masic_output_folder, 
-                              interference_score = TRUE)
 
 # Pipeline call
 source("~/github/MoTrPAC/motrpac-proteomics-pnnl-prototype/relquant/motrpac_pipeline.R")
-motrpac_pnnl_pipeline(msnid          = msnid,
-                             path_to_fasta  = fasta_file,
-                             masic_data     = masic_data,
-                             ascore         = ascore,
-                             proteomics     = tolower(proteomics),
-                             study_design   = study_design,
-                             species        = species,
-                             annotation     = annotation,
-                             global_results = plexedpiper_global_results_ratio,
-                             output_folder  = plexedpiper_output_folder,
-                             file_prefix    = plexedpiper_output_name_prefix,
-                             save_env       = FALSE,
-                             return_results = FALSE,
-                             verbose        = FALSE)
+results <- run_plexedpiper(msgf_output_folder = msgf_output_folder,
+                           fasta_file  = fasta_file,
+                           masic_output_folder = masic_output_folder,
+                           ascore_output_folder = ascore_output_folder,
+                           proteomics = tolower(proteomics),
+                           study_design_folder = study_design_folder,
+                           species = species,
+                           annotation = annotation,
+                           global_results = plexedpiper_global_results_ratio,
+                           output_folder = plexedpiper_output_folder,
+                           file_prefix = pp_output_name_prefix,
+                           write_results_to_file = TRUE,
+                           save_env = TRUE,
+                           return_results = TRUE,
+                           verbose = TRUE)
+
 
 unlink(".Rcache", recursive=TRUE)
-
-
