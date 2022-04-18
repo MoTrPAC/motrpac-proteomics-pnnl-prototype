@@ -35,6 +35,7 @@ option_list <- list(
 
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
+message("+ PlexedPiper version: ", paste(packageVersion("PlexedPiper")))
 
 if (is.null(opt$proteomics) | 
     is.null(opt$msgf_output_folder) | 
@@ -49,7 +50,9 @@ if (is.null(opt$proteomics) |
   stop("Required arguments are missed", call.=FALSE)
 }
 
+
 # Let's make easy debugging
+proteomics <- opt$proteomics
 study_design_folder <- opt$study_design_folder
 pp_output_name_prefix <- opt$pp_output_name_prefix
 study_design_folder <- opt$study_design_folder
@@ -82,7 +85,6 @@ if(!is.null(plexedpiper_global_results_ratio)){
 }
 
 # Pipeline call
-source("~/github/MoTrPAC/motrpac-proteomics-pnnl-prototype/relquant/motrpac_pipeline.R")
 results <- run_plexedpiper(msgf_output_folder = msgf_output_folder,
                            fasta_file  = fasta_file,
                            masic_output_folder = masic_output_folder,
