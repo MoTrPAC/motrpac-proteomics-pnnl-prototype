@@ -11,8 +11,14 @@ docker tag motrpac-prot-msgfplus:v1.2_20200901 gcr.io/motrpac-portal-dev/motrpac
 docker push gcr.io/motrpac-portal-dev/motrpac-prot-msgfplus:v1.2_20200901
 
 docker build -t "motrpac-prot-ppmerror:v1.2_20200901" -f step03/Dockerfile_ppmerror .
+# gcr.io
 docker tag motrpac-prot-ppmerror:v1.2_20200901 gcr.io/motrpac-portal-dev/motrpac-prot-ppmerror:v1.2_20200901
 docker push gcr.io/motrpac-portal-dev/motrpac-prot-ppmerror:v1.2_20200901
+
+#docker hub
+docker tag motrpac-prot-ppmerror:v1.2_20200901 docker.io/biodavidjm/motrpac-prot-ppmerror:v1.2_20200901
+docker push docker.io/biodavidjm/motrpac-prot-ppmerror:v1.2_20200901
+
 
 docker build -t "motrpac-prot-mzid2tsv:v1.2_20200901" -f step05/Dockerfile_mzid2tsv .
 docker tag motrpac-prot-mzid2tsv:v1.2_20200901 gcr.io/motrpac-portal-dev/motrpac-prot-mzid2tsv:v1.2_20200901
