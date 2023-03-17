@@ -46,26 +46,21 @@ study_design <- map(study_design_folder, read_study_design, prefix = prefix)
 
 study_design <- map(names(study_design), function(name_i) {
   sd_i <- study_design[[name_i]]
-  cols <- c("PlexID", "ReporterName", "MeasurementName", "Reference")
+  cols <- c("PlexID", "MeasurementName", "Reference")
   sd_i <- map(sd_i, function(xi) {
-    mutate(xi, across(intersect(cols, colnames(xi)), ~ paste0(.x, "_", name_i)))
+    xi %>%
+      mutate(across(any_of(cols),
+                    ~ ifelse(!is.na(.x), paste0(.x, "_", name_i), NA)),
+             across(any_of("ReporterAlias"),
+                    ~ ifelse(grepl("^ref", .x, ignore.case = TRUE),
+                             paste0(.x, "_", sub(".*_(PASS.*)", "\\1", PlexID)),
+                             .x)))
   })
   return(sd_i)
 })
 
-study_design <- list_transpose(study_design) %>% map(bind_rows)
-
-message("+ Remove duplicates (only vial labels)")
-remove_duplicate_digits <- function(df) {
-  df2 <- df %>%
-    mutate(is_digit = str_detect(ReporterAlias, "^\\d+(\\.\\d+)?$"),
-           ReporterAlias = ifelse(is_digit, make.unique(ReporterAlias), ReporterAlias))
-  
-  df2 <- select(df2, -is_digit)
-  return(df2)
-}
-
-study_design$samples <- remove_duplicate_digits(study_design$samples)
+study_design <- list_transpose(study_design) %>%
+  map(bind_rows)
 
 # Save results (modify file path as needed)
 message(paste("+ Save files to", output_folder))
