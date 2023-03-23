@@ -37,30 +37,44 @@ p1a <- opt$p1a
 p1c <- opt$p1c
 output_folder <- opt$output_folder
 
-study_design_folder <- list("PASS1A" = p1a,
-                            "PASS1C" = p1c)
+study_design_folder <- list("1A" = p1a,
+                            "1C" = p1c)
 
 message("+ Load study design folders")
 prefix = NULL
 study_design <- map(study_design_folder, read_study_design, prefix = prefix)
 
 study_design <- map(names(study_design), function(name_i) {
-  sd_i <- study_design[[name_i]]
-  cols <- c("PlexID", "MeasurementName", "Reference")
-  sd_i <- map(sd_i, function(xi) {
-    xi %>%
-      mutate(across(any_of(cols),
-                    ~ ifelse(!is.na(.x), paste0(.x, "_", name_i), NA)),
-             across(any_of("ReporterAlias"),
-                    ~ ifelse(grepl("^ref", .x, ignore.case = TRUE),
-                             paste0(.x, "_", sub(".*_(PASS.*)", "\\1", PlexID)),
-                             .x)))
-  })
+  sd_i <- study_design[[name_i]] %>%
+    map(function(xi) {
+      mutate(xi, PASS = name_i)
+    })
   return(sd_i)
-})
-
-study_design <- list_transpose(study_design) %>%
-  map(bind_rows)
+}) %>%
+  list_transpose() %>%
+  map(bind_rows) %>%
+  map(function(xi) {
+    xi %>%
+      mutate(across(
+        any_of(c("ReporterAlias", "MeasurementName")),
+        ~ ifelse(is.na(.x) | grepl("^ref", .x, ignore.case = TRUE),
+                 .x, make.unique(.x))),
+        across(any_of(c("ReporterAlias", "MeasurementName", "PlexID")),
+               ~ ifelse(is.na(.x), NA, paste0(.x, "_", PASS))),
+        # This can handle references that are combinations of multiple channels
+        across(any_of("Reference"), function(ref) {
+          map_chr(ref, function(ref_i) {
+            getParseData(parse(text = ref_i)) %>%
+              filter(terminal) %>%
+              mutate(text = ifelse(token == "SYMBOL",
+                                   paste0(text, "_", PASS),
+                                   text)) %>%
+              pull(text) %>%
+              paste(collapse = "")
+          })
+        }),
+        PASS = NULL) # remove PASS column
+  })
 
 # Save results (modify file path as needed)
 message(paste("+ Save files to", output_folder))
