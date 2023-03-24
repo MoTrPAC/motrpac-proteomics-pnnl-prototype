@@ -4,7 +4,6 @@ suppressPackageStartupMessages(suppressWarnings(library(optparse)))
 suppressPackageStartupMessages(suppressWarnings(library(purrr)))
 suppressPackageStartupMessages(suppressWarnings(library(dplyr)))
 suppressPackageStartupMessages(suppressWarnings(library(PlexedPiper)))
-suppressPackageStartupMessages(suppressWarnings(library(stringr)))
 
 option_list <- list(
   make_option(c("-a", "--p1a"),
@@ -64,7 +63,8 @@ study_design <- map(names(study_design), function(name_i) {
         # This can handle references that are combinations of multiple channels
         across(any_of("Reference"), function(ref) {
           map_chr(ref, function(ref_i) {
-            getParseData(parse(text = ref_i)) %>%
+            parse(text = ref_i, keep.source = TRUE) %>%
+              getParseData() %>%
               filter(terminal) %>%
               mutate(text = ifelse(token == "SYMBOL",
                                    paste0(text, "_", PASS),
