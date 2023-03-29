@@ -62,12 +62,12 @@ study_design <- map(names(study_design), function(name_i) {
                ~ ifelse(is.na(.x), NA, paste0(.x, "_", PASS))),
         # This can handle references that are combinations of multiple channels
         across(any_of("Reference"), function(ref) {
-          map_chr(ref, function(ref_i) {
+          map2_chr(ref, PASS, function(ref_i, pass_i) {
             parse(text = ref_i, keep.source = TRUE) %>%
               getParseData() %>%
               filter(terminal) %>%
               mutate(text = ifelse(token == "SYMBOL",
-                                   paste0(text, "_", PASS),
+                                   paste0(text, "_", pass_i),
                                    text)) %>%
               pull(text) %>%
               paste(collapse = "")
