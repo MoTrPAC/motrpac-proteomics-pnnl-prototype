@@ -4,7 +4,6 @@ suppressPackageStartupMessages(suppressWarnings(library(optparse)))
 suppressPackageStartupMessages(suppressWarnings(library(purrr)))
 suppressPackageStartupMessages(suppressWarnings(library(dplyr)))
 suppressPackageStartupMessages(suppressWarnings(library(PlexedPiper)))
-suppressPackageStartupMessages(suppressWarnings(library(stringr)))
 
 option_list <- list(
   make_option(c("-a", "--p1a"),
@@ -37,35 +36,45 @@ p1a <- opt$p1a
 p1c <- opt$p1c
 output_folder <- opt$output_folder
 
-study_design_folder <- list("PASS1A" = p1a,
-                            "PASS1C" = p1c)
+study_design_folder <- list("1A" = p1a,
+                            "1C" = p1c)
 
 message("+ Load study design folders")
 prefix = NULL
 study_design <- map(study_design_folder, read_study_design, prefix = prefix)
 
 study_design <- map(names(study_design), function(name_i) {
-  sd_i <- study_design[[name_i]]
-  cols <- c("PlexID", "ReporterName", "MeasurementName", "Reference")
-  sd_i <- map(sd_i, function(xi) {
-    mutate(xi, across(intersect(cols, colnames(xi)), ~ paste0(.x, "_", name_i)))
-  })
+  sd_i <- study_design[[name_i]] %>%
+    map(function(xi) {
+      mutate(xi, PASS = name_i)
+    })
   return(sd_i)
-})
-
-study_design <- list_transpose(study_design) %>% map(bind_rows)
-
-message("+ Remove duplicates (only vial labels)")
-remove_duplicate_digits <- function(df) {
-  df2 <- df %>%
-    mutate(is_digit = str_detect(ReporterAlias, "^\\d+(\\.\\d+)?$"),
-           ReporterAlias = ifelse(is_digit, make.unique(ReporterAlias), ReporterAlias))
-  
-  df2 <- select(df2, -is_digit)
-  return(df2)
-}
-
-study_design$samples <- remove_duplicate_digits(study_design$samples)
+}) %>%
+  list_transpose() %>%
+  map(bind_rows) %>%
+  map(function(xi) {
+    xi %>%
+      mutate(across(
+        any_of(c("ReporterAlias", "MeasurementName")),
+        ~ ifelse(is.na(.x) | grepl("^ref", .x, ignore.case = TRUE),
+                 .x, make.unique(.x))),
+        across(any_of(c("ReporterAlias", "MeasurementName", "PlexID")),
+               ~ ifelse(is.na(.x), NA, paste0(.x, "_", PASS))),
+        # This can handle references that are combinations of multiple channels
+        across(any_of("Reference"), function(ref) {
+          map2_chr(ref, PASS, function(ref_i, pass_i) {
+            parse(text = ref_i, keep.source = TRUE) %>%
+              getParseData() %>%
+              filter(terminal) %>%
+              mutate(text = ifelse(token == "SYMBOL",
+                                   paste0(text, "_", pass_i),
+                                   text)) %>%
+              pull(text) %>%
+              paste(collapse = "")
+          })
+        }),
+        PASS = NULL) # remove PASS column
+  })
 
 # Save results (modify file path as needed)
 message(paste("+ Save files to", output_folder))
